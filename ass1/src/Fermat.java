@@ -13,12 +13,14 @@ public class Fermat {
         if (args.length != 2) {
             System.out.println("Invalid input");
             return;
-        } else if (args[0].charAt(0) == '-' || args[1].charAt(0) == '-') {
-            System.out.println("Invalid input");
-            return;
         }
+
        int power = Integer.valueOf(args[0]), range = Integer.valueOf(args[1]);
-       if (power > 2 || pythagoreanEquation(power, range) == 0) {
+       /* checking all the arguments are a positive number. */
+       if (power <= 0 || range <= 0) {
+           System.out.println("Invalid input");
+           return;
+       } else if (power > 2 || pythagoreanEquation(power, range) == 0) {
            System.out.println("no");
            return;
        }
