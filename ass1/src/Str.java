@@ -8,6 +8,7 @@ public class Str {
      * print 2 groups:
      * 1- all the String that start with the query.
      * 2- all the String that contains the query, and not at group 1.
+     *
      * @param args command line arguments.
      */
     public static void main(String[] args) {
