@@ -1,8 +1,11 @@
-import javax.swing.*;
+import biuoop.DrawSurface;
+
+import java.awt.Color;
 
 public class Line {
     private Point start;
     private Point end;
+    final static double Comparison_threshold = 0.00001;
 
     // constructors
     public Line(Point start, Point end) {
@@ -73,7 +76,7 @@ public class Line {
 
         //Checking if the points are the same (we already know the x value equals),and inside the lines.
         Point point = new Point(pointX, pointY1);
-        if(pointY1 == pointY2 && this.isInLine(point) && other.isInLine(point)) {
+        if(Point.isDoubleTheSame(pointY1, pointY2) && this.isInLine(point) && other.isInLine(point)) {
             return point;
         }
 
@@ -94,10 +97,10 @@ public class Line {
     }
 
     //Returns-true if the Point inside the Line, else return false.
-    //if the point in the line the dictance from it node will be equal to the length
+    //if the point in the line the distance from it node will be equal to the length
     public boolean isInLine(Point point){
         double lineLength = this.length();
-        if(lineLength == (this.start.distance(point) + this.end.distance(point))){
+        if(Point.isDoubleTheSame(lineLength, this.start.distance(point) + this.end.distance(point))) {
             return true;
         }
         return false;
@@ -109,14 +112,19 @@ public class Line {
     }
 
     //Returns the intersection point of tow lines if one of them has infinity incline
-    //*
+    //***********************vartical line
     private Point inclineInfinityIntersection(Line other){
         if(other.isInclineInfinity()) {
             return null;
         }
 
         double x = this.start.getX();
-        return new Point(x, other.incline() * x + other.cConst());
+        Point point = new Point(x, other.incline() * x + other.cConst());
+        if(this.isInLine(point) && other.isInLine(point)) {
+            return point;
+        }
+
+        return null;
     }
 
     // equals -- return true is the lines are equal, false otherwise
@@ -128,4 +136,18 @@ public class Line {
         else
             return false;
     }
+
+    // draw a line in BLACK
+    public void drawLine(DrawSurface d) {
+        d.setColor(Color.BLACK);
+        d.drawLine((int)this.start.getX(), (int)this.start.getY(), (int)this.end.getX(), (int)this.end.getY());
+    }
+
+    //draw the middle of a line in BLUE
+    public void drawMiddle(DrawSurface d, int radios) {
+        Point middle = this.middle();
+        d.setColor(Color.BLUE);
+        d.fillCircle((int)middle.getX(), (int)middle.getY(), radios);
+    }
+
 }
