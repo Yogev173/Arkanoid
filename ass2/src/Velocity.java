@@ -1,7 +1,7 @@
 // Velocity specifies the change in position on the `x` and the `y` axes.
 public class Velocity {
-    final static double DEFAULT_DX = 5.0;
-    final static double DEFAULT_DY = 5.0;
+    final static double DEFAULT_DX = 1.0;
+    final static double DEFAULT_DY = 1.0;
 
     private double dx;
     private double dy;

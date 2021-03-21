@@ -4,6 +4,8 @@ import java.awt.Color;
 
 public class Point {
     final static double Comparison_threshold = 0.00001;
+    final static int DEFAULT_X = 0;
+    final static int DEFAULT_Y = 0;
 
     private double x;
     private double y;
@@ -12,6 +14,10 @@ public class Point {
     public Point(double x, double y) {
         this.x = x;
         this.y = y;
+    }
+
+    public Point() {
+        this(DEFAULT_X, DEFAULT_Y);
     }
 
     // distance -- return the distance of this point to the other point
