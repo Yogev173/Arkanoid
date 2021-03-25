@@ -1,57 +1,109 @@
 import biuoop.DrawSurface;
-
 import java.awt.Color;
 
+/**
+ * @author yogev abarbanel
+ * Id: 326116910
+ * one Line.
+ */
 public class Line {
     private Point start;
     private Point end;
-    final static double Comparison_threshold = 0.00001;
+    static final double COMPARISON_THRESHOLD = Point.COMPARISON_THRESHOLD;
 
-    // constructors
+    /**
+     * Constructor.
+     * @param start start point of the line.
+     * @param end end point of the line.
+     */
     public Line(Point start, Point end) {
         this.start = start;
         this.end = end;
     }
-    public Line(double x1, double y1, double x2, double y2) {
-        this(new Point(x2, y2), new Point(x1, y1));
+
+    /**
+     * Constructor.
+     * @param xStart the x coordinate of the start of the line.
+     * @param yStart the y coordinate of the start of the line.
+     * @param xEnd the x coordinate of the end of the line.
+     * @param yEnd the y coordinate of the end of the line.
+     */
+    public Line(double xStart, double yStart, double xEnd, double yEnd) {
+        this(new Point(xStart, yStart), new Point(xEnd, yEnd));
     }
 
-    // Return the length of the line
+    /**
+     * length.
+     * @return the length of the line.
+     */
     public double length() {
         return this.start.distance(this.end);
     }
 
-    // Returns the middle point of the line
+    /**
+     * middle.
+     * @return the middle point of the line
+     */
     public Point middle() {
-        double middleX = (this.start.getX() + this.end.getX())/2;
-        double middleY = (this.start.getY() + this.end.getY())/2;
+        double middleX = (this.start.getX() + this.end.getX()) / 2;
+        double middleY = (this.start.getY() + this.end.getY()) / 2;
         return new Point(middleX, middleY);
     }
 
-    // Returns the start point of the line
+    /**
+     * start.
+     * @return the start point of the line
+     */
     public Point start() {
         return this.start;
     }
 
-    // Returns the end point of the line
+    /**
+     * end.
+     * @return the end point of the line
+     */
     public Point end() {
         return this.end;
     }
 
-    // Returns true if the lines intersect, false otherwise
+    /**
+     * isIntersecting.
+     * @param other the line to check if intersect with.
+     * @return true if the lines intersect, false otherwise.
+     */
     public boolean isIntersecting(Line other) {
-        if(this.intersectionWith(other) != null)
+        if (this.intersectionWith(other) != null) {
             return true;
+        }
+
         return false;
     }
 
-    // Returns the intersection point if the lines intersect,
-    // and null otherwise.
+    /**
+     * intersectionWith.
+     * @param other the line to find intersection with.
+     * @return the intersection point if the lines intersect, and null otherwise.
+     */
     public Point intersectionWith(Line other) {
+        //If the one of the lines is a single point
+        if (this.start.equals(this.end)) {
+            if (other.isInLine(this.start)) {
+                return this.start;
+            }
+
+            return null;
+        } else if (other.start.equals(other.end)) {
+            if (this.isInLine(other.start)) {
+                return other.start;
+            }
+
+            return null;
+        }
+
         //checking if the incline is infinite
-        if(this.isInclineInfinity()) {
+        if (this.isInclineInfinity()) {
             return this.inclineInfinityIntersection(other);
-        } else if(other.isInclineInfinity()) {
+        } else if (other.isInclineInfinity()) {
             return other.inclineInfinityIntersection(this);
         }
 
@@ -62,8 +114,9 @@ public class Line {
         double cConst2 = other.cConst();
 
         //If the two lines are parallel and do not merge
-        if(incline1 == incline2)
-            return null;
+        if (incline1 == incline2) {
+            return parallelsLineIntersection(this.start, this.end, other.start, other.end);
+        }
 
         /*
         y = m1*x + c1 , y = m2*x + c2
@@ -76,78 +129,168 @@ public class Line {
 
         //Checking if the points are the same (we already know the x value equals),and inside the lines.
         Point point = new Point(pointX, pointY1);
-        if(Point.isDoubleTheSame(pointY1, pointY2) && this.isInLine(point) && other.isInLine(point)) {
+        if (Point.isDoubleTheSame(pointY1, pointY2) && this.isInLine(point) && other.isInLine(point)) {
             return point;
         }
 
         return null;
     }
 
-    //Returns the incline of line.
-    public double incline(){
+    /**
+     * incline.
+     * @return the incline of line.
+     */
+    public double incline() {
         double xDifference = this.start.getX() - this.end.getX();
         double yDifference = this.start.getY() - this.end.getY();
         return (yDifference / xDifference);
     }
 
-    //Returns the--c in the equation: y = m*x + c.
-    public double cConst(){
+    /**
+     * cConst.
+     * @return the--c (the const) in the equation: y = m*x + c.
+     */
+    public double cConst() {
         double incline = this.incline();
+        //c = y-m*x
         return (this.start.getY() - incline * this.start.getX());
     }
 
-    //Returns-true if the Point inside the Line, else return false.
-    //if the point in the line the distance from it node will be equal to the length
-    public boolean isInLine(Point point){
+    /**
+     * isInLine.
+     * Check if a point is inside the line.
+     * @param point the point to check if inside the line.
+     * @return true if the Point inside the Line, else return false.
+     */
+    public boolean isInLine(Point point) {
         double lineLength = this.length();
-        if(Point.isDoubleTheSame(lineLength, this.start.distance(point) + this.end.distance(point))) {
+
+        //if the point in the line the distance from it node will be equal to the length
+        if (Point.isDoubleTheSame(lineLength, this.start.distance(point) + this.end.distance(point))) {
             return true;
         }
         return false;
     }
 
-    //Returns if a line incline is infinity
-    private boolean isInclineInfinity(){
+    /**
+     * isInclineInfinity.
+     * @return true if a line incline is infinity, otherwise false.
+     */
+    private boolean isInclineInfinity() {
         return (this.start.getX() - this.end.getX() == 0);
     }
 
-    //Returns the intersection point of tow lines if one of them has infinity incline
-    //***********************vartical line
-    private Point inclineInfinityIntersection(Line other){
-        if(other.isInclineInfinity()) {
-            return null;
+    /**
+     * inclineInfinityIntersection.
+     * @param other the line to find intersection with.
+     * @return the intersection point of tow lines if one of them has infinity incline.
+     */
+    private Point inclineInfinityIntersection(Line other) {
+        //Checks if the other line also has a infinite incline.
+        if (other.isInclineInfinity()) {
+            Point intersection = parallelsLineIntersection(this.start, this.end, other.start, other.end);
+            return intersection;
         }
 
+        // founding the y-coordinate according to the other line
         double x = this.start.getX();
         Point point = new Point(x, other.incline() * x + other.cConst());
-        if(this.isInLine(point) && other.isInLine(point)) {
+        if (this.isInLine(point) && other.isInLine(point)) {
             return point;
         }
 
         return null;
     }
 
-    // equals -- return true is the lines are equal, false otherwise
-    public boolean equals(Line other) {
-        if(this.start.equals(other.start) && this.end.equals(other.end))
-            return true;
-        else if(this.start.equals(other.end) && this.end.equals(other.start))
-            return true;
-        else
-            return false;
+    /**
+     * parallelsLineIntersection.
+     * @param p1 start point of first line.
+     * @param p2 end point of first line.
+     * @param p3 start point of second line.
+     * @param p4 end point of second line.
+     * @return the intersection point if exists, otherwise return null;
+     */
+    private static Point parallelsLineIntersection(Point p1, Point p2, Point p3, Point p4) {
+        if (p1.equals(p3)) {
+            if (!isLineMerge(p1, p2, p4)) {
+                return p1;
+            }
+        } else if (p1.equals(p4)) {
+            if (!isLineMerge(p1, p2, p3)) {
+                return p1;
+            }
+        } else if (p2.equals(p3)) {
+            if (!isLineMerge(p2, p1, p4)) {
+                return p2;
+            }
+        } else if (p2.equals(p4)) {
+            if (!isLineMerge(p2, p1, p3)) {
+                return p2;
+            }
+        }
+
+        return null;
     }
 
-    // draw a line in BLACK
+    /**
+     * isLineMerge.
+     * merge = has more then one intersection point.
+     * @param intersection the shared point of tow lines.
+     * @param p1 first line other point.
+     * @param p2 second line other point.
+     * @return true if the line merge, and false otherwise.
+     */
+    private static boolean isLineMerge(Point intersection, Point p1, Point p2) {
+        /* we know the line has a shared edge, so it checked if the other edge are on the same "side" of the line
+        relative to the shared point (if so they has more then one intersection point. */
+        if (intersection.getX() < p1.getX() && intersection.getX() > p2.getX()) {
+            return false;
+        } else if (intersection.getX() > p1.getX() && intersection.getX() < p2.getX()) {
+            return false;
+        } else if (intersection.getY() < p1.getY() && intersection.getY() > p2.getY()) {
+            return false;
+        } else if (intersection.getY() > p1.getY() && intersection.getY() < p2.getY()) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * equals.
+     * @param other the line to check if equal to.
+     * @return true is the lines are equal, false otherwise.
+     */
+    public boolean equals(Line other) {
+        if (this.start.equals(other.start) && this.end.equals(other.end)) {
+            return true;
+        } else if (this.start.equals(other.end) && this.end.equals(other.start)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * drawLine.
+     *  draw a line in BLACK.
+     * @param d the DrawSurface.
+     */
     public void drawLine(DrawSurface d) {
         d.setColor(Color.BLACK);
-        d.drawLine((int)this.start.getX(), (int)this.start.getY(), (int)this.end.getX(), (int)this.end.getY());
+        d.drawLine((int) this.start.getX(), (int) this.start.getY(), (int) this.end.getX(), (int) this.end.getY());
     }
 
-    //draw the middle of a line in BLUE
+    /**
+     * draw middle.
+     * draw the middle of a line in BLUE.
+     * @param d the DrawSurface.
+     * @param radios the radios to draw the point.
+     */
     public void drawMiddle(DrawSurface d, int radios) {
         Point middle = this.middle();
         d.setColor(Color.BLUE);
-        d.fillCircle((int)middle.getX(), (int)middle.getY(), radios);
+        d.fillCircle((int) middle.getX(), (int) middle.getY(), radios);
     }
 
 }

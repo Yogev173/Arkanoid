@@ -5,14 +5,24 @@ import biuoop.Sleeper;
 import java.util.Random;
 import java.awt.Color;
 
+/**
+ * @author yogev abarbanel
+ * Id: 326116910
+ * display multiple ball animation.
+ */
 public class MultipleBouncingBallsAnimation {
 
-    final static int DEFAULT_WIDTH = 200;
-    final static int DEFAULT_HEIGHT = 200;
-    final static Color DEFAULT_COLOR = Color.BLUE;
+    static final int DEFAULT_WIDTH = 200;
+    static final int DEFAULT_HEIGHT = 200;
+    static final Color DEFAULT_COLOR = Color.BLUE;
 
-    public static void main(String args[]) {
-        if(args == null) {
+    /**
+     * main.
+     * get a array with a string that represent a radios of balls, and display them with animation.
+     * @param args the command line arguments.
+     */
+    public static void main(String[] args) {
+        if (args == null) {
             System.out.println("***no sizes were entered in the terminal***");
             return;
         }
@@ -21,19 +31,27 @@ public class MultipleBouncingBallsAnimation {
         //Showing the balls
         GUI gui = new GUI("Multiple Bouncing Balls Animation", DEFAULT_WIDTH, DEFAULT_HEIGHT);
         Sleeper sleeper = new Sleeper();
-        while(true) {
+        while (true) {
             DrawSurface d = gui.getDrawSurface();
-            for(int index = 0; index < balls.length; index++) {
+
+            //moving and drawing the balls
+            for (int index = 0; index < balls.length; index++) {
                 balls[index].drawOn(d);
                 balls[index].moveOneStep();
             }
             gui.show(d);
-            sleeper.sleepFor(50);
+            sleeper.sleepFor(1);
         }
     }
 
-    // Create the Balls and return array of them
-    private static Ball[] createBalls(String sizes[], int width, int height) {
+    /**
+     * createBalls.
+     * @param sizes the array of the ball sizes.
+     * @param width the frame width.
+     * @param height the frame height.
+     * @return array with the balls object.
+     */
+    private static Ball[] createBalls(String[] sizes, int width, int height) {
         Random rand = new Random();
         Ball[] balls = new Ball[sizes.length];
         int radios;
@@ -41,10 +59,11 @@ public class MultipleBouncingBallsAnimation {
         int centerY;
         Point center;
 
-        for(int ballNum = 0; ballNum < sizes.length; ballNum++) {
+        // creating the balls
+        for (int ballNum = 0; ballNum < sizes.length; ballNum++) {
             radios = Integer.valueOf(sizes[ballNum]);
-            centerX = rand.nextInt(width - 2*radios) + radios;
-            centerY = rand.nextInt(height - 2*radios) + radios;
+            centerX = rand.nextInt(width - 2 * radios) + radios;
+            centerY = rand.nextInt(height - 2 * radios) + radios;
             center = new Point(centerX, centerY);
 
             balls[ballNum] = new Ball(center, radios, DEFAULT_COLOR, Ball.velocityBySize(radios), width, height);

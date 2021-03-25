@@ -1,40 +1,73 @@
-// Velocity specifies the change in position on the `x` and the `y` axes.
+/**
+ * @author yogev abarbanel
+ * Id: 326116910
+ * velocity of object.
+ */
 public class Velocity {
-    final static double DEFAULT_DX = 1.0;
-    final static double DEFAULT_DY = 1.0;
+    static final double DEFAULT_DX = 0.05;
+    static final double DEFAULT_DY = 0.05;
 
     private double dx;
     private double dy;
 
-    // constructor
+    /**
+     * Constructor.
+     * @param dx velocity in x coordinate.
+     * @param dy velocity in y coordinate.
+     */
     public Velocity(double dx, double dy) {
         this.dx = dx;
         this.dy = dy;
     }
 
+    /**
+     * Constructor.
+     */
     public Velocity() {
         this(DEFAULT_DX, DEFAULT_DY);
     }
 
-    // accessors
+    /**
+     * getDx.
+     * @return the velocity in x coordinate.
+     */
     public double getDx() {
         return dx;
     }
 
+    /**
+     * getDy.
+     * @return velocity in y coordinate.
+     */
     public double getDy() {
         return dy;
     }
 
-    public void setDx(double dx) {
-        this.dx = dx;
+    /**
+     * setDx.
+     * @param newDx the new value of velocity in x coordinate.
+     */
+    public void setDx(double newDx) {
+        this.dx = newDx;
     }
 
-    public void setDy(double dy) {
-        this.dy = dy;
+    /**
+     * setDyx.
+     * @param newDy the new value of velocity in x coordinate.
+     */
+    public void setDy(double newDy) {
+        this.dy = newDy;
     }
 
     // Take a point with position (x,y) and return a new point
     // with position (x+dx, y+dy)
+
+    /**
+     * applyToPoint.
+     * Take a point with position (x,y) and return a new point with position (x+dx, y+dy).
+     * @param p the point to move.
+     * @return the new point after it move according to it velocity.
+     */
     public Point applyToPoint(Point p) {
         return new Point(p.getX() + this.dx, p.getY() + this.dy);
     }
