@@ -11,6 +11,7 @@ public class Tester {
     private int amountOfTestsSucceed = 0;
     private int amountOfTestsFailed = 0;
     private int amountOfTests;
+    private int[] failedNumbers = new int [0];
 
     /**
      * Constructor
@@ -52,6 +53,7 @@ public class Tester {
                 System.out.println("Enter the new amount of tests");
                 setAmountOfTests(in.nextInt());
             } else if (userChoice.equals("S")) {
+                System.out.println("THE TEST DIDN'T COUNT!!!");
                 status();
                 return;
             } else {
@@ -67,6 +69,12 @@ public class Tester {
         } else {
             System.out.println("Test for " + fileName + " number: " + testNumber + " FAILED. xxxxx");
             this.amountOfTestsFailed++;
+            int[] newFailedNumbers = new int[this.amountOfTestsFailed];
+            for (int i = 0; i < this.failedNumbers.length; i++) {
+                newFailedNumbers[i] = this.failedNumbers[i];
+            }
+            newFailedNumbers[this.amountOfTestsFailed - 1] = this.testNumber;
+            this.failedNumbers = newFailedNumbers;
         }
     }
 
@@ -118,9 +126,10 @@ public class Tester {
 
         //If Test done
         if(this.testNumber == this.amountOfTests) {
-            String resultOfTest = "FAILED   ";
-            if (this.amountOfTestsSucceed == this.amountOfTests) {
-                resultOfTest = "SUCCEEDED";
+            String resultOfTest = "SUCCEEDED";
+            if (this.amountOfTestsSucceed != this.amountOfTests) {
+                resultOfTest = "FAILED   ";
+                printFailed();
             }
 
             System.out.println("        ****************************************************");
@@ -137,6 +146,13 @@ public class Tester {
         }
 
         System.out.print(" | ");
+    }
+
+    public void printFailed() {
+        System.out.println("FAILED in:");
+        for (int i = 0; i < this.failedNumbers.length; i++) {
+            System.out.println(" FAILED " + this.failedNumbers[i]);
+        }
     }
 
     /* Getters and Setters */
