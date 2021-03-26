@@ -72,7 +72,12 @@ public class Line {
      * @return true if the lines intersect, false otherwise.
      */
     public boolean isIntersecting(Line other) {
-        if (this.intersectionWith(other) != null) {
+        //In case they parallel, so there is a lot of intersection point.
+        if (other.isInLine(this.start) || other.isInLine(this.end)) {
+            return true;
+        }
+        //Check all the other cases
+        else if (this.intersectionWith(other) != null) {
             return true;
         }
 
