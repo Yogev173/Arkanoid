@@ -1,6 +1,4 @@
 public class LineTest {
-    static final double COMPARISON_THRESHOLD = 0.00001;
-
     /**
      * Main.
      * test the Line class.
@@ -235,10 +233,10 @@ public class LineTest {
         System.out.println("\ntesting the length method:");
         //50
         Line l1 = new Line(2, 6, 2, 2);
-        tester.printMessage(isDoubleTheSame(l1.length(), 4));
+        tester.printMessage(Tester.isDoubleTheSame(l1.length(), 4));
 
         //51
         l1 = new Line(2, 7, 8, 13);
-        tester.printMessage(isDoubleTheSame(l1.length(), 8.485281374));
+        tester.printMessage(Tester.isDoubleTheSame(l1.length(), 8.485281374));
     }
 }
