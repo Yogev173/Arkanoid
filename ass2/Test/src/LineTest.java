@@ -1,6 +1,11 @@
 public class LineTest {
     static final double COMPARISON_THRESHOLD = 0.00001;
 
+    /**
+     * Main.
+     * test the Line class.
+     * @param args
+     */
     public static void main(String[] args) {
         Tester tester = new Tester("Line Test", 51);
         testConstructor(tester);
@@ -34,9 +39,9 @@ public class LineTest {
         System.out.println("\ntesting the intersection method:");
         //3-16
         notParallelLine(tester);
-        //17-24
+        //19-26
         parallelNotInfinityIncline(tester);
-        //25-
+        //27-46
         parallelInfinityIncline(tester);
     }
 
@@ -235,14 +240,5 @@ public class LineTest {
         //51
         l1 = new Line(2, 7, 8, 13);
         tester.printMessage(isDoubleTheSame(l1.length(), 8.485281374));
-    }
-
-
-    public static boolean isDoubleTheSame(double num1, double num2) {
-        if (num1 - COMPARISON_THRESHOLD <= num2 && num2 <= num1 + COMPARISON_THRESHOLD) {
-            return true;
-        }
-
-        return false;
     }
 }

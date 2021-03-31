@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 public class Tester {
 
+    static final double COMPARISON_THRESHOLD = 0.00001;
     private static Scanner in = new Scanner(System.in);
     private static final int TABLE_COLUMN_WIDTH = 9;
 
@@ -160,11 +161,29 @@ public class Tester {
         System.out.print(" | ");
     }
 
+    /**
+     * print the test that the program failed in.
+     */
     public void printFailed() {
         System.out.println("FAILED in:");
         for (int i = 0; i < this.failedNumbers.length; i++) {
             System.out.println(" -FAILED " + this.failedNumbers[i]);
         }
+    }
+
+    /**
+     * isDoubleTheSame.
+     * Check if tow number are the same until 0.00001.
+     * @param num1 the first number.
+     * @param num2 the second number.
+     * @return true if equals, and false otherwise.
+     */
+    public static boolean isDoubleTheSame(double num1, double num2) {
+        if (num1 - COMPARISON_THRESHOLD <= num2 && num2 <= num1 + COMPARISON_THRESHOLD) {
+            return true;
+        }
+
+        return false;
     }
 
     /* Getters and Setters */
