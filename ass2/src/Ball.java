@@ -1,5 +1,7 @@
 import biuoop.DrawSurface;
 import java.awt.Color;
+import java.util.Random;
+
 /**
  * @author yogev abarbanel
  * Id: 326116910
@@ -59,8 +61,8 @@ public class Ball {
 
     /**
      * Constructor.
-     * @param centerX the x coordinate center of the ball
-     * @param centerY the y coordinate center of the ball
+     * @param centerX the x center coordinate of the ball
+     * @param centerY the y center coordinate of the ball
      * @param r the radios of the ball
      * @param color the color of the ball
      */
@@ -90,6 +92,38 @@ public class Ball {
      */
     public Ball(Point center, int r, Color color) {
         this(center, r, color, DEFAULT_VELOCITY, DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_FRAME_EDGE);
+    }
+
+    /**
+     * Constructor.
+     * @param centerX the x center coordinate of the ball
+     * @param centerY the Y center coordinate of the ball
+     * @param r the radios of the bll
+     * @param color the color of the ball
+     */
+    public Ball(int centerX, int centerY, int r, Color color) {
+        this(new Point(centerX, centerY), r, color,
+                DEFAULT_VELOCITY, DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_FRAME_EDGE);
+    }
+
+    public static Ball randomBall(int width, int height, Point frameEdge){
+        Random rand = new Random();
+        int maxBoundRadios = (width < height ? width : height) / 3;
+        int radios = rand.nextInt(maxBoundRadios) + 1;
+        int xEdge = (int) frameEdge.getX();
+        int yEdge = (int) frameEdge.getY();
+
+        // xBound = width - 2r
+        int xBound = width - 2 * radios;
+        int  centerX = rand.nextInt(xBound) + xEdge + radios + 1;
+
+        // yBound = height - 2r
+        int yBound = height - 2 * radios;
+        int centerY = rand.nextInt(yBound) + yEdge + radios + 1;
+        Point center = new Point(centerX, centerY);
+
+        return new Ball(center, radios, randomColor(), Ball.velocityBySize(radios), width, height,
+                new Point(xEdge, yEdge));
     }
 
     /**
@@ -209,6 +243,14 @@ public class Ball {
             return DEFAULT_VELOCITY;
         }
 
-        return new Velocity((4.75 - radios / 12)/10, (4.75 - radios / 12)/10);
+        return new Velocity((4.75 - radios / 12.0)/10, (4.75 - radios / 12.0)/10);
+    }
+
+    public static Color randomColor(){
+        Random rnd = new Random();
+        int red = rnd.nextInt();
+        int green = rnd.nextInt();
+        int blue = rnd.nextInt();
+        return new Color(red, green, blue);
     }
 }

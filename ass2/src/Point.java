@@ -48,7 +48,9 @@ public class Point {
      * @return true if the points are equal, false otherwise.
      */
     public boolean equals(Point other) {
-        if (isDoubleTheSame(this.x, other.x) && isDoubleTheSame(this.y, other.y)) {
+        if (other == null) {
+            return false;
+        } else if (isDoubleTheSame(this.x, other.x) && isDoubleTheSame(this.y, other.y)) {
             return true;
         }
 

@@ -33,9 +33,17 @@ public class Tester {
 
     /**
      * Constructor
+     * @param fileName the name of the file that been tested.
+     */
+    public Tester(String fileName) {
+        this(fileName, 100);
+    }
+
+    /**
+     * Constructor
      */
     public Tester() {
-        this("", -1);
+        this("", 100);
     }
 
     /**
@@ -126,18 +134,22 @@ public class Tester {
 
         //If Test done
         if(this.testNumber == this.amountOfTests) {
-            String resultOfTest = "SUCCEEDED";
-            if (this.amountOfTestsSucceed != this.amountOfTests) {
-                resultOfTest = "FAILED   ";
-                printFailed();
-            }
-
-            System.out.println("        ****************************************************");
-            System.out.println("        **                                                **");
-            System.out.println("        **                    " + resultOfTest + "                   **");
-            System.out.println("        **                                                **");
-            System.out.println("        ****************************************************");
+            printFailure();
         }
+    }
+
+    public void printFailure() {
+        String resultOfTest = "SUCCEEDED";
+        if (this.amountOfTestsSucceed != this.testNumber) {
+            resultOfTest = "FAILED   ";
+            printFailed();
+        }
+
+        System.out.println("                ****************************************");
+        System.out.println("                **                                    **");
+        System.out.println("                **              " + resultOfTest + "             **");
+        System.out.println("                **                                    **");
+        System.out.println("                ****************************************");
     }
 
     private void printSpaceAndBreak(int numOfSpace) {
@@ -151,7 +163,7 @@ public class Tester {
     public void printFailed() {
         System.out.println("FAILED in:");
         for (int i = 0; i < this.failedNumbers.length; i++) {
-            System.out.println(" FAILED " + this.failedNumbers[i]);
+            System.out.println(" -FAILED " + this.failedNumbers[i]);
         }
     }
 
