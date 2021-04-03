@@ -120,7 +120,7 @@ public class Line {
         double cConst2 = other.cConst();
 
         //If the two lines are parallel and do not merge
-        if (incline1 == incline2) {
+        if (Point.isDoubleTheSame(incline1, incline2)) {
             return parallelsLineIntersection(this.start, this.end, other.start, other.end);
         }
 
@@ -217,6 +217,8 @@ public class Line {
      * @return the intersection point if exists, otherwise return null;
      */
     private static Point parallelsLineIntersection(Point p1, Point p2, Point p3, Point p4) {
+        /* If tow line are parallel the only option they has one intersection point,
+         it's if they connected only at the edge */
         if (p1.equals(p3)) {
             if (!isLineMerge(p1, p2, p4)) {
                 return p1;
