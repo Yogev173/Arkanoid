@@ -106,10 +106,43 @@ public class Ball {
                 DEFAULT_VELOCITY, DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_FRAME_EDGE);
     }
 
-    public static Ball randomBall(int width, int height, Point frameEdge){
+    /**
+     * randomBall.
+     * @param width the width of the ball bounds
+     * @param height the height of the ball height
+     * @param frameEdge the top left corner of the ball bounds
+     * @return the new Ball
+     */
+    public static Ball randomBall(int width, int height, Point frameEdge) {
         Random rand = new Random();
         int maxBoundRadios = (width < height ? width : height) / 3;
         int radios = rand.nextInt(maxBoundRadios) + 1;
+        int xEdge = (int) frameEdge.getX();
+        int yEdge = (int) frameEdge.getY();
+
+        // xBound = width - 2r
+        int xBound = width - 2 * radios;
+        int  centerX = rand.nextInt(xBound) + xEdge + radios + 1;
+
+        // yBound = height - 2r
+        int yBound = height - 2 * radios;
+        int centerY = rand.nextInt(yBound) + yEdge + radios + 1;
+        Point center = new Point(centerX, centerY);
+
+        return new Ball(center, radios, randomColor(), Ball.velocityBySize(radios), width, height,
+                new Point(xEdge, yEdge));
+    }
+
+    /**
+     * randomBall.
+     * @param width the width of the ball bounds
+     * @param height the height of the ball height
+     * @param frameEdge the top left corner of the ball bounds
+     * @param radios the radios of the ball.
+     * @return the new Ball.
+     */
+    public static Ball randomBall(int width, int height, Point frameEdge, int radios) {
+        Random rand = new Random();
         int xEdge = (int) frameEdge.getX();
         int yEdge = (int) frameEdge.getY();
 
@@ -243,10 +276,14 @@ public class Ball {
             return DEFAULT_VELOCITY;
         }
 
-        return new Velocity((4.75 - radios / 12.0)/10, (4.75 - radios / 12.0)/10);
+        return new Velocity((4.75 - radios / 12.0) / 10, (4.75 - radios / 12.0) / 10);
     }
 
-    public static Color randomColor(){
+    /**
+     * randomColor.
+     * @return the color
+     */
+    public static Color randomColor() {
         Random rnd = new Random();
         int red = rnd.nextInt();
         int green = rnd.nextInt();
