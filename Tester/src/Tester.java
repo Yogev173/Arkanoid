@@ -55,7 +55,7 @@ public class Tester {
         if (this.testNumber == this.amountOfTests) {
             System.out.println("All test have been done already,\n Chose How to continue:" +
                     "\n I - try to increase the amount of Tests," +
-                    "\n S - or print status (summery)" +
+                    "\n S - print status (summery)" +
                     "\n N - nan of the above");
             String userChoice = in.next().toUpperCase(Locale.ROOT);
             if (userChoice.equals("I")) {
