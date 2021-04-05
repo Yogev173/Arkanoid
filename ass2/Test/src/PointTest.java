@@ -6,7 +6,7 @@ public class PointTest {
      * @param args
      */
     public static void main(String[] args) {
-        Tester tester = new Tester("Point Test", 2);
+        Tester tester = new Tester("Point Test");
         testConstructor(tester);
         testDistance(tester);
 
@@ -19,7 +19,7 @@ public class PointTest {
         System.out.println("\ntesting the Constructors:");
         //1
         Point p1 = new Point(4.89, 9.56);
-        tester.printMessage((Tester.isDoubleTheSame(p1.getX(), 4.89) && Tester.isDoubleTheSame(p1.getY(), 9.56)));
+        tester.testsCounter((Tester.isDoubleTheSame(p1.getX(), 4.89) && Tester.isDoubleTheSame(p1.getY(), 9.56)));
     }
 
     /* distance */
@@ -29,7 +29,7 @@ public class PointTest {
         //2
         Point p1 = new Point(1.4,2);
         Point p2 = new Point(1.78, 9.345);
-        tester.printMessage(Tester.isDoubleTheSame(p1.distance(p2), 7.354823247));
+        tester.testsCounter(Tester.isDoubleTheSame(p1.distance(p2), 7.354823247));
 
     }
 }

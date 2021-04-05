@@ -15,7 +15,8 @@ public class Tester {
     private int amountOfTests = 0;
 
     private boolean isTestSucceed = true;
-    private int[] failedNumbers = new int [0];
+    private int[] failedNumbers = new int[0];
+    private StackTraceElement[] failedLines = new StackTraceElement[0];
 
     /**
      * Constructor
@@ -29,7 +30,12 @@ public class Tester {
      * Constructor
      */
     public Tester() {
-        this("Test");
+        this(Thread.currentThread().getStackTrace()[2].getFileName());
+    }
+
+    public void compare(String rightAnswer, String yourAnswer) {
+        boolean isTestSucceed = rightAnswer.equals(yourAnswer);
+        this.testsCounter(rightAnswer.equals(yourAnswer), 1);
     }
 
     /**
@@ -37,22 +43,39 @@ public class Tester {
      * @param isTestSucceed id the test succeeded or failed.
      */
     public void testsCounter(boolean isTestSucceed) {
+        this.testsCounter(isTestSucceed, 0);
+    }
+
+    /**
+     * testCounter.
+     * @param isTestSucceed id the test succeeded or failed.
+     * @param functionNumber number of function that been calls=d
+     */
+    public void testsCounter(boolean isTestSucceed, int functionNumber) {
         this.testNumber++;
         this.amountOfTests++;
 
         //printing the message according to the test result.
         if (isTestSucceed) {
-            System.out.println("Test for " + fileName + " number: " + testNumber + " SUCCEEDED.");
+            System.out.println(" NUMBER: " + testNumber + ", LINE: " +
+                    Thread.currentThread().getStackTrace()[2 + functionNumber].getLineNumber() + " SUCCEEDED.");
             this.amountOfTestsSucceed++;
         } else {
-            System.out.println("Test for " + fileName + " number: " + testNumber + " FAILED. xxxxx");
+            System.out.println(" NUMBER: " + testNumber + ", LINE: " +
+                    Thread.currentThread().getStackTrace()[2 + functionNumber].getLineNumber() + " FAILED.");
             this.amountOfTestsFailed++;
+
             int[] newFailedNumbers = new int[this.amountOfTestsFailed];
+            StackTraceElement[] newFailedLines = new StackTraceElement[this.amountOfTestsFailed];
             for (int i = 0; i < this.failedNumbers.length; i++) {
                 newFailedNumbers[i] = this.failedNumbers[i];
+                newFailedLines[i] = this.failedLines[i];
             }
             newFailedNumbers[this.amountOfTestsFailed - 1] = this.testNumber;
+            newFailedLines[this.amountOfTestsFailed - 1] = Thread.currentThread().getStackTrace()[2 + functionNumber];
+
             this.failedNumbers = newFailedNumbers;
+            this.failedLines = newFailedLines;
             this.isTestSucceed = false;
         }
     }
@@ -78,9 +101,9 @@ public class Tester {
      * print the test that the program failed in.
      */
     public void printFailed() {
-        System.out.println("FAILED in:");
+        System.out.println("\n\nFAILED in:");
         for (int i = 0; i < this.failedNumbers.length; i++) {
-            System.out.println(" -FAILED " + this.failedNumbers[i]);
+            System.out.println(" -FAILED " + this.failedNumbers[i] + " PATH: " + this.failedLines[i]);
         }
     }
 
@@ -97,6 +120,14 @@ public class Tester {
         }
 
         return false;
+    }
+
+    /**
+     * headLine.
+     * print the the current test name.
+     */
+    public void headLine() {
+        System.out.println("Test for " + fileName);
     }
 
     /* Getters and Setters */
