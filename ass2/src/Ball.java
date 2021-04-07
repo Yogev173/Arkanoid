@@ -232,33 +232,87 @@ public class Ball {
      * velocity in the same axis, and return it to the bounds it allowed in.
      */
     public void moveOneStep() {
-        Point newCenter = this.getVelocity().applyToPoint(this.center);
+        this.center = this.getVelocity().applyToPoint(this.center);
         //The edge of the frame
-        int right = (int) this.frameEdge.getX() + this.width;
-        int left = (int) this.frameEdge.getX();
-        int up = (int) this.frameEdge.getY();
-        int down = (int) this.frameEdge.getY() + this.height;
+        int rightBorder = (int) this.frameEdge.getX() + this.width;
+        int leftBorder = (int) this.frameEdge.getX();
+        int upperBorder = (int) this.frameEdge.getY();
+        int downBorder = (int) this.frameEdge.getY() + this.height;
 
         //Checking the ball don't go out of its bounds.
         //Checking the width - Right side
-        if ((int) newCenter.getX() + this.radios > right) {
-            this.velocity.setDx(-this.velocity.getDx());
-            newCenter.setX(right - this.radios);
-        }
+        rightBorderCheck(this, rightBorder);
         //Checking the width - Left side
-        if ((int) newCenter.getX() - this.radios < left) {
-            this.velocity.setDx(-this.velocity.getDx());
-            newCenter.setX(left + this.radios);
-        }
-        //Checking the height - Up side
-        if ((int) newCenter.getY() - this.radios < up) {
-            this.velocity.setDy(-this.velocity.getDy());
-            newCenter.setY(up + this.radios);
-        }
+        leftBorderCheck(this, leftBorder);
+        //Checking the height - upper side
+        upperBorderCheck(this, upperBorder);
         //Checking the width - Down side
-        if ((int) newCenter.getY() + this.radios > down) {
+        downBorderCheck(this, downBorder);
+    }
+
+    /**
+     * rightBorderCheck.
+     * check if the ball cross his right border, if so it reverse it x velocity,
+     * and getting it center to the right side of the border.
+     * @param newBall Ball to chek if pass the right border.
+     * @param rightBorder the coordinate of the right border.
+     */
+    public void rightBorderCheck(Ball newBall, int rightBorder) {
+        Point newCenter = newBall.center;
+        if ((int) newCenter.getX() + this.radios > rightBorder) {
+            this.velocity.setDx(-this.velocity.getDx());
+            newCenter.setX(rightBorder - this.radios);
+        }
+
+        this.center = newCenter;
+    }
+
+    /**
+     * leftBorderCheck.
+     * check if the ball cross his right border, if so it reverse it x velocity,
+     * and getting it center to the right side of the border.
+     * @param newBall Ball to chek if pass the left border.
+     * @param leftBorder the coordinate of the left border.
+     */
+    public void leftBorderCheck(Ball newBall, int leftBorder) {
+        Point newCenter = newBall.center;
+        if ((int) newCenter.getX() - this.radios < leftBorder) {
+            this.velocity.setDx(-this.velocity.getDx());
+            newCenter.setX(leftBorder + this.radios);
+        }
+
+        this.center = newCenter;
+    }
+
+    /**
+     * upperBorderCheck.
+     * check if the ball cross his right border, if so it reverse it y velocity,
+     * and getting it center to the right side of the border.
+     * @param newBall Ball to chek if pass the left border.
+     * @param upperBorder the coordinate of the upper border.
+     */
+    public void upperBorderCheck(Ball newBall, int upperBorder) {
+        Point newCenter = newBall.center;
+        if ((int) newCenter.getY() - this.radios < upperBorder) {
             this.velocity.setDy(-this.velocity.getDy());
-            newCenter.setY(down - this.radios);
+            newCenter.setY(upperBorder + this.radios);
+        }
+
+        this.center = newCenter;
+    }
+
+    /**
+     * downBorderCheck.
+     * check if the ball cross his right border, if so it reverse it y velocity,
+     * and getting it center to the right side of the border.
+     * @param newBall Ball to chek if pass the down border.
+     * @param downBorder the coordinate of the down border.
+     */
+    public void downBorderCheck(Ball newBall, int downBorder) {
+        Point newCenter = newBall.center;
+        if ((int) newCenter.getY() + this.radios > downBorder) {
+            this.velocity.setDy(-this.velocity.getDy());
+            newCenter.setY(downBorder - this.radios);
         }
 
         this.center = newCenter;
@@ -276,7 +330,7 @@ public class Ball {
             return DEFAULT_VELOCITY;
         }
 
-        return new Velocity((4.75 - radios / 12.0) / 10, (4.75 - radios / 12.0) / 10);
+        return new Velocity((4.75 - radios / 12.0) / 5, (4.75 - radios / 12.0) / 5);
     }
 
     /**
