@@ -40,7 +40,7 @@ public class MultipleBouncingBallsAnimation {
                 balls[index].moveOneStep();
             }
             gui.show(d);
-            sleeper.sleepFor(5);
+            sleeper.sleepFor(50);
         }
     }
 
@@ -62,8 +62,18 @@ public class MultipleBouncingBallsAnimation {
         // creating the balls
         for (int ballNum = 0; ballNum < sizes.length; ballNum++) {
             radios = Integer.valueOf(sizes[ballNum]);
-            centerX = rand.nextInt(width - 2 * radios) + radios;
-            centerY = rand.nextInt(height - 2 * radios) + radios;
+            if (Math.abs(width - 2 * radios) != 0) {
+                centerX = rand.nextInt(Math.abs(width - 2 * radios)) + radios;
+            } else {
+                centerX = radios;
+            }
+
+            if (Math.abs(height - 2 * radios) != 0) {
+                centerY = rand.nextInt(Math.abs(height - 2 * radios)) + radios;
+            } else {
+                centerY = radios;
+            }
+
             center = new Point(centerX, centerY);
 
             balls[ballNum] = new Ball(center, radios, DEFAULT_COLOR, Ball.velocityBySize(radios), width, height);

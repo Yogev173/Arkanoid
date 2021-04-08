@@ -97,11 +97,13 @@ public class MultipleFramesBouncingBallsAnimation {
             int height = -yEdge + FRAMES_SETTING[farmeNum][3];
 
             // xBound = width - 2r
-            int xBound = width - 2 * radios;
+            int xBound = Math.abs(width - 2 * radios);
+            xBound = xBound == 0 ? radios : xBound;
             centerX = rand.nextInt(xBound) + xEdge + radios + 1;
 
             // yBound = height - 2r
-            int yBound = height - 2 * radios;
+            int yBound = Math.abs(height - 2 * radios);
+            yBound = yBound == 0 ? radios : yBound;
             centerY = rand.nextInt(yBound) + yEdge + radios + 1;
             center = new Point(centerX, centerY);
 

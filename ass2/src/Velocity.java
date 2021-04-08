@@ -72,9 +72,6 @@ public class Velocity {
         this.dy = newDy;
     }
 
-    // Take a point with position (x,y) and return a new point
-    // with position (x+dx, y+dy)
-
     /**
      * applyToPoint.
      * Take a point with position (x,y) and return a new point with position (x+dx, y+dy).
