@@ -5,7 +5,7 @@ import java.util.Random;
 /**
  * @author yogev abarbanel
  * Id: 326116910
- * one ball
+ * one ball.
  */
 public class Ball {
     static final double PAI = 3.14159;

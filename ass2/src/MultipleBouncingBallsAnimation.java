@@ -18,7 +18,7 @@ public class MultipleBouncingBallsAnimation {
 
     /**
      * main.
-     * get a array with a string that represent a radios of balls, and display them with animation.
+     * get a array with a string that represent a radios of balls, and display them with animation
      * @param args the command line arguments.
      */
     public static void main(String[] args) {
