@@ -40,7 +40,7 @@ public class MultipleBouncingBallsAnimation {
                 balls[index].moveOneStep();
             }
             gui.show(d);
-            sleeper.sleepFor(50);
+            sleeper.sleepFor(5);
         }
     }
 

@@ -11,7 +11,6 @@ public class Ball {
     static final double PAI = 3.14159;
     static final int DEFAULT_WIDTH = 200;
     static final int DEFAULT_HEIGHT = 200;
-    static final Velocity DEFAULT_VELOCITY = new Velocity();
     static final Point DEFAULT_FRAME_EDGE = new Point();
     static final Color DEFAULT_COLOR = Color.BLACK;
 
@@ -67,7 +66,7 @@ public class Ball {
      * @param color the color of the ball
      */
     public Ball(double centerX, double centerY, int r, Color color) {
-        this(new Point(centerX, centerY), r, color, DEFAULT_VELOCITY, DEFAULT_WIDTH, DEFAULT_HEIGHT,
+        this(new Point(centerX, centerY), r, color, new Velocity(), DEFAULT_WIDTH, DEFAULT_HEIGHT,
                 DEFAULT_FRAME_EDGE);
     }
 
@@ -91,7 +90,7 @@ public class Ball {
      * @param color the color of the ball
      */
     public Ball(Point center, int r, Color color) {
-        this(center, r, color, DEFAULT_VELOCITY, DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_FRAME_EDGE);
+        this(center, r, color, new Velocity(), DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_FRAME_EDGE);
     }
 
     /**
@@ -103,7 +102,7 @@ public class Ball {
      */
     public Ball(int centerX, int centerY, int r, Color color) {
         this(new Point(centerX, centerY), r, color,
-                DEFAULT_VELOCITY, DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_FRAME_EDGE);
+                new Velocity(), DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_FRAME_EDGE);
     }
 
     /**
@@ -327,7 +326,7 @@ public class Ball {
      */
     public static Velocity velocityBySize(int radios) {
         if (radios >= 50) {
-            return DEFAULT_VELOCITY;
+            return new Velocity();
         }
 
         return new Velocity((4.75 - radios / 12.0) / 5, (4.75 - radios / 12.0) / 5);
