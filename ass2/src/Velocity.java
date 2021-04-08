@@ -28,6 +28,19 @@ public class Velocity {
     }
 
     /**
+     * fromAngleAndSpeed.
+     * create Velocity by angle and speed.
+     * @param angle the angle of the velocity.
+     * @param speed the length of the velocity vector.
+     * @return the new Velocity.
+     */
+    public static Velocity fromAngleAndSpeed(double angle, double speed) {
+        double dx = Math.cos(angle) * speed;
+        double dy = Math.sin(angle) * speed;
+        return new Velocity(dx, dy);
+    }
+
+    /**
      * getDx.
      * @return the velocity in x coordinate.
      */
