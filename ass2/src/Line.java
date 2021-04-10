@@ -72,7 +72,8 @@ public class Line {
      * @return true if the lines intersect, false otherwise.
      */
     public boolean isIntersecting(Line other) {
-        //In case they parallel, so there is a lot of intersection point.
+        /*In case they parallel, so there is a lot of intersection point, the intersectionWith will return null,
+        but these function should return true. */
         if (other.isInLine(this.start) || other.isInLine(this.end)
                 || this.isInLine(other.start) || this.isInLine(other.end)) {
             return true;
@@ -111,6 +112,16 @@ public class Line {
             return other.inclineInfinityIntersection(this);
         }
 
+        return this.regularLineIntersection(other);
+    }
+
+    /**
+     * regularLineIntersection.
+     * found intersection between tow Line that aren't parallel or with infinity incline.
+     * @param other Line to return intersection Point with.
+     * @return the intersection Point if exist, null otherwise.
+     */
+    private Point regularLineIntersection(Line other) {
         //Getting m and c in the equation: y = m*x + c.
         double incline1 = this.incline();
         double incline2 = other.incline();
@@ -122,11 +133,9 @@ public class Line {
             return parallelsLineIntersection(this.start, this.end, other.start, other.end);
         }
 
-        /*
-        y = m1*x + c1 , y = m2*x + c2
+        /* y = m1*x + c1 , y = m2*x + c2
         => m1*x + c1 = m2*x + c2
-        => x = (c1 - c2) / (m2 - m1);
-         */
+        => x = (c1 - c2) / (m2 - m1); */
         double pointX = (cConst1 - cConst2) / (incline2 - incline1);
         double pointY1 = incline1 * pointX + cConst1;
         double pointY2 = incline2 * pointX + cConst2;
