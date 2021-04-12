@@ -167,11 +167,11 @@ public class Ball {
      * @return radios that suitable for the frame
      */
     private int adjustRadiosToFrame(int radios, int width, int height) {
-        if (radios * 1.9 >  width) {
+        if (radios * 2 >  width) {
             radios = (int) (width / 2.1);
         }
 
-        if (radios * 1.9 >  height) {
+        if (radios * 2 >  height) {
             radios = (int) (width / 2.1);
         }
 
