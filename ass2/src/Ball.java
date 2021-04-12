@@ -36,7 +36,7 @@ public class Ball {
      */
     public Ball(Point center, int r, Color color, Velocity v, int width, int height, Point frameEdge) {
         this.center = center;
-        this.radios = r;
+        this.radios = adjustRadiosToFrame(r, width, height);
         this.color = color;
         this.velocity = v;
         this.width = width;
@@ -156,6 +156,26 @@ public class Ball {
 
         return new Ball(center, radios, randomColor(), Ball.velocityBySize(radios), width, height,
                 new Point(xEdge, yEdge));
+    }
+
+    /**
+     * adjustRadiosToFrame.
+     * in cases the radios of the Ball is to big, it adjust it to be suitable for the frame size.
+     * @param radios current radios
+     * @param width width of Ball frame
+     * @param height height of Ball frame
+     * @return radios that suitable for the frame
+     */
+    private int adjustRadiosToFrame(int radios, int width, int height) {
+        if (radios * 1.9 >  width) {
+            radios = (int) (width / 2.1);
+        }
+
+        if (radios * 1.9 >  height) {
+            radios = (int) (width / 2.1);
+        }
+
+        return radios;
     }
 
     /**
