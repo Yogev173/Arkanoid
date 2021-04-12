@@ -161,21 +161,21 @@ public class Ball {
     /**
      * adjustRadiosToFrame.
      * in cases the radios of the Ball is to big, it adjust it to be suitable for the frame size.
-     * @param radios current radios
-     * @param width width of Ball frame
-     * @param height height of Ball frame
+     * @param currentRadios current radios
+     * @param currentWidth width of Ball frame
+     * @param currentHeight height of Ball frame
      * @return radios that suitable for the frame
      */
-    private int adjustRadiosToFrame(int radios, int width, int height) {
-        if (radios * 2 >  width) {
-            radios = (int) (width / 2.1);
+    private int adjustRadiosToFrame(int currentRadios, int currentWidth, int currentHeight) {
+        if (currentRadios * 2 >  currentWidth) {
+            currentRadios = (int) (currentWidth / 2.1);
         }
 
-        if (radios * 2 >  height) {
-            radios = (int) (width / 2.1);
+        if (currentRadios * 2 >  currentHeight) {
+            currentRadios = (int) (currentWidth / 2.1);
         }
 
-        return radios;
+        return currentRadios;
     }
 
     /**
