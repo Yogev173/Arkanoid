@@ -114,7 +114,7 @@ public class Ball {
      */
     public static Ball randomBall(int width, int height, Point frameEdge) {
         Random rand = new Random();
-        int maxBoundRadios = (width < height ? width : height) / 3;
+        int maxBoundRadios = Math.min(width, height) / 3;
         int radios = rand.nextInt(maxBoundRadios) + 1;
         int xEdge = (int) frameEdge.getX();
         int yEdge = (int) frameEdge.getY();
@@ -183,7 +183,7 @@ public class Ball {
      * @return the x coordinate of the ball center
      */
     public int getX() {
-        return (int) this.center.getX();
+        return (int) Math.floor(this.center.getX());
     }
 
     /**
@@ -191,7 +191,7 @@ public class Ball {
      * @return the y coordinate of the ball center.
      */
     public int getY() {
-        return (int) this.center.getY();
+        return (int) Math.floor(this.center.getY());
     }
 
     /**
@@ -199,7 +199,7 @@ public class Ball {
      * @return the size of the ball.
      */
     public int getSize() {
-        return (int) (this.radios * this.radios * PAI);
+        return (this.radios);
     }
 
     /**
