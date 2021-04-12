@@ -74,7 +74,7 @@ public class MultipleFramesBouncingBallsAnimation {
      */
     private static Ball[] createBalls(String[] sizes) {
         int middleIndex = sizes.length / 2;
-        int farmeNum = 0;
+        int frameNum = 0;
         Random rand = new Random();
         Ball[] balls = new Ball[sizes.length];
         int radios;
@@ -87,14 +87,18 @@ public class MultipleFramesBouncingBallsAnimation {
         int colorIndex = 0;
         for (int ballNum = 0; ballNum < sizes.length; ballNum++) {
             if (ballNum >= middleIndex) {
-                farmeNum = 1;
+                frameNum = 1;
             }
 
             radios = Integer.valueOf(sizes[ballNum]);
-            int xEdge = FRAMES_SETTING[farmeNum][0];
-            int yEdge = FRAMES_SETTING[farmeNum][1];
-            int width = -xEdge + FRAMES_SETTING[farmeNum][2];
-            int height = -yEdge + FRAMES_SETTING[farmeNum][3];
+            //checking the radios positive
+            if (radios < 0) {
+                return null;
+            }
+            int xEdge = FRAMES_SETTING[frameNum][0];
+            int yEdge = FRAMES_SETTING[frameNum][1];
+            int width = -xEdge + FRAMES_SETTING[frameNum][2];
+            int height = -yEdge + FRAMES_SETTING[frameNum][3];
 
             // xBound = width - 2r
             int xBound = Math.abs(width - 2 * radios);

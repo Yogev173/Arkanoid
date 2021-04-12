@@ -17,7 +17,7 @@ public class BouncingBallAnimation {
      */
     public static void main(String[] args) {
         if (args.length != 4) {
-            System.out.println("should be only 4 numbers at the command line arguments.");
+            System.out.println("should be 4 numbers at the command line arguments.");
         }
 
         int centerX = Integer.valueOf(args[0]);

@@ -27,7 +27,10 @@ public class MultipleBouncingBallsAnimation {
             return;
         }
         Ball[] balls = createBalls(args, DEFAULT_WIDTH, DEFAULT_HEIGHT);
-
+        if (balls == null) {
+            System.out.println("***Negative radios was entered***");
+            return;
+        }
         //Showing the balls
         GUI gui = new GUI("Multiple Bouncing Balls Animation", DEFAULT_WIDTH, DEFAULT_HEIGHT);
         Sleeper sleeper = new Sleeper();
@@ -62,6 +65,11 @@ public class MultipleBouncingBallsAnimation {
         // creating the balls
         for (int ballNum = 0; ballNum < sizes.length; ballNum++) {
             radios = Integer.valueOf(sizes[ballNum]);
+            //checking the radios positive
+            if (radios < 0) {
+                return null;
+            }
+
             if (Math.abs(width - 2 * radios) != 0) {
                 centerX = rand.nextInt(Math.abs(width - 2 * radios)) + radios;
             } else {
