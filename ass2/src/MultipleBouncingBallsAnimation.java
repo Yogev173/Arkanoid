@@ -69,14 +69,15 @@ public class MultipleBouncingBallsAnimation {
             if (radios < 0) {
                 return null;
             }
+            radios = Ball.adjustRadiosToFrame(radios, width, height);
 
-            if (Math.abs(width - 2 * radios) != 0) {
+            if (width - 2 * radios != 0) {
                 centerX = rand.nextInt(Math.abs(width - 2 * radios)) + radios;
             } else {
                 centerX = radios;
             }
 
-            if (Math.abs(height - 2 * radios) != 0) {
+            if (height - 2 * radios != 0) {
                 centerY = rand.nextInt(Math.abs(height - 2 * radios)) + radios;
             } else {
                 centerY = radios;

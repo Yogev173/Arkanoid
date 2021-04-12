@@ -166,7 +166,7 @@ public class Ball {
      * @param currentHeight height of Ball frame
      * @return radios that suitable for the frame
      */
-    private int adjustRadiosToFrame(int currentRadios, int currentWidth, int currentHeight) {
+    public static int adjustRadiosToFrame(int currentRadios, int currentWidth, int currentHeight) {
         if (currentRadios * 2 >  currentWidth) {
             currentRadios = (int) (currentWidth / 2.1);
         }

@@ -31,6 +31,10 @@ public class MultipleFramesBouncingBallsAnimation {
             return;
         }
         Ball[] balls = createBalls(args);
+        if (balls == null) {
+            System.out.println("***Negative radios was entered***");
+            return;
+        }
 
         int xEdge1 = FRAMES_SETTING[0][0];
         int yEdge1 = FRAMES_SETTING[0][1];
@@ -99,14 +103,15 @@ public class MultipleFramesBouncingBallsAnimation {
             int yEdge = FRAMES_SETTING[frameNum][1];
             int width = -xEdge + FRAMES_SETTING[frameNum][2];
             int height = -yEdge + FRAMES_SETTING[frameNum][3];
+            radios = Ball.adjustRadiosToFrame(radios, width, height);
 
             // xBound = width - 2r
-            int xBound = Math.abs(width - 2 * radios);
+            int xBound = width - 2 * radios;
             xBound = xBound == 0 ? radios : xBound;
             centerX = rand.nextInt(xBound) + xEdge + radios + 1;
 
             // yBound = height - 2r
-            int yBound = Math.abs(height - 2 * radios);
+            int yBound = height - 2 * radios;
             yBound = yBound == 0 ? radios : yBound;
             centerY = rand.nextInt(yBound) + yEdge + radios + 1;
             center = new Point(centerX, centerY);
