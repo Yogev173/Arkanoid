@@ -16,6 +16,16 @@ public class SpriteCollection {
     }
 
     /**
+     * addMultipalSprite.
+     * @param spiriteList List of Sprite Object to add.
+     */
+    public void addMultipalSprite(List<Sprite> spiriteList) {
+        for (Sprite sprite : spiriteList) {
+            this.addSprite(sprite);
+        }
+    }
+
+    /**
      * notifyAllTimePassed.
      * call timePassed() on all sprites.
      */

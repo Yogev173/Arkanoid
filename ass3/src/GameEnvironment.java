@@ -34,6 +34,16 @@ public class GameEnvironment {
     }
 
     /**
+     * addMultipalCollidable.
+     * @param collidableList List of Collidable Object to add.
+     */
+    public void addMultipalCollidable(List<Collidable> collidableList) {
+        for (Collidable collidable : collidableList) {
+            this.addCollidable(collidable);
+        }
+    }
+
+    /**
      * getClosestCollision
      * @param trajectory the route of the ball, without any obstacle.
      * @return If this object will not collide with any of the collidables in this collection, return null.

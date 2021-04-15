@@ -54,6 +54,18 @@ public class Block implements Collidable, Sprite {
     }
 
     /**
+     * addToGame.
+     * add a Collidable to the Game environment.
+     *
+     * @param g the game Object.
+     */
+    @Override
+    public void addToGame(Game g) {
+        g.addCollidable(this);
+        g.addSprite(this);
+    }
+
+    /**
      * collidedUpperSide.
      * check if an object hit the upper side and return the new velocity in accordance to that.
      * @param collisionPoint  the collided Point
@@ -118,7 +130,10 @@ public class Block implements Collidable, Sprite {
     }
 
 
-
+    /**
+     * drawOn.
+     * @param d the DrawSurface to draw on.
+     */
     public void drawOn(DrawSurface d) {
         d.setColor(this.color);
         d.fillRectangle((int) this.rectangle.getUpperLeft().getX(), (int) this.rectangle.getUpperLeft().getY()
