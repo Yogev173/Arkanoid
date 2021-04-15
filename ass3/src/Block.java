@@ -1,4 +1,6 @@
-public class Block implements Collidable{
+import biuoop.DrawSurface;
+
+public class Block implements Collidable {
 
     private Rectangle rectangle;
     private boolean isFrameBlock;
@@ -58,6 +60,7 @@ public class Block implements Collidable{
     private Velocity collidedUpperSide(Point collisionPoint, Velocity currentVelocity) {
         if (rectangle.getUpperSide().isInLine(collisionPoint)) {
             currentVelocity.setDy(-currentVelocity.getDy());
+            this.isBeenCollided = true;
         }
 
         return currentVelocity;
@@ -73,6 +76,7 @@ public class Block implements Collidable{
     private Velocity collidedLowerSide(Point collisionPoint, Velocity currentVelocity) {
         if (rectangle.getLowerSide().isInLine(collisionPoint)) {
             currentVelocity.setDy(-currentVelocity.getDy());
+            this.isBeenCollided = true;
         }
 
         return currentVelocity;
@@ -88,6 +92,7 @@ public class Block implements Collidable{
     private Velocity collidedLeftSide(Point collisionPoint, Velocity currentVelocity) {
         if (rectangle.getLeftSide().isInLine(collisionPoint)) {
             currentVelocity.setDx(-currentVelocity.getDx());
+            this.isBeenCollided = true;
         }
 
         return currentVelocity;
@@ -103,8 +108,14 @@ public class Block implements Collidable{
     private Velocity collidedRightSide(Point collisionPoint, Velocity currentVelocity) {
         if (rectangle.getRightSide().isInLine(collisionPoint)) {
             currentVelocity.setDx(-currentVelocity.getDx());
+            this.isBeenCollided = true;
         }
 
         return currentVelocity;
+    }
+
+    public void drawOn(DrawSurface d) {
+        d.fillRectangle((int) this.rectangle.getUpperLeft().getX(), (int) this.rectangle.getUpperLeft().getY()
+        , (int) this.rectangle.getLowerRight().getX(), (int) this.rectangle.getLowerRight().getY());
     }
 }
