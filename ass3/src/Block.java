@@ -1,10 +1,12 @@
 import biuoop.DrawSurface;
+import java.awt.Color;
 
-public class Block implements Collidable {
+public class Block implements Collidable, Sprite {
 
     private Rectangle rectangle;
     private boolean isFrameBlock;
     private boolean isBeenCollided = false;
+    private Color color;
 
     /**
      * Constructor.
@@ -22,6 +24,7 @@ public class Block implements Collidable {
     public Block(Rectangle rectangle, boolean isFrameBlock) {
         this.rectangle = rectangle;
         this.isFrameBlock = isFrameBlock;
+        this.color = Ball.randomColor();
     }
 
     /**
@@ -114,8 +117,20 @@ public class Block implements Collidable {
         return currentVelocity;
     }
 
+
+
     public void drawOn(DrawSurface d) {
+        d.setColor(this.color);
         d.fillRectangle((int) this.rectangle.getUpperLeft().getX(), (int) this.rectangle.getUpperLeft().getY()
-        , (int) this.rectangle.getLowerRight().getX(), (int) this.rectangle.getLowerRight().getY());
+        , (int) this.rectangle.getWidth(), (int) this.rectangle.getHeight());
+    }
+
+    /**
+     * timePassed.
+     * notify the sprite that time has passed, change the Color.
+     */
+    @Override
+    public void timePassed() {
+
     }
 }
