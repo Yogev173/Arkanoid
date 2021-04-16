@@ -5,14 +5,14 @@ import java.util.List;
 
 public class SpriteCollection {
 
-    private List<Sprite> spiriteList = new ArrayList<Sprite>();
+    private List<Sprite> spriteList = new ArrayList<Sprite>();
 
     /**
      * addSprite.
      * @param s the new Sprite to add.
      */
     public void addSprite(Sprite s) {
-        this.spiriteList.add(s);
+        this.spriteList.add(s);
     }
 
     /**
@@ -30,7 +30,7 @@ public class SpriteCollection {
      * call timePassed() on all sprites.
      */
     public void notifyAllTimePassed() {
-        for (Sprite sprite : this.spiriteList) {
+        for (Sprite sprite : this.spriteList) {
             sprite.timePassed();
         }
     }
@@ -41,7 +41,7 @@ public class SpriteCollection {
      * @param d the DrawSurface.
      */
     public void drawAllOn(DrawSurface d) {
-        for (Sprite sprite : this.spiriteList) {
+        for (Sprite sprite : this.spriteList) {
             sprite.drawOn(d);
         }
     }

@@ -3,6 +3,9 @@ import java.awt.Color;
 
 public class Block implements Collidable, Sprite {
 
+    public static final int DEFAULT_WIDTH = 80;
+    public static final int DEFAULT_HEIGHT = 25;
+
     private Rectangle rectangle;
     private boolean isFrameBlock;
     private boolean isBeenCollided = false;
@@ -22,9 +25,20 @@ public class Block implements Collidable, Sprite {
      * @param isFrameBlock if this Block is a frame Block
      */
     public Block(Rectangle rectangle, boolean isFrameBlock) {
+        this(rectangle, isFrameBlock, isFrameBlock ? Color.BLACK : Ball.randomColor());
+    }
+
+
+    /**
+     * Constructor.
+     * @param rectangle the Block (shape)
+     * @param isFrameBlock if this Block is a frame Block
+     * @param color the color of the Block
+     */
+    public Block(Rectangle rectangle, boolean isFrameBlock, Color color) {
         this.rectangle = rectangle;
         this.isFrameBlock = isFrameBlock;
-        this.color = Ball.randomColor();
+        this.color = color;
     }
 
     /**
@@ -135,10 +149,20 @@ public class Block implements Collidable, Sprite {
      * @param d the DrawSurface to draw on.
      */
     public void drawOn(DrawSurface d) {
+        //the RectAngle
         d.setColor(this.color);
         d.fillRectangle((int) this.rectangle.getUpperLeft().getX(), (int) this.rectangle.getUpperLeft().getY()
         , (int) this.rectangle.getWidth(), (int) this.rectangle.getHeight());
+
+        //the border of the Rectangle
+        d.setColor(Color.BLACK);
+        this.rectangle.getUpperSide().drawLine(d);
+        this.rectangle.getLeftSide().drawLine(d);
+        this.rectangle.getRightSide().drawLine(d);
+        this.rectangle.getLowerSide().drawLine(d);
     }
+
+
 
     /**
      * timePassed.

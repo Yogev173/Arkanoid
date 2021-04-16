@@ -88,6 +88,14 @@ public class Rectangle {
     }
 
     /**
+     * setUpperleft.
+     * @param newPoint the new upper left Point.
+     */
+    public void setUpperleft(Point newPoint) {
+        this.upperLeft = newPoint;
+    }
+
+    /**
      * getUpperRight.
      * @return the upper-Right point of the Rectangle.
      */
