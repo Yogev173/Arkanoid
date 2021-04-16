@@ -41,8 +41,9 @@ public class Paddle implements Sprite, Collidable {
 
     public void moveRight() {
         Point upperLeft = this.paddleBlock.getCollisionRectangle().getUpperLeft();
-        if (upperLeft.getX() + this.velocity > this.paddleRightBorder) {
-            upperLeft.setX(this.paddleRightBorder);
+        double width = this.paddleBlock.getCollisionRectangle().getWidth();
+        if (upperLeft.getX() + width + this.velocity > this.paddleRightBorder) {
+            upperLeft.setX(this.paddleRightBorder - width);
         } else {
             upperLeft.setX(upperLeft.getX() + this.velocity);
         }

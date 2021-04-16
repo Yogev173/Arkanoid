@@ -120,7 +120,6 @@ public class Rectangle {
     }
 
     //Rectangle sides Getters
-
     /**
      * getUpperSide.
      * @return the upper side of the Rectangle.
