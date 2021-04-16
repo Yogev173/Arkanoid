@@ -18,7 +18,7 @@ public class Game {
     //Ball setup
     public static final double BALL_START_X = WIDTH / 2;
     public static final double BALL_START_Y = HEIGHT * 3 /4;
-    public static final int BALL_RADIOS = 9;
+    public static final int BALL_RADIOS = 6;
 
     //Blocks setup
     public static final int ROWS_NUMBER = 9;
