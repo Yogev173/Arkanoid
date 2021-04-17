@@ -1,0 +1,20 @@
+
+c
+c 
+c _
+c __
+c _i_
+di How_did_the_first_program_die_?
+di  How_did_the_first_program_die_?
+ di How_did_the_first_program_die_?
+t it_got_executed
+di How_did_the_second_program_die_?
+t from_a_bug
+why_do_java_programmers_wear_glasses_?
+  why_do_java_programmers_wear_glasses_?
+c because_they_cant_C_#
+C because_they_cant_C_#
+c because_they_cant_c_#
+  b_ _bad
+b b__bad
+be be_a_bumblebee_beautiful_as_can_be_almost_like_bebe
