@@ -4,24 +4,30 @@ import biuoop.KeyboardSensor;
 import biuoop.Sleeper;
 
 import java.awt.*;
+import java.util.Random;
 
 public class Game {
 
     //Board Border
     public static final int WIDTH = 800;
     public static final int HEIGHT = 600;
-    public static final int BORDER_VERTICAL_BLOCK_WIDTH = 5;
+    public static final int BORDER_VERTICAL_BLOCK_WIDTH = 10;
     public static final int BORDER_VERTICAL_BLOCK_HEIGHT = HEIGHT;
     public static final int BORDER_HORIZONTAL_BLOCK_WIDTH = WIDTH;
-    public static final int BORDER_HORIZONTAL_BLOCK_HEIGHT = 5;
+    public static final int BORDER_HORIZONTAL_BLOCK_HEIGHT = 10;
+    public static final int DEFAULT_MAX_BLOCKS_IN_ROW = Integer.MAX_VALUE;
 
     //Ball setup
+    public static final int DEFAULT_NUM_OF_BALLS = 1;
     public static final double BALL_START_X = WIDTH / 2;
     public static final double BALL_START_Y = HEIGHT * 3 /4;
     public static final int BALL_RADIOS = 6;
+    public static final double BALL_START_VELOCITY_DX = 0;
+    public static final double BALL_START_VELOCITY_DY = -3.5;
+    public static final int RANDOM_LIMIT = (int) Paddle.PADDLE_DEFAULT_WIDTH / 2;
 
     //Blocks setup
-    public static final int ROWS_NUMBER = 9;
+    public static final int DEFAULT_ROWS_NUMBER = 6;
     public static final int BLOCK_DEFAULT_WIDTH = Block.DEFAULT_WIDTH;
     public static final int BLOCK_DEFAULT_HEIGHT = Block.DEFAULT_HEIGHT;
 
@@ -39,14 +45,35 @@ public class Game {
     private SpriteCollection sprites;
     private GameEnvironment environment;
     private GUI gui;
+    private int numOfRow;
+    private int numOfBalls;
+    private boolean isGradual;
+    private int maxNumOfBlocksInRow;
 
     /**
      * Constructor.
      */
     public Game() {
+        this(DEFAULT_ROWS_NUMBER, DEFAULT_NUM_OF_BALLS, DEFAULT_MAX_BLOCKS_IN_ROW, true);
+    }
+
+
+    /**
+     * Constructor
+     * @param numOfRow amount of Blocks rows in the game.
+     * @param numOfBalls amount of balls in the game.
+     * @param isGradual to draw the Blocks in gradual shape.
+     * @param maxNumOfBlocksInRow the max number of Blocks in the same row.
+     */
+    public Game(int numOfRow, int numOfBalls, int maxNumOfBlocksInRow, boolean isGradual) {
         this.sprites = new SpriteCollection();
         this.environment = new GameEnvironment();
+        this.numOfRow = numOfRow;
+        this.numOfBalls = numOfBalls;
+        this.isGradual = isGradual;
+        this.maxNumOfBlocksInRow = maxNumOfBlocksInRow;
     }
+
 
     /**
      * addCollidable.
@@ -70,16 +97,45 @@ public class Game {
      */
     public void initialize() {
         gui = new GUI("Game", WIDTH, HEIGHT);
+        this.initializePaddle();
+        this.initializeBalls();
+        this.initializeBoardBorder();
+        this.initializeBlockRows();
+    }
+
+    /**
+     * initializePaddle.
+     * initialize one Paddle.
+     */
+    private void initializePaddle() {
         Block paddleBlock = new Block(new Rectangle(new Point(PADDLE_START_X,PADDLE_START_Y)
-                        , Paddle.PADDLE_DEFAULT_WIDTH, Paddle.PADDLE_DEFAULT_HEIGHT), true, Color.RED);
+                , Paddle.PADDLE_DEFAULT_WIDTH, Paddle.PADDLE_DEFAULT_HEIGHT), true, Color.RED);
         Paddle paddle = new Paddle(gui.getKeyboardSensor(), paddleBlock);
         paddle.addToGame(this);
+    }
 
-        Ball ball = new Ball(new Point(BALL_START_X, BALL_START_Y), BALL_RADIOS, this.environment);
+    /**
+     * initializeBalls.
+     * initialize multiple Balls.
+     */
+    public void initializeBalls() {
+        for (int currentBall = 0; currentBall < this.numOfBalls; currentBall++) {
+            this.initializeBall();
+        }
+    }
+
+    /**
+     * initializeBall.
+     * initialize one Ball.
+     */
+    public void initializeBall() {
+        Random random = new Random();
+
+        Ball ball = new Ball(new Point(BALL_START_X + random.nextInt(RANDOM_LIMIT), BALL_START_Y)
+                , BALL_RADIOS, this.environment);
+        ball.setVelocity(BALL_START_VELOCITY_DX + random.nextDouble()
+                , BALL_START_VELOCITY_DY + random.nextDouble());
         ball.addToGame(this);
-
-        this.initializeBoardBorder();
-        this.initializeBlockRows(true);
     }
 
     /**
@@ -105,18 +161,19 @@ public class Game {
     /**
      * initializeBlockRows.
      */
-    private void initializeBlockRows(boolean gradual) {
+    private void initializeBlockRows() {
         int numOfBlocks = (int) Math.floor(MAX_BLOCKS_IN_ROW);
+        numOfBlocks = Math.min(numOfBlocks, this.maxNumOfBlocksInRow);
         int startOfTheRowX = BLOCK_ROWS_X_START;
         int startOfTheRowY = BLOCK_ROWS_Y_START;
 
-        for (int rownumber = 0; rownumber < ROWS_NUMBER; rownumber++) {
-            this.initializeBlockRow(startOfTheRowX, startOfTheRowY, numOfBlocks, Ball.randomColor());
+        for (int rowNumber = 0; rowNumber < this.numOfRow; rowNumber++) {
+            this.initializeBlockRow(startOfTheRowX, startOfTheRowY, numOfBlocks, Ball.randomColorFromArray(rowNumber));
 
             // to prevent overlap with next row of Block
             startOfTheRowY += BLOCK_DEFAULT_HEIGHT;
 
-            if (gradual == true) {
+            if (this.isGradual == true) {
                 numOfBlocks--;
             }
         }
@@ -147,6 +204,7 @@ public class Game {
         int millisecondsPerFrame = 1000 / framesPerSecond;
         Sleeper sleeper = new Sleeper();
 
+        //Animation
         while (true) {
             long startTime = System.currentTimeMillis(); // timing
 

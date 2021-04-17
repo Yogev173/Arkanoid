@@ -3,8 +3,8 @@ import java.awt.Color;
 
 public class Block implements Collidable, Sprite {
 
-    public static final int DEFAULT_WIDTH = 80;
-    public static final int DEFAULT_HEIGHT = 25;
+    public static final int DEFAULT_WIDTH = 60;
+    public static final int DEFAULT_HEIGHT = 20;
 
     private Rectangle rectangle;
     private boolean isFrameBlock;
