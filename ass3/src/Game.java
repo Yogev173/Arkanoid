@@ -59,7 +59,7 @@ public class Game {
 
 
     /**
-     * Constructor
+     * Constructor.
      * @param numOfRow amount of Blocks rows in the game.
      * @param numOfBalls amount of balls in the game.
      * @param isGradual to draw the Blocks in gradual shape.
