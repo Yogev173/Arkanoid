@@ -1,3 +1,9 @@
+
+/**
+ * @author yogev abarbanel
+ * Id: 326116910
+ * Information about a collision.
+ */
 public class CollisionInfo {
 
     private Point collisionPoint;

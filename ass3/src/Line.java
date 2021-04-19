@@ -323,18 +323,8 @@ public class Line {
         }
 
         //sorting to find the closet
-        Point bigger, smaller;
         PointByDistance comparator = new PointByDistance(this.start());
-        for (int i = 0; i < points.size(); i++) {
-            for (int j = 0; j < points.size() - i - 1; j++) {
-                if (comparator.compare(points.get(j), points.get(j + 1)) == 1) {
-                    bigger = points.get(j);
-                    smaller = points.get(j + 1);
-                    points.set(j, smaller);
-                    points.set(j + 1, bigger);
-                }
-            }
-        }
+        points.sort(comparator);
 
         return points.get(0);
     }

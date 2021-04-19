@@ -6,6 +6,12 @@ import biuoop.Sleeper;
 import java.awt.*;
 import java.util.Random;
 
+
+/**
+ * @author yogev abarbanel
+ * Id: 326116910
+ * Game of pong.
+ */
 public class Game {
 
     //Board Border

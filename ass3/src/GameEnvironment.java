@@ -1,6 +1,12 @@
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * @author yogev abarbanel
+ * Id: 326116910
+ * Collection of object type Collidebale the Ball can collision with.
+ */
 public class GameEnvironment {
 
     private List<Collidable> collidableList;
