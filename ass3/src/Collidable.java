@@ -1,7 +1,5 @@
 import biuoop.DrawSurface;
 
-import javax.xml.crypto.Data;
-
 /**
  * @author yogev abarbanel
  * Id: 326116910
@@ -28,7 +26,7 @@ public interface Collidable {
      * drawOn.
      * @param d the DrawSurface to draw on.
      */
-    public void drawOn(DrawSurface d);
+    void drawOn(DrawSurface d);
 
     /**
      * addToGame.

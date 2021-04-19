@@ -1,6 +1,11 @@
 import biuoop.DrawSurface;
 import java.awt.Color;
 
+/**
+ * @author yogev abarbanel
+ * Id: 326116910
+ * one Block.
+ */
 public class Block implements Collidable, Sprite {
 
     public static final int DEFAULT_WIDTH = 60;

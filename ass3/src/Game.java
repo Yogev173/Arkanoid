@@ -1,9 +1,8 @@
 import biuoop.DrawSurface;
 import biuoop.GUI;
-import biuoop.KeyboardSensor;
 import biuoop.Sleeper;
 
-import java.awt.*;
+import java.awt.Color;
 import java.util.Random;
 
 
@@ -26,7 +25,7 @@ public class Game {
     //Ball setup
     public static final int DEFAULT_NUM_OF_BALLS = 1;
     public static final double BALL_START_X = WIDTH / 2;
-    public static final double BALL_START_Y = HEIGHT * 3 /4;
+    public static final double BALL_START_Y = HEIGHT * 3 / 4;
     public static final int BALL_RADIOS = 6;
     public static final double BALL_START_VELOCITY_DX = 0;
     public static final double BALL_START_VELOCITY_DY = -3.5;
@@ -38,7 +37,7 @@ public class Game {
     public static final int BLOCK_DEFAULT_HEIGHT = Block.DEFAULT_HEIGHT;
 
     public static final int BLOCK_ROWS_X_START = WIDTH - BLOCK_DEFAULT_WIDTH - BORDER_VERTICAL_BLOCK_WIDTH;
-    public static final int BLOCK_ROWS_Y_START = HEIGHT * 1 /4;
+    public static final int BLOCK_ROWS_Y_START = HEIGHT * 1 / 4;
     public static final int BLOCK_ROWS_WIDTH_BORDER = WIDTH - 2 * BORDER_VERTICAL_BLOCK_WIDTH;
     public static final int MAX_BLOCKS_IN_ROW = BLOCK_ROWS_WIDTH_BORDER / BLOCK_DEFAULT_WIDTH;
 
@@ -114,7 +113,7 @@ public class Game {
      * initialize one Paddle.
      */
     private void initializePaddle() {
-        Block paddleBlock = new Block(new Rectangle(new Point(PADDLE_START_X,PADDLE_START_Y)
+        Block paddleBlock = new Block(new Rectangle(new Point(PADDLE_START_X, PADDLE_START_Y)
                 , Paddle.PADDLE_DEFAULT_WIDTH, Paddle.PADDLE_DEFAULT_HEIGHT), true, Color.RED);
         Paddle paddle = new Paddle(gui.getKeyboardSensor(), paddleBlock);
         paddle.addToGame(this);
@@ -149,16 +148,16 @@ public class Game {
      */
     private void initializeBoardBorder() {
 
-        (new Block(new Rectangle(new Point(0,0)
+        (new Block(new Rectangle(new Point(0, 0)
                 , BORDER_VERTICAL_BLOCK_WIDTH, BORDER_VERTICAL_BLOCK_HEIGHT), true)).addToGame(this);
 
-        (new Block(new Rectangle(new Point(WIDTH - BORDER_VERTICAL_BLOCK_WIDTH,0)
+        (new Block(new Rectangle(new Point(WIDTH - BORDER_VERTICAL_BLOCK_WIDTH, 0)
                 , BORDER_VERTICAL_BLOCK_WIDTH, BORDER_VERTICAL_BLOCK_HEIGHT), true)).addToGame(this);
 
-        (new Block(new Rectangle(new Point(0,0)
+        (new Block(new Rectangle(new Point(0, 0)
                 , BORDER_HORIZONTAL_BLOCK_WIDTH, BORDER_HORIZONTAL_BLOCK_HEIGHT), true)).addToGame(this);
 
-        (new Block(new Rectangle(new Point(0,HEIGHT - BORDER_HORIZONTAL_BLOCK_HEIGHT)
+        (new Block(new Rectangle(new Point(0, HEIGHT - BORDER_HORIZONTAL_BLOCK_HEIGHT)
                 , BORDER_HORIZONTAL_BLOCK_WIDTH, BORDER_HORIZONTAL_BLOCK_HEIGHT), true)).addToGame(this);
 
 
@@ -179,14 +178,18 @@ public class Game {
             // to prevent overlap with next row of Block
             startOfTheRowY += BLOCK_DEFAULT_HEIGHT;
 
-            if (this.isGradual == true) {
+            if (this.isGradual) {
                 numOfBlocks--;
             }
         }
     }
 
     /**
-     * initializeBlockRow
+     * initializeBlockRow.
+     * @param startOfTheRowX the x coordinate of the first block in the row.
+     * @param startOfTheRowY the y coordinate of the first block in the row.
+     * @param numOfBlocks how much Block to create in this row.
+     * @param color the Color for the Block's row.
      */
     private void initializeBlockRow(int startOfTheRowX, int startOfTheRowY, int numOfBlocks, Color color) {
         int upperLeftX = startOfTheRowX;

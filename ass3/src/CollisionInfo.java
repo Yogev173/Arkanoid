@@ -9,6 +9,11 @@ public class CollisionInfo {
     private Point collisionPoint;
     private Collidable collisionObject;
 
+    /**
+     * Constructor.
+     * @param collisionPoint the Point the collision accor in.
+     * @param collisionObject the Object that the collision accor with.
+     */
     public CollisionInfo(Point collisionPoint, Collidable collisionObject) {
         this.collisionPoint = collisionPoint;
         this.collisionObject = collisionObject;
@@ -32,17 +37,17 @@ public class CollisionInfo {
 
     /**
      * setCollisionPoint.
-     * @param collisionPoint the new collisionPoint.
+     * @param newCollisionPoint the new collisionPoint.
      */
-    public void setCollisionPoint(Point collisionPoint) {
-        this.collisionPoint = collisionPoint;
+    public void setCollisionPoint(Point newCollisionPoint) {
+        this.collisionPoint = newCollisionPoint;
     }
 
     /**
      * setCollisionObject.
-     * @param collisionObject the new collisionObject.
+     * @param newCollisionObject the new collisionObject.
      */
-    public void setCollisionObject(Collidable collisionObject) {
-        this.collisionObject = collisionObject;
+    public void setCollisionObject(Collidable newCollisionObject) {
+        this.collisionObject = newCollisionObject;
     }
 }

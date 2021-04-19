@@ -7,7 +7,7 @@ import java.util.Random;
  * Id: 326116910
  * one ball.
  */
-public class Ball implements Sprite{
+public class Ball implements Sprite {
     static final double PAI = 3.14159;
     static final int DEFAULT_WIDTH = 200;
     static final int DEFAULT_HEIGHT = 200;
@@ -31,7 +31,7 @@ public class Ball implements Sprite{
      * @param r the radios of the Ball.
      * @param gameEnvironment the environment of the Ball.
      */
-    public Ball (Point center, int r, GameEnvironment gameEnvironment) {
+    public Ball(Point center, int r, GameEnvironment gameEnvironment) {
         this.center = center;
         this.radios = r;
         this.gameEnvironment = gameEnvironment;
@@ -277,19 +277,19 @@ public class Ball implements Sprite{
     }
 
     /**
-     * setGameEnvironment
-     * @param gameEnvironment the game environment.
+     * setGameEnvironment.
+     * @param newGameEnvironment the game environment.
      */
-    public void setGameEnvironment(GameEnvironment gameEnvironment) {
-        this.gameEnvironment = gameEnvironment;
+    public void setGameEnvironment(GameEnvironment newGameEnvironment) {
+        this.gameEnvironment = newGameEnvironment;
     }
 
     /**
      * setColor.
-     * @param color the new Color.
+     * @param newColor the new Color.
      */
-    public void setColor(Color color) {
-        this.color = color;
+    public void setColor(Color newColor) {
+        this.color = newColor;
     }
 
     /**
@@ -321,6 +321,11 @@ public class Ball implements Sprite{
         g.addSprite(this);
     }
 
+    /**
+     * moveOneStep.
+     * move the ball one time according to his velocity,
+     * if it collide with a Collidable Object it change it Velocity according to the hit func of the Collidable Object.
+     */
     public void moveOneStep() {
         Line trajectory = new Line(this.center, this.velocity.applyToPoint(this.center));
         CollisionInfo collisionInfo = this.gameEnvironment.getClosestCollision(trajectory);
@@ -455,6 +460,7 @@ public class Ball implements Sprite{
     /**
      * randomColorFromArray.
      * the index of the Color in the Array.
+     * @param index the index of the Color to get.
      * @return the color
      */
     public static Color randomColorFromArray(int index) {

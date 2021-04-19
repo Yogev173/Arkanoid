@@ -83,19 +83,6 @@ public class Velocity {
     }
 
     /**
-     * equals.
-     * @param other Velocity to check if equal to.
-     * @return true if the Velocity are the same, false otherwise.
-     */
-    public boolean equals(Velocity other) {
-        if (Point.isDoubleTheSame(this.dx, other.getDx()) && Point.isDoubleTheSame(this.dy, other.getDy())) {
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
      * toString.
      * @return String represent this Velocity.
      */

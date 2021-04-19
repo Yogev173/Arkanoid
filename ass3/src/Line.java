@@ -329,6 +329,10 @@ public class Line {
         return points.get(0);
     }
 
+    /**
+     * toString.
+     * @return String represent the Line.
+     */
     @Override
     public String toString() {
         return new String("{ " + this.start.toString() + " , " + this.end.toString()

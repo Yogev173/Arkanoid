@@ -3,6 +3,12 @@ import biuoop.DrawSurface;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * @author yogev abarbanel
+ * Id: 326116910
+ * one Sprite Collection.
+ */
 public class SpriteCollection {
 
     private List<Sprite> spriteList = new ArrayList<Sprite>();
