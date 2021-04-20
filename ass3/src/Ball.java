@@ -353,24 +353,23 @@ public class Ball implements Sprite {
 
         //Checking the ball don't go out of its bounds.
         //Checking the width - Right side
-        rightBorderCheck(this, rightBorder);
+        this.rightBorderCheck(rightBorder);
         //Checking the width - Left side
-        leftBorderCheck(this, leftBorder);
+        this.leftBorderCheck(leftBorder);
         //Checking the height - upper side
-        upperBorderCheck(this, upperBorder);
+        this.upperBorderCheck(upperBorder);
         //Checking the width - Down side
-        downBorderCheck(this, downBorder);
+        this.downBorderCheck(downBorder);
     }
 
     /**
      * rightBorderCheck.
      * check if the ball cross his right border, if so it reverse it x velocity,
      * and getting it center to the right side of the border.
-     * @param newBall Ball to chek if pass the right border.
      * @param rightBorder the coordinate of the right border.
      */
-    public void rightBorderCheck(Ball newBall, int rightBorder) {
-        Point newCenter = newBall.center;
+    public void rightBorderCheck(int rightBorder) {
+        Point newCenter = this.center;
         if ((int) newCenter.getX() + this.radios > rightBorder) {
             this.velocity.setDx(-this.velocity.getDx());
             newCenter.setX(rightBorder - this.radios);
@@ -383,11 +382,10 @@ public class Ball implements Sprite {
      * leftBorderCheck.
      * check if the ball cross his right border, if so it reverse it x velocity,
      * and getting it center to the right side of the border.
-     * @param newBall Ball to chek if pass the left border.
      * @param leftBorder the coordinate of the left border.
      */
-    public void leftBorderCheck(Ball newBall, int leftBorder) {
-        Point newCenter = newBall.center;
+    public void leftBorderCheck(int leftBorder) {
+        Point newCenter = this.center;
         if ((int) newCenter.getX() - this.radios < leftBorder) {
             this.velocity.setDx(-this.velocity.getDx());
             newCenter.setX(leftBorder + this.radios);
@@ -400,11 +398,10 @@ public class Ball implements Sprite {
      * upperBorderCheck.
      * check if the ball cross his right border, if so it reverse it y velocity,
      * and getting it center to the right side of the border.
-     * @param newBall Ball to chek if pass the left border.
      * @param upperBorder the coordinate of the upper border.
      */
-    public void upperBorderCheck(Ball newBall, int upperBorder) {
-        Point newCenter = newBall.center;
+    public void upperBorderCheck(int upperBorder) {
+        Point newCenter = this.center;
         if ((int) newCenter.getY() - this.radios < upperBorder) {
             this.velocity.setDy(-this.velocity.getDy());
             newCenter.setY(upperBorder + this.radios);
@@ -417,11 +414,10 @@ public class Ball implements Sprite {
      * downBorderCheck.
      * check if the ball cross his right border, if so it reverse it y velocity,
      * and getting it center to the right side of the border.
-     * @param newBall Ball to chek if pass the down border.
      * @param downBorder the coordinate of the down border.
      */
-    public void downBorderCheck(Ball newBall, int downBorder) {
-        Point newCenter = newBall.center;
+    public void downBorderCheck(int downBorder) {
+        Point newCenter = this.center;
         if ((int) newCenter.getY() + this.radios > downBorder) {
             this.velocity.setDy(-this.velocity.getDy());
             newCenter.setY(downBorder - this.radios);

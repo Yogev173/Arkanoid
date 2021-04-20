@@ -21,6 +21,7 @@ public class Game {
     public static final int BORDER_HORIZONTAL_BLOCK_WIDTH = WIDTH;
     public static final int BORDER_HORIZONTAL_BLOCK_HEIGHT = 10;
     public static final int DEFAULT_MAX_BLOCKS_IN_ROW = Integer.MAX_VALUE;
+    public static final Color BORDER_COLOR = Color.BLACK;
 
     //Ball setup
     public static final int DEFAULT_NUM_OF_BALLS = 1;
@@ -114,7 +115,7 @@ public class Game {
      */
     private void initializePaddle() {
         Block paddleBlock = new Block(new Rectangle(new Point(PADDLE_START_X, PADDLE_START_Y)
-                , Paddle.PADDLE_DEFAULT_WIDTH, Paddle.PADDLE_DEFAULT_HEIGHT), true, Color.RED);
+                , Paddle.PADDLE_DEFAULT_WIDTH, Paddle.PADDLE_DEFAULT_HEIGHT), Color.RED);
         Paddle paddle = new Paddle(gui.getKeyboardSensor(), paddleBlock);
         paddle.addToGame(this);
     }
@@ -149,16 +150,16 @@ public class Game {
     private void initializeBoardBorder() {
 
         (new Block(new Rectangle(new Point(0, 0)
-                , BORDER_VERTICAL_BLOCK_WIDTH, BORDER_VERTICAL_BLOCK_HEIGHT), true)).addToGame(this);
+                , BORDER_VERTICAL_BLOCK_WIDTH, BORDER_VERTICAL_BLOCK_HEIGHT), BORDER_COLOR)).addToGame(this);
 
         (new Block(new Rectangle(new Point(WIDTH - BORDER_VERTICAL_BLOCK_WIDTH, 0)
-                , BORDER_VERTICAL_BLOCK_WIDTH, BORDER_VERTICAL_BLOCK_HEIGHT), true)).addToGame(this);
+                , BORDER_VERTICAL_BLOCK_WIDTH, BORDER_VERTICAL_BLOCK_HEIGHT), BORDER_COLOR)).addToGame(this);
 
         (new Block(new Rectangle(new Point(0, 0)
-                , BORDER_HORIZONTAL_BLOCK_WIDTH, BORDER_HORIZONTAL_BLOCK_HEIGHT), true)).addToGame(this);
+                , BORDER_HORIZONTAL_BLOCK_WIDTH, BORDER_HORIZONTAL_BLOCK_HEIGHT), BORDER_COLOR)).addToGame(this);
 
         (new Block(new Rectangle(new Point(0, HEIGHT - BORDER_HORIZONTAL_BLOCK_HEIGHT)
-                , BORDER_HORIZONTAL_BLOCK_WIDTH, BORDER_HORIZONTAL_BLOCK_HEIGHT), true)).addToGame(this);
+                , BORDER_HORIZONTAL_BLOCK_WIDTH, BORDER_HORIZONTAL_BLOCK_HEIGHT), BORDER_COLOR)).addToGame(this);
 
 
     }
@@ -196,7 +197,7 @@ public class Game {
         int upperLeftY = startOfTheRowY;
         for (int blockNumber = 0; blockNumber < numOfBlocks; blockNumber++) {
             Block block = new Block(new Rectangle(new Point(upperLeftX, upperLeftY)
-                    , BLOCK_DEFAULT_WIDTH, BLOCK_DEFAULT_HEIGHT), false, color);
+                    , BLOCK_DEFAULT_WIDTH, BLOCK_DEFAULT_HEIGHT), color);
             block.addToGame(this);
 
             // to prevent overlap with next Block

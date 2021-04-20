@@ -10,7 +10,7 @@ import biuoop.KeyboardSensor;
 public class Paddle implements Sprite, Collidable {
 
     public static final int PADDLE_DEFAULT_WIDTH = 2 * Block.DEFAULT_WIDTH;
-    public static final int PADDLE_DEFAULT_HEIGHT = 5;
+    public static final int PADDLE_DEFAULT_HEIGHT = 2;
 
     public static final double DEFAULT_VELOCITY = 5;
 
