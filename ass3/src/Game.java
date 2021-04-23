@@ -29,7 +29,7 @@ public class Game {
     public static final double BALL_START_Y = HEIGHT * 3 / 4;
     public static final int BALL_RADIOS = 6;
     public static final double BALL_START_VELOCITY_DX = 0;
-    public static final double BALL_START_VELOCITY_DY = -3.5;
+    public static final double BALL_START_VELOCITY_DY = -5.5;
     public static final int RANDOM_LIMIT = (int) Paddle.PADDLE_DEFAULT_WIDTH / 2;
 
     //Blocks setup
