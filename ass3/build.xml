@@ -17,7 +17,7 @@
     </target>
 
     <target name="clean">
-        <delete dir="bin"/>
+        <delete dir="bin" />
     </target>
 
     <target name="run" depends="compile" >
