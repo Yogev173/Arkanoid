@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Beta/Beta.iml" filepath="$PROJECT_DIR$/Beta/Beta.iml" />
       <module fileurl="file://$PROJECT_DIR$/Tests/Tests.iml" filepath="$PROJECT_DIR$/Tests/Tests.iml" />
       <module fileurl="file://$PROJECT_DIR$/ass3.iml" filepath="$PROJECT_DIR$/ass3.iml" />
     </modules>
