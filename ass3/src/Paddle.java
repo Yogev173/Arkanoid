@@ -10,7 +10,7 @@ import biuoop.KeyboardSensor;
 public class Paddle implements Sprite, Collidable {
 
     public static final int PADDLE_DEFAULT_WIDTH = 2 * Block.DEFAULT_WIDTH;
-    public static final int PADDLE_DEFAULT_HEIGHT = 2;
+    public static final int PADDLE_DEFAULT_HEIGHT = 5;
 
     public static final double DEFAULT_VELOCITY = 5;
 
@@ -28,6 +28,16 @@ public class Paddle implements Sprite, Collidable {
     private double velocity;
     private int paddleLeftBorder;
     private int paddleRightBorder;
+
+
+    /**
+     * Constructor.
+     * @param keyboard user-controlled keyboard sensor
+     */
+    public Paddle(KeyboardSensor keyboard) {
+        this(keyboard, new Block(new Rectangle(new Point(Game.PADDLE_START_X, Game.PADDLE_START_Y)
+                , Paddle.PADDLE_DEFAULT_WIDTH, Paddle.PADDLE_DEFAULT_HEIGHT)));
+    }
 
     /**
      * Constructor.

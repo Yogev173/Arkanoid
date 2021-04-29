@@ -23,11 +23,15 @@ public class Game {
     public static final int DEFAULT_MAX_BLOCKS_IN_ROW = Integer.MAX_VALUE;
     public static final Color BORDER_COLOR = Color.BLACK;
 
+    //Paddle
+    public static final double PADDLE_START_X = WIDTH / 2 - Paddle.PADDLE_DEFAULT_WIDTH / 2;
+    public static final double PADDLE_START_Y = HEIGHT - BORDER_HORIZONTAL_BLOCK_HEIGHT - Paddle.PADDLE_DEFAULT_HEIGHT;
+
     //Ball setup
     public static final int DEFAULT_NUM_OF_BALLS = 1;
-    public static final double BALL_START_X = WIDTH / 2;
-    public static final double BALL_START_Y = HEIGHT * 3 / 4;
     public static final int BALL_RADIOS = 6;
+    public static final double BALL_START_X = WIDTH / 2;
+    public static final double BALL_START_Y = PADDLE_START_Y - BALL_RADIOS;
     public static final double BALL_START_VELOCITY_DX = 0;
     public static final double BALL_START_VELOCITY_DY = -5.5;
     public static final int RANDOM_LIMIT = (int) Paddle.PADDLE_DEFAULT_WIDTH / 2;
@@ -41,11 +45,6 @@ public class Game {
     public static final int BLOCK_ROWS_Y_START = HEIGHT * 1 / 4;
     public static final int BLOCK_ROWS_WIDTH_BORDER = WIDTH - 2 * BORDER_VERTICAL_BLOCK_WIDTH;
     public static final int MAX_BLOCKS_IN_ROW = BLOCK_ROWS_WIDTH_BORDER / BLOCK_DEFAULT_WIDTH;
-
-    //Paddle
-    public static final double PADDLE_START_X = WIDTH / 2 - Paddle.PADDLE_DEFAULT_WIDTH / 2;
-    public static final double PADDLE_START_Y = BALL_START_Y + BALL_RADIOS;
-
 
     //fields
     private SpriteCollection sprites;
@@ -102,7 +101,7 @@ public class Game {
      * Initialize a new game: create the Blocks and Ball (and Paddle), and add them to the game.
      */
     public void initialize() {
-        gui = new GUI("Game", WIDTH, HEIGHT);
+        this.gui = new GUI("Game", WIDTH, HEIGHT);
         this.initializePaddle();
         this.initializeBalls();
         this.initializeBoardBorder();
