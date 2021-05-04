@@ -2,9 +2,10 @@ import java.util.Map;
 
 public class Not extends UnaryExpression {
 
+    private static final String SYMBOL = "~";
 
     public Not(Expression expression) {
-        super(expression);
+        super(expression, SYMBOL);
     }
 
     /**
@@ -26,7 +27,7 @@ public class Not extends UnaryExpression {
      */
     @Override
     public Expression assign(String var, Expression expression) {
-        return new Not(this.getExpression());
+        return new Not(this.getExpression().assign(var, expression));
     }
 
 }

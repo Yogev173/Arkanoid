@@ -2,8 +2,10 @@ import java.util.Map;
 
 public class And extends BinaryExpression {
 
+    private static final String SYMBOL = "&";
+
     public And(Expression leftExpression, Expression rightExpression) {
-        super(leftExpression, rightExpression);
+        super(leftExpression, rightExpression, SYMBOL);
     }
 
 
@@ -14,7 +16,7 @@ public class And extends BinaryExpression {
      */
     @Override
     public Boolean evaluate(Map<String, Boolean> assignment) throws Exception {
-        return (this.getLeftExpression().evaluate(assignment) && this.getRightExpression().evaluate(assignment));
+        return (this.getLeftExpression().evaluate(assignment) & this.getRightExpression().evaluate(assignment));
     }
 
     /**

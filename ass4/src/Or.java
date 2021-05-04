@@ -2,8 +2,10 @@ import java.util.Map;
 
 public class Or extends BinaryExpression {
 
+    private static final String SYMBOL = "|";
+
     public Or(Expression leftExpression, Expression rightExpression) {
-        super(leftExpression, rightExpression);
+        super(leftExpression, rightExpression, SYMBOL);
     }
 
     /**
@@ -13,7 +15,7 @@ public class Or extends BinaryExpression {
      */
     @Override
     public Boolean evaluate(Map<String, Boolean> assignment) throws Exception {
-        return (this.getLeftExpression().evaluate(assignment) || this.getRightExpression().evaluate(assignment));
+        return (this.getLeftExpression().evaluate(assignment) | this.getRightExpression().evaluate(assignment));
     }
 
     /**

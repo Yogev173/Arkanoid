@@ -2,8 +2,10 @@ import java.util.Map;
 
 public class Xor extends BinaryExpression {
 
+    private static final String SYMBOL = "^";
+
     public Xor(Expression leftExpression, Expression rightExpression) {
-        super(leftExpression, rightExpression);
+        super(leftExpression, rightExpression, SYMBOL);
     }
 
     /**

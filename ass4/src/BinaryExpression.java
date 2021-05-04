@@ -7,12 +7,13 @@ import java.util.HashSet;
 public abstract class BinaryExpression extends BaseExpression {
     private Expression leftExpression;
     private Expression rightExpression;
+    private String symbol;
 
-    public BinaryExpression(Expression leftExpression, Expression rightExpression) {
+    public BinaryExpression(Expression leftExpression, Expression rightExpression, String symbol) {
         this.leftExpression = leftExpression;
         this.rightExpression = rightExpression;
+        this.symbol = symbol;
     }
-
 
     /**
      * @return the result of the evaluate expression.
@@ -32,6 +33,14 @@ public abstract class BinaryExpression extends BaseExpression {
         variableSet.addAll(this.leftExpression.getVariables());
         variableSet.addAll(this.rightExpression.getVariables());
         return new ArrayList<String>(variableSet);
+    }
+
+    /**
+     * @return string representation of the expression.
+     */
+    @Override
+    public String toString() {
+        return ("(" + this.leftExpression.toString() + symbol + this.rightExpression.toString() + ")");
     }
 
     /**
