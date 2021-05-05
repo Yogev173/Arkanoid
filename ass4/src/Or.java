@@ -15,7 +15,24 @@ public class Or extends BinaryExpression {
      */
     @Override
     public Boolean evaluate(Map<String, Boolean> assignment) throws Exception {
-        return (this.getLeftExpression().evaluate(assignment) | this.getRightExpression().evaluate(assignment));
+        Boolean leftExpressionEvaluate = true;
+        try {
+            leftExpressionEvaluate = this.getLeftExpression().evaluate(assignment);
+            if (leftExpressionEvaluate == true) {
+                return true;
+            }
+        } catch (Exception varNotInMapLeft) {
+            try {
+                Boolean rightExpressionEvaluate = this.getRightExpression().evaluate(assignment);
+                if (rightExpressionEvaluate == true) {
+                    return true;
+                }
+            } catch (Exception varNotInMapRight) {
+                throw varNotInMapLeft;
+            }
+        }
+
+        return this.getRightExpression().evaluate(assignment);
     }
 
     /**

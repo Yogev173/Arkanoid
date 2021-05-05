@@ -43,4 +43,9 @@ public interface Expression {
      * @return the expression tree resulting from converting all the operations to the logical Nor operation
      */
     Expression norify();
+
+    /**
+     * @return a simplified version of the current expression.
+     */
+    Expression simplify();
 }
