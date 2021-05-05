@@ -31,4 +31,24 @@ public class And extends BinaryExpression {
         return new And(this.getLeftExpression().assign(var, expression),
                 this.getRightExpression().assign(var, expression));
     }
+
+    /**
+     * @return the expression tree resulting from converting all the operations to the logical Nand operation.
+     */
+    @Override
+    public Expression nandify() {
+        Expression left = this.getLeftExpression().nandify();
+        Expression right = this.getRightExpression().nandify();
+        return new Nand(new Nand(left, right), new Nand(left, right));
+    }
+
+    /**
+     * @return the expression tree resulting from converting all the operations to the logical Nor operation
+     */
+    @Override
+    public Expression norify() {
+        Expression left = this.getLeftExpression().norify();
+        Expression right = this.getRightExpression().norify();
+        return new Nor(new Nor(left, right), new Nor(left, right));
+    }
 }

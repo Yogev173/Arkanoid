@@ -60,5 +60,27 @@ public class Var implements Expression{
         return new Var(this.variable);
     }
 
+    /**
+     * @return string representation of the expression.
+     */
+    @Override
+    public String toString() {
+        return this.variable;
+    }
 
+    /**
+     * @return the expression tree resulting from converting all the operations to the logical Nand operation.
+     */
+    @Override
+    public Expression nandify() {
+        return new Var(this.variable);
+    }
+
+    /**
+     * @return the expression tree resulting from converting all the operations to the logical Nor operation
+     */
+    @Override
+    public Expression norify() {
+        return new Var(this.variable);
+    }
 }

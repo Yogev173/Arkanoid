@@ -30,4 +30,19 @@ public class Not extends UnaryExpression {
         return new Not(this.getExpression().assign(var, expression));
     }
 
+    /**
+     * @return the expression tree resulting from converting all the operations to the logical Nand operation.
+     */
+    @Override
+    public Expression nandify() {
+        return new Nand(this.getExpression().nandify(), this.getExpression().nandify());
+    }
+
+    /**
+     * @return the expression tree resulting from converting all the operations to the logical Nor operation
+     */
+    @Override
+    public Expression norify() {
+        return new Nor(this.getExpression().norify(), this.getExpression().norify());
+    }
 }

@@ -40,7 +40,7 @@ public abstract class BinaryExpression extends BaseExpression {
      */
     @Override
     public String toString() {
-        return ("(" + this.leftExpression.toString() + symbol + this.rightExpression.toString() + ")");
+        return ("(" + this.leftExpression.toString() + " " + symbol + " " + this.rightExpression.toString() + ")");
     }
 
     /**

@@ -48,4 +48,32 @@ public class Val implements Expression{
     public Expression assign(String var, Expression expression) {
         return new Val(this.value);
     }
+
+    /**
+     * @return string representation of the expression.
+     */
+    @Override
+    public String toString() {
+        if (this.value == true) {
+            return "T";
+        }
+
+        return "F";
+    }
+
+    /**
+     * @return the expression tree resulting from converting all the operations to the logical Nand operation.
+     */
+    @Override
+    public Expression nandify() {
+        return new Val(this.value);
+    }
+
+    /**
+     * @return the expression tree resulting from converting all the operations to the logical Nor operation
+     */
+    @Override
+    public Expression norify() {
+        return new Val(this.value);
+    }
 }

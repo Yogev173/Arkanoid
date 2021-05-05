@@ -33,4 +33,20 @@ public class Xnor extends BinaryExpression {
         return new Xnor(this.getLeftExpression().assign(var, expression),
                 this.getRightExpression().assign(var, expression));
     }
+
+    /**
+     * @return the expression tree resulting from converting all the operations to the logical Nand operation.
+     */
+    @Override
+    public Expression nandify() {
+        return expression.nandify();
+    }
+
+    /**
+     * @return the expression tree resulting from converting all the operations to the logical Nor operation
+     */
+    @Override
+    public Expression norify() {
+        return expression.norify();
+    }
 }
