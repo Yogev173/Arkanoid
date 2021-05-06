@@ -1,10 +1,23 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
+import java.util.HashSet;
 
+/**
+ * @author yogev abarbanel
+ * unary operator Expression.
+ */
 public abstract class UnaryExpression extends BaseExpression {
 
     private Expression expression;
     private String symbol;
 
+    /**
+     * Constructor.
+     * @param expression the Expression inside the unary operator
+     * @param symbol the sign of the unary operator
+     */
     public UnaryExpression(Expression expression, String symbol) {
         this.expression = expression;
         this.symbol = symbol;
@@ -37,6 +50,9 @@ public abstract class UnaryExpression extends BaseExpression {
         return (symbol + "(" + this.expression.toString() + ")");
     }
 
+    /**
+     * @return the inner Expression.
+     */
     protected Expression getExpression() {
         return expression;
     }

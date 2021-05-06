@@ -4,11 +4,21 @@ import java.util.List;
 import java.util.Set;
 import java.util.HashSet;
 
+/**
+ * @author yogev abarbanel
+ * Binary operator Expression.
+ */
 public abstract class BinaryExpression extends BaseExpression {
     private Expression leftExpression;
     private Expression rightExpression;
     private String symbol;
 
+    /**
+     * Constructor.
+     * @param leftExpression the left boolean Expression of the entire And
+     * @param rightExpression the right boolean Expression of the entire And
+     * @param symbol the sign of the operator
+     */
     public BinaryExpression(Expression leftExpression, Expression rightExpression, String symbol) {
         this.leftExpression = leftExpression;
         this.rightExpression = rightExpression;
@@ -51,27 +61,9 @@ public abstract class BinaryExpression extends BaseExpression {
     }
 
     /**
-     * set the left Expression.
-     * @param leftExpression the left Expression
-     */
-    protected void setLeftExpression(Expression leftExpression) {
-        this.leftExpression = leftExpression;
-    }
-
-
-    /**
      * @return the right Expression
      */
     protected Expression getRightExpression() {
         return rightExpression;
-    }
-
-
-    /**
-     * set the right Expression.
-     * @param rightExpression the right Expression
-     */
-    protected void setRightExpression(Expression rightExpression) {
-        this.rightExpression = rightExpression;
     }
 }

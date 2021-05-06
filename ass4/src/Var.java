@@ -3,10 +3,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Var implements Expression{
+/**
+ * @author yogev abarbanel
+ * Variabale Expression.
+ */
+public class Var implements Expression {
 
     private String variable;
 
+    /**
+     * Constructor.
+     * @param variable the name of the variable.
+     */
     public Var(String variable) {
         this.variable = variable;
     }
@@ -22,7 +30,7 @@ public class Var implements Expression{
             throw new Exception("variable: " + this.variable + " isn't in assignment");
         }
 
-        return assignment.get(this.variable) == true ? true : false;
+        return assignment.get(this.variable) ? true : false;
     }
 
     /**

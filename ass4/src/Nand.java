@@ -1,14 +1,23 @@
 import java.util.Map;
 
+/**
+ * @author yogev abarbanel
+ * Nand Expression.
+ */
 public class Nand extends BinaryExpression {
 
     private static final String SYMBOL = "↑";
 
-    private Not expression;
+    private Not innerExpression;
 
+    /**
+     * Constructor.
+     * @param leftExpression the left boolean Expression of the entire And
+     * @param rightExpression the right boolean Expression of the entire And
+     */
     public Nand(Expression leftExpression, Expression rightExpression) {
         super(leftExpression, rightExpression, SYMBOL);
-        this.expression = new Not(new And(this.getLeftExpression(), this.getRightExpression()));
+        this.innerExpression = new Not(new And(this.getLeftExpression(), this.getRightExpression()));
     }
 
     /**
@@ -18,7 +27,7 @@ public class Nand extends BinaryExpression {
      */
     @Override
     public Boolean evaluate(Map<String, Boolean> assignment) throws Exception {
-        return this.expression.evaluate(assignment);
+        return this.innerExpression.evaluate(assignment);
     }
 
     /**

@@ -1,6 +1,7 @@
-import java.util.List;
-import java.util.Map;
-
-public abstract class BaseExpression implements Expression{
+/**
+ * @author yogev abarbanel
+ * one Base Expression.
+ */
+public abstract class BaseExpression implements Expression {
 
 }

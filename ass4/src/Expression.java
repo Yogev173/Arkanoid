@@ -1,6 +1,10 @@
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author yogev abarbanel
+ * boolean Expression.
+ */
 public interface Expression {
     /**
      * @param assignment the map that match var to his value.

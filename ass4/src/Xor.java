@@ -1,9 +1,18 @@
 import java.util.Map;
 
+/**
+ * @author yogev abarbanel
+ * Xor Expression.
+ */
 public class Xor extends BinaryExpression {
 
     private static final String SYMBOL = "^";
 
+    /**
+     * Constructor.
+     * @param leftExpression the left boolean Expression of the entire And
+     * @param rightExpression the right boolean Expression of the entire And
+     */
     public Xor(Expression leftExpression, Expression rightExpression) {
         super(leftExpression, rightExpression, SYMBOL);
     }
@@ -71,7 +80,7 @@ public class Xor extends BinaryExpression {
             return new Not(leftExpression);
         } else if (leftExpression.toString().equals("F")) {
             return rightExpression;
-        } else if (rightExpression.toString().equals("F")){
+        } else if (rightExpression.toString().equals("F")) {
             return leftExpression;
         } else {
             return new Xor(leftExpression, rightExpression);

@@ -3,9 +3,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Val implements Expression{
+/**
+ * @author yogev abarbanel
+ * Valubale Expression.
+ */
+public class Val implements Expression {
     private boolean value;
 
+    /**
+     * Constructor.
+     * @param value the boolean value
+     */
     public Val(boolean value) {
         this.value = value;
     }
@@ -17,7 +25,7 @@ public class Val implements Expression{
      */
     @Override
     public Boolean evaluate(Map<String, Boolean> assignment) throws Exception {
-        return this.value == true ? true : false;
+        return this.value ? true : false;
     }
 
     /**
@@ -54,7 +62,7 @@ public class Val implements Expression{
      */
     @Override
     public String toString() {
-        if (this.value == true) {
+        if (this.value) {
             return "T";
         }
 

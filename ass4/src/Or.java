@@ -1,9 +1,18 @@
 import java.util.Map;
 
+/**
+ * @author yogev abarbanel
+ * Or Expression.
+ */
 public class Or extends BinaryExpression {
 
     private static final String SYMBOL = "|";
 
+    /**
+     * Constructor.
+     * @param leftExpression the left boolean Expression of the entire And
+     * @param rightExpression the right boolean Expression of the entire And
+     */
     public Or(Expression leftExpression, Expression rightExpression) {
         super(leftExpression, rightExpression, SYMBOL);
     }
@@ -21,13 +30,13 @@ public class Or extends BinaryExpression {
 
         try {
             boolean leftExpressionEvaluate = simplifyLeftExpression.evaluate(assignment);
-            if (leftExpressionEvaluate == true) {
+            if (leftExpressionEvaluate) {
                 return true;
             }
         } catch (Exception varNotInMapLeft) {
             try {
                 boolean rightExpressionEvaluate = simplifyRightExpression.evaluate(assignment);
-                if (rightExpressionEvaluate == true) {
+                if (rightExpressionEvaluate) {
                     return true;
                 }
             } catch (Exception varNotInMapRight) {

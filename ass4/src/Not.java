@@ -1,9 +1,17 @@
 import java.util.Map;
 
+/**
+ * @author yogev abarbanel
+ * Not Expression.
+ */
 public class Not extends UnaryExpression {
 
     private static final String SYMBOL = "~";
 
+    /**
+     * Constructor.
+     * @param expression the Expression the inside the Not.
+     */
     public Not(Expression expression) {
         super(expression, SYMBOL);
     }

@@ -1,9 +1,18 @@
 import java.util.Map;
 
+/**
+ * @author yogev abarbanel
+ * And Expression.
+ */
 public class And extends BinaryExpression {
 
     private static final String SYMBOL = "&";
 
+    /**
+     * Constructor.
+     * @param leftExpression the left boolean Expression of the entire And
+     * @param rightExpression the right boolean Expression of the entire And
+     */
     public And(Expression leftExpression, Expression rightExpression) {
         super(leftExpression, rightExpression, SYMBOL);
     }
@@ -21,13 +30,13 @@ public class And extends BinaryExpression {
 
         try {
             boolean leftExpressionEvaluate = simplifyLeftExpression.evaluate(assignment);
-            if (leftExpressionEvaluate == false) {
+            if (!leftExpressionEvaluate) {
                 return false;
             }
         } catch (Exception varNotInMapLeft) {
             try {
                 boolean rightExpressionEvaluate = simplifyRightExpression.evaluate(assignment);
-                if (rightExpressionEvaluate == false) {
+                if (!rightExpressionEvaluate) {
                     return false;
                 }
             } catch (Exception varNotInMapRight) {
