@@ -19,10 +19,10 @@ public class Var implements Expression{
     @Override
     public Boolean evaluate(Map<String, Boolean> assignment) throws Exception {
         if (!assignment.containsKey(this.variable)) {
-            throw new Exception("variable" + this.variable + "isn't in assignment");
+            throw new Exception("variable: " + this.variable + " isn't in assignment");
         }
 
-        return assignment.get(this.variable);
+        return assignment.get(this.variable) == true ? true : false;
     }
 
     /**
@@ -81,6 +81,14 @@ public class Var implements Expression{
      */
     @Override
     public Expression norify() {
+        return new Var(this.variable);
+    }
+
+    /**
+     * @return a simplified version of the current expression.
+     */
+    @Override
+    public Expression simplify() {
         return new Var(this.variable);
     }
 }

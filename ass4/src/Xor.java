@@ -15,7 +15,10 @@ public class Xor extends BinaryExpression {
      */
     @Override
     public Boolean evaluate(Map<String, Boolean> assignment) throws Exception {
-        return (this.getLeftExpression().evaluate(assignment) ^ this.getRightExpression().evaluate(assignment));
+        boolean leftExpressionEvaluate = this.getLeftExpression().simplify().evaluate(assignment);
+        boolean rightExpressionEvaluate = this.getRightExpression().simplify().evaluate(assignment);
+
+        return (leftExpressionEvaluate ^ rightExpressionEvaluate);
     }
 
     /**
@@ -50,5 +53,28 @@ public class Xor extends BinaryExpression {
         Expression left = this.getLeftExpression().norify();
         Expression right = this.getRightExpression().norify();
         return new Nor(new Nor(new Nor(left, left), new Nor(right, right)), new Nor(left, right));
+    }
+
+    /**
+     * @return a simplified version of the current expression.
+     */
+    @Override
+    public Expression simplify() {
+        Expression leftExpression = this.getLeftExpression().simplify();
+        Expression rightExpression = this.getRightExpression().simplify();
+
+        if (leftExpression.toString().equals(rightExpression.toString())) {
+            return new Val(false);
+        } else if (leftExpression.toString().equals("T")) {
+            return new Not(rightExpression);
+        } else if (rightExpression.toString().equals("T")) {
+            return new Not(leftExpression);
+        } else if (leftExpression.toString().equals("F")) {
+            return rightExpression;
+        } else if (rightExpression.toString().equals("F")){
+            return leftExpression;
+        } else {
+            return new Xor(leftExpression, rightExpression);
+        }
     }
 }

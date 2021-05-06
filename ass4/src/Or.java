@@ -15,15 +15,18 @@ public class Or extends BinaryExpression {
      */
     @Override
     public Boolean evaluate(Map<String, Boolean> assignment) throws Exception {
-        Boolean leftExpressionEvaluate = true;
+        Expression simplifyLeftExpression = this.getLeftExpression().simplify();
+        Expression simplifyRightExpression = this.getRightExpression().simplify();
+
+
         try {
-            leftExpressionEvaluate = this.getLeftExpression().evaluate(assignment);
+            boolean leftExpressionEvaluate = simplifyLeftExpression.evaluate(assignment);
             if (leftExpressionEvaluate == true) {
                 return true;
             }
         } catch (Exception varNotInMapLeft) {
             try {
-                Boolean rightExpressionEvaluate = this.getRightExpression().evaluate(assignment);
+                boolean rightExpressionEvaluate = simplifyRightExpression.evaluate(assignment);
                 if (rightExpressionEvaluate == true) {
                     return true;
                 }
@@ -32,7 +35,8 @@ public class Or extends BinaryExpression {
             }
         }
 
-        return this.getRightExpression().evaluate(assignment);
+        //Left Expression is false, so the right determine the outcome
+        return simplifyRightExpression.evaluate(assignment);
     }
 
     /**
@@ -65,6 +69,27 @@ public class Or extends BinaryExpression {
     public Expression norify() {
         Expression left = this.getLeftExpression().norify();
         Expression right = this.getRightExpression().norify();
-        return new Nor(new Nor(left, left), new Nor(right, right));
+        return new Nor(new Nor(left, right), new Nor(left, right));
+    }
+
+    /**
+     * @return a simplified version of the current expression.
+     */
+    @Override
+    public Expression simplify() {
+        Expression leftExpression = this.getLeftExpression().simplify();
+        Expression rightExpression = this.getRightExpression().simplify();
+
+        if (leftExpression.toString().equals(rightExpression.toString())) {
+            return leftExpression;
+        } else if (leftExpression.toString().equals("F")) {
+            return rightExpression;
+        } else if (rightExpression.toString().equals("F")) {
+            return leftExpression;
+        } else if (leftExpression.toString().equals("T") || rightExpression.toString().equals("T")) {
+            return new Val(true);
+        } else {
+            return new Or(leftExpression, rightExpression);
+        }
     }
 }

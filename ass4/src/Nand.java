@@ -39,7 +39,9 @@ public class Nand extends BinaryExpression {
      */
     @Override
     public Expression nandify() {
-        return expression.nandify();
+        Expression left = this.getLeftExpression().nandify();
+        Expression right = this.getRightExpression().nandify();
+        return new Nand(left, right);
     }
 
     /**
@@ -47,6 +49,30 @@ public class Nand extends BinaryExpression {
      */
     @Override
     public Expression norify() {
-        return expression.norify();
+        Expression left = this.getLeftExpression().norify();
+        Expression right = this.getRightExpression().norify();
+        return new Nor(new Nor(new Nor(left, left), new Nor(right, right)),
+                new Nor(new Nor(left, left), new Nor(right, right)));
+    }
+
+    /**
+     * @return a simplified version of the current expression.
+     */
+    @Override
+    public Expression simplify() {
+        Expression leftExpression = this.getLeftExpression().simplify();
+        Expression rightExpression = this.getRightExpression().simplify();
+
+        if (leftExpression.toString().equals(rightExpression.toString())) {
+            return new Not(leftExpression);
+        } else if (leftExpression.toString().equals("T")) {
+            return new Not(rightExpression);
+        } else if (rightExpression.toString().equals("T")) {
+            return new Not(leftExpression);
+        } else if (leftExpression.toString().equals("F") || rightExpression.toString().equals("F")) {
+            return new Val(true);
+        } else {
+            return new Nand(leftExpression, rightExpression);
+        }
     }
 }

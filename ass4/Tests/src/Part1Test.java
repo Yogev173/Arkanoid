@@ -63,13 +63,6 @@ public class Part1Test {
 
 
 
-        try {
-            Expression e90 = new And(new Var("x"), new Val(true));
-            System.out.println(e90.evaluate());
-        } catch (LeftVarNotInMapException e7) {
-            System.out.println("------------");
-        } catch (Exception e8) {
-            System.out.println("999999");
-        }
+
     }
 }

@@ -39,7 +39,9 @@ public class Xnor extends BinaryExpression {
      */
     @Override
     public Expression nandify() {
-        return expression.nandify();
+        Expression left = this.getLeftExpression().nandify();
+        Expression right = this.getRightExpression().nandify();
+        return new Nand(new Nand(new Nand(left, left), new Nand(right, right)), new Nand(left, right));
     }
 
     /**
@@ -47,6 +49,23 @@ public class Xnor extends BinaryExpression {
      */
     @Override
     public Expression norify() {
-        return expression.norify();
+        Expression left = this.getLeftExpression().norify();
+        Expression right = this.getRightExpression().norify();
+        return new Nor(new Nor(left, new Nor(left, right)), new Nor(right, new Nor(left, right)));
+    }
+
+    /**
+     * @return a simplified version of the current expression.
+     */
+    @Override
+    public Expression simplify() {
+        Expression leftExpression = this.getLeftExpression().simplify();
+        Expression rightExpression = this.getRightExpression().simplify();
+
+        if (leftExpression.toString().equals(rightExpression.toString())) {
+            return new Val(true);
+        }  else {
+            return new Xnor(leftExpression, rightExpression);
+        }
     }
 }

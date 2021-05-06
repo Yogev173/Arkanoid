@@ -17,7 +17,7 @@ public class Val implements Expression{
      */
     @Override
     public Boolean evaluate(Map<String, Boolean> assignment) throws Exception {
-        return this.value;
+        return this.value == true ? true : false;
     }
 
     /**
@@ -74,6 +74,14 @@ public class Val implements Expression{
      */
     @Override
     public Expression norify() {
+        return new Val(this.value);
+    }
+
+    /**
+     * @return a simplified version of the current expression.
+     */
+    @Override
+    public Expression simplify() {
         return new Val(this.value);
     }
 }
