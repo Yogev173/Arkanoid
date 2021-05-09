@@ -99,4 +99,19 @@ public class Var implements Expression {
     public Expression simplify() {
         return new Var(this.variable);
     }
+
+    /**
+     * @param expression the Expression to compare to.
+     * @return true if the Expression equals.
+     */
+    @Override
+    public boolean equals(Object expression) {
+        if (!this.getClass().equals(expression.getClass())) {
+            return false;
+        } else if (this.variable.equals(((Var) expression).variable)) {
+            return true;
+        }
+
+        return false;
+    }
 }

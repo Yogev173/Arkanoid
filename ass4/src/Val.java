@@ -92,4 +92,19 @@ public class Val implements Expression {
     public Expression simplify() {
         return new Val(this.value);
     }
+
+    /**
+     * @param expression the Expression to compare to.
+     * @return true if the Expression equals.
+     */
+    @Override
+    public boolean equals(Object expression) {
+        if (!this.getClass().equals(expression.getClass())) {
+            return false;
+        } else if (this.value == ((Val) expression).value) {
+            return true;
+        }
+
+        return false;
+    }
 }

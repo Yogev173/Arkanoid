@@ -89,7 +89,7 @@ public class Or extends BinaryExpression {
         Expression leftExpression = this.getLeftExpression().simplify();
         Expression rightExpression = this.getRightExpression().simplify();
 
-        if (leftExpression.toString().equals(rightExpression.toString())) {
+        if (leftExpression.equals(rightExpression)) {
             return leftExpression;
         } else if (leftExpression.toString().equals("F")) {
             return rightExpression;

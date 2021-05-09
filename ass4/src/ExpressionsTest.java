@@ -7,6 +7,11 @@ import java.util.Map;
  */
 public class ExpressionsTest {
 
+    /**
+     * main.
+     * Test for Expression interface.
+     * @param args command line arguments
+     */
     public static void main(String[] args) {
         //1
         Expression expression = new And(new And(new Var("x"),

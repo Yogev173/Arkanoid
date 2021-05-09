@@ -66,4 +66,23 @@ public abstract class BinaryExpression extends BaseExpression {
     protected Expression getRightExpression() {
         return rightExpression;
     }
+
+    /**
+     * @param expression the Expression to compare to.
+     * @return true if the Expression equals.
+     */
+    @Override
+    public boolean equals(Object expression) {
+        if (!this.getClass().equals(expression.getClass())) {
+            return false;
+        } else if (this.rightExpression.equals(((BinaryExpression) expression).rightExpression)
+                && this.leftExpression.equals(((BinaryExpression) expression).leftExpression)) {
+            return true;
+        } else if (this.rightExpression.equals(((BinaryExpression) expression).leftExpression)
+                && this.leftExpression.equals(((BinaryExpression) expression).rightExpression)) {
+            return true;
+        }
+
+        return false;
+    }
 }

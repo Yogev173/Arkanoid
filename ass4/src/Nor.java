@@ -6,7 +6,7 @@ import java.util.Map;
  */
 public class Nor extends BinaryExpression {
 
-    private static final String SYMBOL = "↓";
+    private static final String SYMBOL = "V";
 
     private Not innerExpression;
 
@@ -72,7 +72,7 @@ public class Nor extends BinaryExpression {
         Expression leftExpression = this.getLeftExpression().simplify();
         Expression rightExpression = this.getRightExpression().simplify();
 
-        if (leftExpression.toString().equals(rightExpression.toString())) {
+        if (leftExpression.equals(rightExpression)) {
             return new Not(leftExpression);
         } else if (leftExpression.toString().equals("F")) {
             return new Not(rightExpression);
