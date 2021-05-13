@@ -24,8 +24,8 @@ public class Or extends BinaryExpression {
      */
     @Override
     public Boolean evaluate(Map<String, Boolean> assignment) throws Exception {
-        return (this.getLeftExpression().evaluate(assignment) |
-                this.getRightExpression().evaluate(assignment));
+        return (this.getLeftExpression().evaluate(assignment)
+                | this.getRightExpression().evaluate(assignment));
     }
 
     /**
