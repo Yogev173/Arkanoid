@@ -65,6 +65,8 @@ public class Not extends UnaryExpression {
             return new Val(false);
         } else if (expression.toString().equals("F")) {
             return new Val(true);
+        } else if (expression.getClass().equals(this.getClass())){
+           return ((Not) expression).getExpression();
         } else {
             return new Not(expression);
         }

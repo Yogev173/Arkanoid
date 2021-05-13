@@ -75,9 +75,9 @@ public class Xor extends BinaryExpression {
         if (leftExpression.equals(rightExpression)) {
             return new Val(false);
         } else if (leftExpression.toString().equals("T")) {
-            return new Not(rightExpression);
+            return new Not(rightExpression).simplify();
         } else if (rightExpression.toString().equals("T")) {
-            return new Not(leftExpression);
+            return new Not(leftExpression).simplify();
         } else if (leftExpression.toString().equals("F")) {
             return rightExpression;
         } else if (rightExpression.toString().equals("F")) {

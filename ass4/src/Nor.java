@@ -73,11 +73,11 @@ public class Nor extends BinaryExpression {
         Expression rightExpression = this.getRightExpression().simplify();
 
         if (leftExpression.equals(rightExpression)) {
-            return new Not(leftExpression);
+            return new Not(leftExpression).simplify();
         } else if (leftExpression.toString().equals("F")) {
-            return new Not(rightExpression);
+            return new Not(rightExpression).simplify();
         } else if (rightExpression.toString().equals("F")) {
-            return new Not(leftExpression);
+            return new Not(leftExpression).simplify();
         } else if (leftExpression.toString().equals("T") || rightExpression.toString().equals("T")) {
             return new Val(false);
         } else {

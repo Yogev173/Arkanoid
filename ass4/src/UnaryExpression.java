@@ -65,7 +65,7 @@ public abstract class UnaryExpression extends BaseExpression {
     public boolean equals(Object otherExpression) {
         if (!this.getClass().equals(otherExpression.getClass())) {
             return false;
-        } else if (this.expression.equals(((UnaryExpression) expression).expression)) {
+        } else if (this.expression.equals(((UnaryExpression) otherExpression).expression)) {
             return true;
         }
 

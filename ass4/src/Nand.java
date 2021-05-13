@@ -73,11 +73,11 @@ public class Nand extends BinaryExpression {
         Expression rightExpression = this.getRightExpression().simplify();
 
         if (leftExpression.equals(rightExpression)) {
-            return new Not(leftExpression);
+            return new Not(leftExpression).simplify();
         } else if (leftExpression.toString().equals("T")) {
-            return new Not(rightExpression);
+            return new Not(rightExpression).simplify();
         } else if (rightExpression.toString().equals("T")) {
-            return new Not(leftExpression);
+            return new Not(leftExpression).simplify();
         } else if (leftExpression.toString().equals("F") || rightExpression.toString().equals("F")) {
             return new Val(true);
         } else {
