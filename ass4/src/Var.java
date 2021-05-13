@@ -30,7 +30,7 @@ public class Var implements Expression {
             throw new Exception("variable: " + this.variable + " isn't in assignment");
         }
 
-        return assignment.get(this.variable) ? true : false;
+        return assignment.get(this.variable);
     }
 
     /**
@@ -98,20 +98,5 @@ public class Var implements Expression {
     @Override
     public Expression simplify() {
         return new Var(this.variable);
-    }
-
-    /**
-     * @param expression the Expression to compare to.
-     * @return true if the Expression equals.
-     */
-    @Override
-    public boolean equals(Object expression) {
-        if (!this.getClass().equals(expression.getClass())) {
-            return false;
-        } else if (this.variable.equals(((Var) expression).variable)) {
-            return true;
-        }
-
-        return false;
     }
 }

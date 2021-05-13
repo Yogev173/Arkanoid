@@ -56,21 +56,6 @@ public abstract class UnaryExpression extends BaseExpression {
     protected Expression getExpression() {
         return expression;
     }
-
-    /**
-     * @param otherExpression the Expression to compare to.
-     * @return true if the Expression equals.
-     */
-    @Override
-    public boolean equals(Object otherExpression) {
-        if (!this.getClass().equals(otherExpression.getClass())) {
-            return false;
-        } else if (this.expression.equals(((UnaryExpression) otherExpression).expression)) {
-            return true;
-        }
-
-        return false;
-    }
 }
 
 

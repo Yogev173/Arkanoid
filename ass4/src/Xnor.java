@@ -71,10 +71,14 @@ public class Xnor extends BinaryExpression {
         Expression leftExpression = this.getLeftExpression().simplify();
         Expression rightExpression = this.getRightExpression().simplify();
 
-        if (leftExpression.equals(rightExpression)) {
-            return new Val(true);
-        }  else {
-            return new Xnor(leftExpression, rightExpression);
+        try {
+            return new Val(this.evaluate());
+        } catch (Exception e) {
+            if (leftExpression.toString().equals(rightExpression.toString())) {
+                return new Val(true);
+            } else {
+                return new Xnor(leftExpression, rightExpression);
+            }
         }
     }
 }

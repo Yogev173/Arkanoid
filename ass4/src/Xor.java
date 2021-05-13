@@ -24,10 +24,8 @@ public class Xor extends BinaryExpression {
      */
     @Override
     public Boolean evaluate(Map<String, Boolean> assignment) throws Exception {
-        boolean leftExpressionEvaluate = this.getLeftExpression().simplify().evaluate(assignment);
-        boolean rightExpressionEvaluate = this.getRightExpression().simplify().evaluate(assignment);
-
-        return (leftExpressionEvaluate ^ rightExpressionEvaluate);
+        return (this.getLeftExpression().evaluate(assignment) ^
+                this.getRightExpression().evaluate(assignment));
     }
 
     /**
@@ -72,18 +70,22 @@ public class Xor extends BinaryExpression {
         Expression leftExpression = this.getLeftExpression().simplify();
         Expression rightExpression = this.getRightExpression().simplify();
 
-        if (leftExpression.equals(rightExpression)) {
-            return new Val(false);
-        } else if (leftExpression.toString().equals("T")) {
-            return new Not(rightExpression).simplify();
-        } else if (rightExpression.toString().equals("T")) {
-            return new Not(leftExpression).simplify();
-        } else if (leftExpression.toString().equals("F")) {
-            return rightExpression;
-        } else if (rightExpression.toString().equals("F")) {
-            return leftExpression;
-        } else {
-            return new Xor(leftExpression, rightExpression);
+        try {
+            return new Val(this.evaluate());
+        } catch (Exception e) {
+            if (leftExpression.toString().equals(rightExpression.toString())) {
+                return new Val(false);
+            } else if (leftExpression.toString().equals("T")) {
+                return new Not(rightExpression).simplify();
+            } else if (rightExpression.toString().equals("T")) {
+                return new Not(leftExpression).simplify();
+            } else if (leftExpression.toString().equals("F")) {
+                return rightExpression;
+            } else if (rightExpression.toString().equals("F")) {
+                return leftExpression;
+            } else {
+                return new Xor(leftExpression, rightExpression);
+            }
         }
     }
 }

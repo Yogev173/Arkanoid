@@ -23,7 +23,7 @@ public class Not extends UnaryExpression {
      */
     @Override
     public Boolean evaluate(Map<String, Boolean> assignment) throws Exception {
-        return (!this.getExpression().simplify().evaluate(assignment));
+        return (!this.getExpression().evaluate(assignment));
     }
 
     /**
@@ -60,15 +60,20 @@ public class Not extends UnaryExpression {
     @Override
     public Expression simplify() {
         Expression expression = this.getExpression().simplify();
+        Boolean expressionValue;
 
-        if (expression.toString().equals("T")) {
-            return new Val(false);
-        } else if (expression.toString().equals("F")) {
-            return new Val(true);
-        } else if (expression.getClass().equals(this.getClass())){
-           return ((Not) expression).getExpression();
-        } else {
+        try {
+            expressionValue = expression.evaluate();
+
+            if (expressionValue) {
+                return new Val(false);
+            } else {
+                return new Val(true);
+            }
+        } catch (Exception e) {
             return new Not(expression);
         }
+
+
     }
 }
