@@ -6,11 +6,12 @@ import geometry.sprite.enviroment.Paddle;
 import sprite.Sprite;
 import game.Game;
 
+import java.awt.*;
+
 public class ScoreIndicator implements Sprite {
-    public static final double HEIGHT = 30;
-    public static final double WIDTH = 50;
-    public static final double PADDLE_START_X = Game.WIDTH / 2 - WIDTH / 2;
-    public static final double PADDLE_START_Y = 0;
+    public static final int X = Game.WIDTH / 2 - 20;
+    public static final int Y = 20;
+    public static final int FONT_SIZE = 20;
 
     private Counter scoreCounter;
 
@@ -28,7 +29,8 @@ public class ScoreIndicator implements Sprite {
      */
     @Override
     public void drawOn(DrawSurface d) {
-
+        d.setColor(Color.BLACK);
+        d.drawText(X, Y, "Score: " + this.scoreCounter.getValue(), FONT_SIZE);
     }
 
     /**
@@ -48,6 +50,6 @@ public class ScoreIndicator implements Sprite {
      */
     @Override
     public void addToGame(Game g) {
-
+        g.addSprite(this);
     }
 }
