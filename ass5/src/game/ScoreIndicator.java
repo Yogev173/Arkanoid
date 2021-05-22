@@ -2,12 +2,15 @@ package game;
 
 import biuoop.DrawSurface;
 import collision.remove.Counter;
-import geometry.sprite.enviroment.Paddle;
 import sprite.Sprite;
-import game.Game;
 
-import java.awt.*;
+import java.awt.Color;
 
+/**
+ * @author yogev abarbanel
+ * Id: 326116910
+ * showing the Score.
+ */
 public class ScoreIndicator implements Sprite {
     public static final int X = Game.WIDTH / 2 - 20;
     public static final int Y = 20;
@@ -16,7 +19,7 @@ public class ScoreIndicator implements Sprite {
     private Counter scoreCounter;
 
     /**
-     *
+     *Constructor.
      * @param scoreCounter the Counter of score in the game.
      */
     public ScoreIndicator(Counter scoreCounter) {

@@ -17,7 +17,7 @@ public class Counter {
     }
 
     /**
-     * initial the Counter to 0
+     * initial the Counter to 0.
      */
     public Counter() {
         this(0);

@@ -5,6 +5,11 @@ import geometry.sprite.Ball;
 import geometry.sprite.enviroment.Block;
 import listener.HitListener;
 
+/**
+ * @author yogev abarbanel
+ * Id: 326116910
+ * track after the score in the game.
+ */
 public class ScoreTrackingListener implements HitListener {
     public static final int SCORE_FOR_HITTING_BLOCK = 5;
 
