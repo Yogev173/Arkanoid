@@ -2,13 +2,13 @@ package game.animation;
 
 import biuoop.DrawSurface;
 import biuoop.Sleeper;
-import game.Game;
+import game.GameLevel;
 import sprite.SpriteCollection;
 
 import java.awt.*;
 
 public class CountdownAnimation implements Animation{
-    public static final int X_COORDINATE = Game.WIDTH / 2 - 20;
+    public static final int X_COORDINATE = GameLevel.WIDTH / 2 - 20;
     public static final int Y_COORDINATE = 80;
 
     private double numOfSeconds;
