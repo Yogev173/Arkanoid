@@ -1,6 +1,6 @@
 package collision.remove;
 
-import game.GameLevel;
+import game.levels.GameLevel;
 import geometry.sprite.Ball;
 import geometry.sprite.enviroment.Block;
 import listener.HitListener;

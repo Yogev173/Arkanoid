@@ -8,7 +8,7 @@ import geometry.shape.Point;
 import geometry.shape.Rectangle;
 import geometry.sprite.Ball;
 import sprite.Sprite;
-import game.GameLevel;
+import game.levels.GameLevel;
 
 
 /**
@@ -39,14 +39,6 @@ public class Paddle implements Sprite, Collidable {
     private int paddleRightBorder;
 
 
-    /**
-     * Constructor.
-     * @param keyboard user-controlled keyboard sensor
-     */
-    public Paddle(KeyboardSensor keyboard) {
-        this(keyboard, new Block(new Rectangle(new Point(GameLevel.PADDLE_START_X, GameLevel.PADDLE_START_Y)
-                , Paddle.PADDLE_DEFAULT_WIDTH, Paddle.PADDLE_DEFAULT_HEIGHT)));
-    }
 
     /**
      * Constructor.

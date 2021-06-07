@@ -2,7 +2,7 @@ package game.score;
 
 import biuoop.DrawSurface;
 import collision.remove.Counter;
-import game.GameLevel;
+import game.levels.GameLevel;
 import sprite.Sprite;
 
 import java.awt.Color;

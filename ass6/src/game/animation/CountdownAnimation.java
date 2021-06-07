@@ -2,7 +2,7 @@ package game.animation;
 
 import biuoop.DrawSurface;
 import biuoop.Sleeper;
-import game.GameLevel;
+import game.levels.GameLevel;
 import sprite.SpriteCollection;
 
 import java.awt.*;

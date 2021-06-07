@@ -1,4 +1,4 @@
-package game;
+package game.levels;
 
 import biuoop.DrawSurface;
 import biuoop.GUI;
@@ -12,8 +12,10 @@ import game.animation.Animation;
 import game.animation.AnimationRunner;
 import game.animation.CountdownAnimation;
 import game.animation.PauseScreen;
+import game.levels.LevelInformation;
 import game.score.ScoreIndicator;
 import game.score.ScoreTrackingListener;
+import geometry.characteristics.Velocity;
 import geometry.shape.Point;
 import geometry.shape.Rectangle;
 import geometry.sprite.Ball;
@@ -27,7 +29,7 @@ import java.util.Random;
 /**
  * @author yogev abarbanel
  * Id: 326116910
- * Game of pong.
+ * Game Level.
  */
 public class GameLevel implements Animation {
 
@@ -38,35 +40,14 @@ public class GameLevel implements Animation {
     public static final int BORDER_VERTICAL_BLOCK_HEIGHT = HEIGHT - 25;
     public static final int BORDER_HORIZONTAL_BLOCK_WIDTH = WIDTH;
     public static final int BORDER_HORIZONTAL_BLOCK_HEIGHT = 10;
-    public static final int DEFAULT_MAX_BLOCKS_IN_ROW = Integer.MAX_VALUE;
     public static final Color BORDER_COLOR = Color.GRAY;
 
     //Paddle
-    public static final double PADDLE_START_X = WIDTH / 2 - Paddle.PADDLE_DEFAULT_WIDTH / 2;
-    public static final double PADDLE_START_Y = HEIGHT - Paddle.PADDLE_DEFAULT_HEIGHT;
+    public static final int PADDLE_START_Y = HEIGHT - Paddle.PADDLE_DEFAULT_HEIGHT;
 
-    //Ball setup
-    public static final int DEFAULT_NUM_OF_BALLS = 1;
+    //Ball
     public static final int BALL_RADIOS = 6;
-    public static final double BALL_START_X = WIDTH / 2;
-    public static final double BALL_START_Y = PADDLE_START_Y - BALL_RADIOS;
-    public static final double BALL_START_VELOCITY_DX = 0;
-    public static final double BALL_START_VELOCITY_DY = -4.0;
-    public static final int RANDOM_LIMIT = (int) Paddle.PADDLE_DEFAULT_WIDTH / 2;
-
-    //Blocks setup
-    public static final int DEFAULT_ROWS_NUMBER = 6;
-    public static final int BLOCK_DEFAULT_WIDTH = Block.DEFAULT_WIDTH;
-    public static final int BLOCK_DEFAULT_HEIGHT = Block.DEFAULT_HEIGHT;
-
-    public static final int BLOCK_ROWS_X_START = WIDTH - BLOCK_DEFAULT_WIDTH - BORDER_VERTICAL_BLOCK_WIDTH;
-    public static final int BLOCK_ROWS_Y_START = HEIGHT * 1 / 4;
-    public static final int BLOCK_ROWS_WIDTH_BORDER = WIDTH - 2 * BORDER_VERTICAL_BLOCK_WIDTH;
-    public static final int MAX_BLOCKS_IN_ROW = BLOCK_ROWS_WIDTH_BORDER / BLOCK_DEFAULT_WIDTH;
-
-    //special Block
-    public static final Color KILLING_BLOCK_COLOR = Color.RED;
-    public static final Color EXTRA_BLOCK_COLOR = Color.GREEN;
+    public static final double BALL_DEFAULT_SPEED = 4.0;
 
     //score
     public static final int SCORE_FOR_PASSING_LEVEL = 100;
@@ -76,14 +57,12 @@ public class GameLevel implements Animation {
 
     //fields:
     //general
+    private LevelInformation levelInformation;
     private SpriteCollection sprites;
     private GameEnvironment environment;
     private GUI gui;
     private KeyboardSensor keyboardSensor;
-    private int numOfRow;
-    private int numOfBalls;
-    private boolean isGradual;
-    private int maxNumOfBlocksInRow;
+
 
     //listener
     private BlockRemover blockRemover;
@@ -96,29 +75,15 @@ public class GameLevel implements Animation {
 
     /**
      * Constructor.
+     * @param levelInformation information about the level.
      */
-    public GameLevel() {
-        this(DEFAULT_ROWS_NUMBER, DEFAULT_NUM_OF_BALLS, DEFAULT_MAX_BLOCKS_IN_ROW, true);
-    }
-
-
-    /**
-     * Constructor.
-     * @param numOfRow amount of Blocks rows in the game.
-     * @param numOfBalls amount of balls in the game.
-     * @param isGradual to draw the Blocks in gradual shape.
-     * @param maxNumOfBlocksInRow the max number of Blocks in the same row.
-     */
-    public GameLevel(int numOfRow, int numOfBalls, int maxNumOfBlocksInRow, boolean isGradual) {
+    public GameLevel(LevelInformation levelInformation) {
+        this.levelInformation = levelInformation;
         this.sprites = new SpriteCollection();
         this.environment = new GameEnvironment();
-        this.gui = new GUI("Game", WIDTH, HEIGHT);
+        this.gui = new GUI(levelInformation.levelName(), WIDTH, HEIGHT);
         this.keyboardSensor = gui.getKeyboardSensor();
-        this.numOfRow = numOfRow;
-        this.numOfBalls = numOfBalls;
-        this.isGradual = isGradual;
 
-        this.maxNumOfBlocksInRow = maxNumOfBlocksInRow;
         this.blockRemover = new BlockRemover(this, new Counter(0));
         this.ballRemover = new BallRemover(this, new Counter(0));
         this.scoreTrackingListener = new ScoreTrackingListener(new Counter(0));
@@ -153,7 +118,7 @@ public class GameLevel implements Animation {
         this.initializePaddle();
         this.initializeBalls();
         this.initializeBoardBorder();
-        this.initializeBlockRows();
+        this.initializeBlocks();
     }
 
     /**
@@ -169,8 +134,9 @@ public class GameLevel implements Animation {
      * initialize one Paddle.
      */
     private void initializePaddle() {
-        Block paddleBlock = new Block(new Rectangle(new Point(PADDLE_START_X, PADDLE_START_Y)
-                , Paddle.PADDLE_DEFAULT_WIDTH, Paddle.PADDLE_DEFAULT_HEIGHT), Color.RED);
+        int startX = (WIDTH - this.levelInformation.paddleWidth()) / 2;
+        Block paddleBlock = new Block(new Rectangle(new Point(startX, PADDLE_START_Y)
+                , this.levelInformation.paddleWidth(), Paddle.PADDLE_DEFAULT_HEIGHT), Color.RED);
         Paddle paddle = new Paddle(this.keyboardSensor, paddleBlock);
         paddle.addToGame(this);
     }
@@ -180,24 +146,17 @@ public class GameLevel implements Animation {
      * initialize multiple Balls.
      */
     public void initializeBalls() {
-        for (int currentBall = 0; currentBall < this.numOfBalls; currentBall++) {
-            this.initializeBall();
+        int startX = WIDTH / 2;
+        int startY = PADDLE_START_Y - BALL_RADIOS;
+
+        for (Velocity ballVelocity : this.levelInformation.initialBallVelocities()) {
+            Ball ball = new Ball(new Point(startX, startY)
+                    , BALL_RADIOS, this.environment);
+            ball.setVelocity(ballVelocity);
+
+            ball.addToGame(this);
+            this.ballRemover.getCounter().increase(1);
         }
-    }
-
-    /**
-     * initializeBall.
-     * initialize one Ball.
-     */
-    public void initializeBall() {
-        Random random = new Random();
-
-        Ball ball = new Ball(new Point(BALL_START_X + random.nextInt(RANDOM_LIMIT), BALL_START_Y)
-                , BALL_RADIOS, this.environment);
-        ball.setVelocity(BALL_START_VELOCITY_DX + random.nextDouble()
-                , BALL_START_VELOCITY_DY + random.nextDouble());
-        ball.addToGame(this);
-        this.ballRemover.getCounter().increase(1);
     }
 
     /**
@@ -224,48 +183,12 @@ public class GameLevel implements Animation {
                 , BORDER_HORIZONTAL_BLOCK_WIDTH, BORDER_HORIZONTAL_BLOCK_HEIGHT), BORDER_COLOR)).addToGame(this);
     }
 
-    /**
-     * initializeBlockRows.
-     */
-    private void initializeBlockRows() {
-        int numOfBlocks = (int) Math.floor(MAX_BLOCKS_IN_ROW);
-        numOfBlocks = Math.min(numOfBlocks, this.maxNumOfBlocksInRow);
-        int startOfTheRowX = BLOCK_ROWS_X_START;
-        int startOfTheRowY = BLOCK_ROWS_Y_START;
-
-        for (int rowNumber = 0; rowNumber < this.numOfRow; rowNumber++) {
-            this.initializeBlockRow(startOfTheRowX, startOfTheRowY, numOfBlocks, Ball.randomColorFromArray(rowNumber));
-
-            // to prevent overlap with next row of Block
-            startOfTheRowY += BLOCK_DEFAULT_HEIGHT;
-
-            if (this.isGradual) {
-                numOfBlocks--;
-            }
-        }
-    }
-
-    /**
-     * initializeBlockRow.
-     * @param startOfTheRowX the x coordinate of the first block in the row.
-     * @param startOfTheRowY the y coordinate of the first block in the row.
-     * @param numOfBlocks how much Block to create in this row.
-     * @param color the Color for the Block's row.
-     */
-    private void initializeBlockRow(int startOfTheRowX, int startOfTheRowY, int numOfBlocks, Color color) {
-        int upperLeftX = startOfTheRowX;
-        int upperLeftY = startOfTheRowY;
-        for (int blockNumber = 0; blockNumber < numOfBlocks; blockNumber++) {
-            Block block = new Block(new Rectangle(new Point(upperLeftX, upperLeftY)
-                    , BLOCK_DEFAULT_WIDTH, BLOCK_DEFAULT_HEIGHT), color);
-
+    private void initializeBlocks() {
+        for (Block block : this.levelInformation.blocks()) {
             block.addToGame(this);
             block.addHitListener(this.blockRemover);
             block.addHitListener(this.scoreTrackingListener);
             this.blockRemover.getCounter().increase(1);
-
-            // to prevent overlap with next Block
-            upperLeftX -= BLOCK_DEFAULT_WIDTH;
         }
     }
 

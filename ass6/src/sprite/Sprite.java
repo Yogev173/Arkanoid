@@ -1,7 +1,7 @@
 package sprite;
 
 import biuoop.DrawSurface;
-import game.GameLevel;
+import game.levels.GameLevel;
 
 /**
  * @author yogev abarbanel

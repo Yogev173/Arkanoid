@@ -9,7 +9,7 @@ import geometry.shape.Point;
 import geometry.shape.Rectangle;
 import geometry.sprite.Ball;
 import sprite.Sprite;
-import game.GameLevel;
+import game.levels.GameLevel;
 
 import java.awt.Color;
 import java.util.ArrayList;

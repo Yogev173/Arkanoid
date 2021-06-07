@@ -1,4 +1,4 @@
-import game.GameLevel;
+import game.levels.GameLevel;
 
 /**
  * @author yogev abarbanel

@@ -1,7 +1,7 @@
 package collision;
 
 import biuoop.DrawSurface;
-import game.GameLevel;
+import game.levels.GameLevel;
 import geometry.characteristics.Velocity;
 import geometry.shape.Point;
 import geometry.shape.Rectangle;

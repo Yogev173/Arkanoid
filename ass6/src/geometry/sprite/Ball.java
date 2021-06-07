@@ -4,7 +4,7 @@ import biuoop.DrawSurface;
 import collision.Collidable;
 import collision.CollisionInfo;
 import collision.GameEnvironment;
-import game.GameLevel;
+import game.levels.GameLevel;
 import geometry.characteristics.Velocity;
 import geometry.shape.Line;
 import geometry.shape.Point;
