@@ -33,6 +33,8 @@ public class ScoreIndicator implements Sprite {
      */
     @Override
     public void drawOn(DrawSurface d) {
+        d.setColor(Color.WHITE);
+        d.fillRectangle(0, 0, GameLevel.WIDTH, 25);
         d.setColor(Color.BLACK);
         d.drawText(X, Y, "Score: " + this.scoreCounter.getValue(), FONT_SIZE);
     }

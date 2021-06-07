@@ -113,12 +113,28 @@ public class GameLevel implements Animation {
      * Initialize a new game: create the Blocks and Ball (and Paddle), and add them to the game.
      */
     public void initialize() {
+        this.initializeBackground();
         this.initializeDeathBlock();
         this.initializeScore();
         this.initializePaddle();
         this.initializeBalls();
         this.initializeBoardBorder();
         this.initializeBlocks();
+        this.initializeName();
+    }
+
+    /**
+     * initialize the background of the level.
+     */
+    private void initializeBackground() {
+        this.levelInformation.getBackground().addToGame(this);
+    }
+
+    /**
+     * initialize the name of the level.
+     */
+    private void initializeName() {
+        (new LevelName(this.levelInformation.levelName())).addToGame(this);
     }
 
     /**

@@ -23,6 +23,8 @@ public abstract class DefaultLevel implements LevelInformation, Level{
     public static final int MAX_BLOCKS_IN_ROW = (GameLevel.WIDTH - 2 * GameLevel.BORDER_VERTICAL_BLOCK_WIDTH)
             / Block.DEFAULT_WIDTH;
 
+    public static final int PADDLE_SPEED = 5;
+
     //information
     protected List<Velocity> ballVelocities;
     protected Sprite background;
@@ -58,7 +60,7 @@ public abstract class DefaultLevel implements LevelInformation, Level{
         double anglesDifference = 180.0 / (numOfBalls + 1);
 
         for (int currentBall = 1; currentBall <= numOfBalls; currentBall++) {
-            this.ballVelocities.add(Velocity.fromAngleAndSpeed(currentBall * anglesDifference, speed));
+            this.ballVelocities.add(Velocity.fromAngleAndSpeed(90 + currentBall * anglesDifference, speed));
         }
     }
 

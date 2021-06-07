@@ -12,25 +12,19 @@ import java.util.List;
  * level that can be build.
  */
 public interface Level {
-
-    /**
-     * initialize the information about the level.
-     */
-    void createInfo();
-
     /**
      * @return list of Velocity for the Balls.
      */
-    List<Velocity> initializeBalls();
+    void initializeBalls();
 
     /**
      * The Blocks that make up this level, each block contains its size, color and location.
      * @return a list of Blocks.
      */
-    List<Block> initializeBlocks();
+    void initializeBlocks();
 
     /**
      * @return a sprite with the background of the level
      */
-    Sprite initializeBackground();
+    void initializeBackground();
 }

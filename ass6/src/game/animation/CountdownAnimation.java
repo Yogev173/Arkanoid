@@ -46,10 +46,12 @@ public class CountdownAnimation implements Animation{
         }
 
         if (this.currentNumber > 0 ) {
+            d.setColor(Color.orange);
             d.drawText(X_COORDINATE,Y_COORDINATE,Integer.toString(this.currentNumber), 50);
 
         }
         else if (this.currentNumber == 0) {
+            d.setColor(Color.orange);
             d.drawText(X_COORDINATE,Y_COORDINATE,"GO!!", 50);
         } else { // counting dune
             this.stop = true;

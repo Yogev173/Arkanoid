@@ -1,11 +1,12 @@
 import game.levels.GameLevel;
+import game.levels.Level1;
 
 /**
  * @author yogev abarbanel
  * Id: 326116910
  * run a game of Pong.
  */
-public class Ass5Game {
+public class Ass6Game {
 
     /**
      * main.
@@ -13,7 +14,7 @@ public class Ass5Game {
      * @param args the command line arguments.
      */
     public static void main(String[] args) {
-        GameLevel gameLevel = new GameLevel(6, 2, 12, true);
+        GameLevel gameLevel = new GameLevel(new Level1());
         gameLevel.initialize();
         gameLevel.run();
     }
