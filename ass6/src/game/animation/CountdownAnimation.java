@@ -9,7 +9,7 @@ import java.awt.*;
 
 public class CountdownAnimation implements Animation{
     public static final int X_COORDINATE = GameLevel.WIDTH / 2 - 20;
-    public static final int Y_COORDINATE = 80;
+    public static final int Y_COORDINATE = 70;
 
     private double numOfSeconds;
     private int countFrom;
@@ -47,12 +47,12 @@ public class CountdownAnimation implements Animation{
 
         if (this.currentNumber > 0 ) {
             d.setColor(Color.orange);
-            d.drawText(X_COORDINATE,Y_COORDINATE,Integer.toString(this.currentNumber), 50);
+            d.drawText(X_COORDINATE,Y_COORDINATE,Integer.toString(this.currentNumber), 40);
 
         }
         else if (this.currentNumber == 0) {
             d.setColor(Color.orange);
-            d.drawText(X_COORDINATE,Y_COORDINATE,"GO!!", 50);
+            d.drawText(X_COORDINATE,Y_COORDINATE,"GO!!", 40);
         } else { // counting dune
             this.stop = true;
         }

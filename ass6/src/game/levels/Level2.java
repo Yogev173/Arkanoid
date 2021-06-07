@@ -5,18 +5,17 @@ import geometry.shape.Point;
 import geometry.shape.Rectangle;
 import geometry.sprite.enviroment.Block;
 import geometry.sprite.enviroment.Paddle;
-import sprite.Sprite;
 
 import java.awt.Color;
-import java.util.List;
 
-public class Level1 extends DefaultLevel{
+
+public class Level2 extends DefaultLevel{
 
     /**
      * constructor.
      */
-    public Level1() {
-        super("Direct Hit", DefaultLevel.PADDLE_SPEED, Paddle.PADDLE_DEFAULT_WIDTH);
+    public Level2() {
+        super("Wide Easy", DefaultLevel.PADDLE_SPEED, 500);
     }
 
     /**
@@ -24,7 +23,7 @@ public class Level1 extends DefaultLevel{
      */
     @Override
     public void initializeBalls() {
-        super.addBalls(1);
+        super.addBalls(30);
     }
 
     /**
@@ -34,11 +33,7 @@ public class Level1 extends DefaultLevel{
      */
     @Override
     public void initializeBlocks() {
-        int X = GameLevel.WIDTH / 2;
-        int Y = GameLevel.HEIGHT / 4;
-        int h = Block.DEFAULT_HEIGHT;
-        this.blocks.add(new Block(new Rectangle(new Point(X - h / 2 , Y), h, h)
-                , Color.RED));
+        this.addBlockRows(1, false);
     }
 
     /**

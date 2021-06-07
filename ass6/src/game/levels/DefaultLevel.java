@@ -55,7 +55,7 @@ public abstract class DefaultLevel implements LevelInformation, Level{
      * initializeBall.
      * initialize one Ball.
      */
-    public void addBalls(int numOfBalls) {
+    protected void addBalls(int numOfBalls) {
         double speed = GameLevel.BALL_DEFAULT_SPEED;
         double anglesDifference = 180.0 / (numOfBalls + 1);
 
@@ -69,21 +69,19 @@ public abstract class DefaultLevel implements LevelInformation, Level{
      * @param numOfRows number of row to create
      * @param isGradual if the rows should be gradual
      */
-    private void addBlockRows(int numOfRows, boolean isGradual) {
-        this.addBlockRows(numOfRows, isGradual, GameLevel.BORDER_VERTICAL_BLOCK_WIDTH
-                , GameLevel.HEIGHT * 1 / 4, MAX_BLOCKS_IN_ROW);
+    protected void addBlockRows(int numOfRows, boolean isGradual) {
+        this.addBlockRows(numOfRows, isGradual, MAX_BLOCKS_IN_ROW);
     }
 
     /**
      * addBlockRows.
      * @param numOfRows number of row to create
      * @param isGradual if the rows should be gradual
-     * @param startOfTheRowX right edge of the start of the rows
-     * @param startOfTheRowY upper edge of the start of the rows
      * @param maxNumOfBlocksInRow limit to the number of Blocks in each row
      */
-    private void addBlockRows(int numOfRows, boolean isGradual, int startOfTheRowX, int startOfTheRowY
-            , int maxNumOfBlocksInRow ) {
+    protected void addBlockRows(int numOfRows, boolean isGradual, int maxNumOfBlocksInRow) {
+        int startOfTheRowX = GameLevel.WIDTH - GameLevel.BORDER_VERTICAL_BLOCK_WIDTH - Block.DEFAULT_WIDTH;
+        int startOfTheRowY = GameLevel.HEIGHT / 4;
         int numOfBlocks = Math.min(MAX_BLOCKS_IN_ROW, maxNumOfBlocksInRow);
 
         for (int rowNumber = 0; rowNumber < numOfRows; rowNumber++) {
@@ -105,7 +103,7 @@ public abstract class DefaultLevel implements LevelInformation, Level{
      * @param numOfBlocks how much Block to create in this row.
      * @param color the Color for the Block's row.
      */
-    private void addBlockRow(int startOfTheRowX, int startOfTheRowY, int numOfBlocks, Color color) {
+    protected void addBlockRow(int startOfTheRowX, int startOfTheRowY, int numOfBlocks, Color color) {
         int upperLeftX = startOfTheRowX;
         int upperLeftY = startOfTheRowY;
         for (int blockNumber = 0; blockNumber < numOfBlocks; blockNumber++) {

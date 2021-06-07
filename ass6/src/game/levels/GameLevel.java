@@ -8,11 +8,7 @@ import collision.GameEnvironment;
 import collision.remove.BallRemover;
 import collision.remove.BlockRemover;
 import collision.remove.Counter;
-import game.animation.Animation;
-import game.animation.AnimationRunner;
-import game.animation.CountdownAnimation;
-import game.animation.PauseScreen;
-import game.levels.LevelInformation;
+import game.animation.*;
 import game.score.ScoreIndicator;
 import game.score.ScoreTrackingListener;
 import geometry.characteristics.Velocity;
@@ -24,7 +20,6 @@ import geometry.sprite.enviroment.Paddle;
 import sprite.Sprite;
 import sprite.SpriteCollection;
 import java.awt.Color;
-import java.util.Random;
 
 /**
  * @author yogev abarbanel
@@ -62,6 +57,7 @@ public class GameLevel implements Animation {
     private GameEnvironment environment;
     private GUI gui;
     private KeyboardSensor keyboardSensor;
+    private boolean goToNextLevel;
 
 
     //listener
@@ -77,18 +73,20 @@ public class GameLevel implements Animation {
      * Constructor.
      * @param levelInformation information about the level.
      */
-    public GameLevel(LevelInformation levelInformation) {
+    public GameLevel(LevelInformation levelInformation, AnimationRunner animationRunner, GUI gui
+            , ScoreTrackingListener scoreTrackingListener) {
         this.levelInformation = levelInformation;
         this.sprites = new SpriteCollection();
         this.environment = new GameEnvironment();
-        this.gui = new GUI(levelInformation.levelName(), WIDTH, HEIGHT);
+        this.gui = gui;
         this.keyboardSensor = gui.getKeyboardSensor();
+        this.goToNextLevel = true;
 
         this.blockRemover = new BlockRemover(this, new Counter(0));
         this.ballRemover = new BallRemover(this, new Counter(0));
-        this.scoreTrackingListener = new ScoreTrackingListener(new Counter(0));
+        this.scoreTrackingListener = scoreTrackingListener;
 
-        this.runner = new AnimationRunner(this.gui, FRAME_PER_SECOND);
+        this.runner = animationRunner;
     }
 
 
@@ -212,14 +210,14 @@ public class GameLevel implements Animation {
      * run.
      * Run the game -- start the animation loop.
      */
-    public void run() {
+    public boolean run() {
         // countdown before turn starts.
         this.runner.run(new CountdownAnimation(2.0, 3, this.sprites));
 
         this.running = true;
         this.runner.run(this);
 
-        this.gui.close();
+        return this.goToNextLevel;
     }
 
     /**
@@ -249,7 +247,8 @@ public class GameLevel implements Animation {
         this.sprites.drawAllOn(d);
 
         if (this.keyboardSensor.isPressed("p")) {
-            this.runner.run(new PauseScreen(this.keyboardSensor));
+            this.runner.run(new KeyPressStoppableAnimation(this.keyboardSensor, KeyboardSensor.SPACE_KEY
+                    , new PauseScreen()));
         }
 
         if (this.blockRemover.getCounter().getValue() <= 0) {
@@ -257,6 +256,7 @@ public class GameLevel implements Animation {
             this.running = false;
         } else if (this.ballRemover.getCounter().getValue() <= 0) {
             this.running = false;
+            this.goToNextLevel = false;
         }
     }
 

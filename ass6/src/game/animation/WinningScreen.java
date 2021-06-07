@@ -7,14 +7,26 @@ import biuoop.DrawSurface;
  * Id: 326116910
  * Pause Screen Animation object.
  */
-public class PauseScreen implements Animation {
+public class WinningScreen implements Animation{
+
+    private int score;
+
+    /**
+     * constructor.
+     * @param score the final score.
+     */
+    public WinningScreen(int score) {
+        this.score = score;
+    }
+
     /**
      * doOneFrame.
      * @param d the draw surface to draw on.
      */
     @Override
     public void doOneFrame(DrawSurface d) {
-        d.drawText(10, d.getHeight() / 2, "paused -- press space to continue", 30);
+        d.drawText(10, d.getHeight() / 2, "You Win! Your score is " + this.score
+                + " -- press space to continue", 30);
     }
 
     /**
@@ -25,4 +37,3 @@ public class PauseScreen implements Animation {
         return false;
     }
 }
-
