@@ -41,7 +41,7 @@ public class GameLevel implements Animation {
     public static final int PADDLE_START_Y = HEIGHT - Paddle.PADDLE_DEFAULT_HEIGHT;
 
     //Ball
-    public static final int BALL_RADIOS = 6;
+    public static final int BALL_RADIOS = 4;
     public static final double BALL_DEFAULT_SPEED = 4.0;
 
     //score
@@ -164,8 +164,7 @@ public class GameLevel implements Animation {
         int startY = PADDLE_START_Y - BALL_RADIOS;
 
         for (Velocity ballVelocity : this.levelInformation.initialBallVelocities()) {
-            Ball ball = new Ball(new Point(startX, startY)
-                    , BALL_RADIOS, this.environment);
+            Ball ball = new Ball(new Point(startX, startY), BALL_RADIOS, this.environment);
             ball.setVelocity(ballVelocity);
 
             ball.addToGame(this);
