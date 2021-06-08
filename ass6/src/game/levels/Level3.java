@@ -14,7 +14,7 @@ public class Level3 extends DefaultLevel{
      * constructor.
      */
     public Level3() {
-        super("Green 3", DefaultLevel.PADDLE_SPEED, 5 * Paddle.PADDLE_DEFAULT_WIDTH);
+        super("Green 3", DefaultLevel.PADDLE_SPEED, Paddle.PADDLE_DEFAULT_WIDTH);
     }
 
     /**
@@ -22,7 +22,7 @@ public class Level3 extends DefaultLevel{
      */
     @Override
     public void initializeBalls() {
-        super.addBalls(20);
+        super.addBalls(2);
     }
 
     /**
