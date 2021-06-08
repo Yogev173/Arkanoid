@@ -1,13 +1,6 @@
 package game.levels;
 
-import game.levels.Background.DirectHitBackground;
-import game.levels.Background.SpaceBackground;
-import geometry.shape.Point;
-import geometry.shape.Rectangle;
-import geometry.sprite.enviroment.Block;
-import geometry.sprite.enviroment.Paddle;
-
-import java.awt.Color;
+import game.levels.Background.LaserBackground;
 
 
 public class Level2 extends DefaultLevel{
@@ -24,7 +17,7 @@ public class Level2 extends DefaultLevel{
      */
     @Override
     public void initializeBalls() {
-        super.addBalls(15);
+        super.addBalls(1);
     }
 
     /**
@@ -42,6 +35,6 @@ public class Level2 extends DefaultLevel{
      */
     @Override
     public void initializeBackground() {
-        this.background =  new SpaceBackground();
+        this.background =  new LaserBackground();
     }
 }

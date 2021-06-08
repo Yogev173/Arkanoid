@@ -14,7 +14,19 @@ import java.util.List;
 public class Line {
     private Point start;
     private Point end;
+    private Color color;
     static final double COMPARISON_THRESHOLD = Point.COMPARISON_THRESHOLD;
+
+    /**
+     * Constructor.
+     * @param start start point of the line.
+     * @param end end point of the line.
+     */
+    public Line(Point start, Point end, Color color) {
+        this.start = start;
+        this.end = end;
+        this.color = color;
+    }
 
     /**
      * Constructor.
@@ -24,6 +36,7 @@ public class Line {
     public Line(Point start, Point end) {
         this.start = start;
         this.end = end;
+        this.color = Color.BLACK;
     }
 
     /**
@@ -297,7 +310,7 @@ public class Line {
      * @param d the DrawSurface.
      */
     public void drawLine(DrawSurface d) {
-        d.setColor(Color.BLACK);
+        d.setColor(this.color);
         d.drawLine((int) this.start.getX(), (int) this.start.getY(), (int) this.end.getX(), (int) this.end.getY());
     }
 

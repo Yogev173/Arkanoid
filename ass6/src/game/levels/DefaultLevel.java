@@ -40,8 +40,8 @@ public abstract class DefaultLevel implements LevelInformation, Level{
         this.paddleWidth = paddleWidth;
         this.paddleSpeed = paddleSpeed;
 
-        this.ballVelocities = new ArrayList<Velocity>();
-        this.blocks = new ArrayList<Block>();
+        this.ballVelocities = new ArrayList<>();
+        this.blocks = new ArrayList<>();
         this.initializeLevel();
     }
 

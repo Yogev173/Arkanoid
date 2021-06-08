@@ -1,6 +1,10 @@
-package game.levels.Background.scenery;
+package game.levels.Background;
 
 import biuoop.DrawSurface;
+import game.levels.Background.scenery.Building;
+import game.levels.Background.scenery.Cloud;
+import game.levels.Background.scenery.Planet;
+import game.levels.Background.scenery.PointScenery;
 import game.levels.GameLevel;
 import geometry.shape.Point;
 import geometry.sprite.Ball;
@@ -14,8 +18,8 @@ import java.util.Random;
 public class TownBackground implements Sprite {
     private boolean isDay;
     private int numOfFrame;
-    private Sprite sun;
-    private Sprite moon;
+    private Planet sun;
+    private Planet moon;
     private List<Sprite> stars;
     private List<Sprite> clouds;
     private List<Sprite> sprites;
@@ -23,8 +27,8 @@ public class TownBackground implements Sprite {
     public TownBackground() {
         this.isDay = true;
         this.numOfFrame = 0;
-        this.sun = new Planet(Color.YELLOW, Color.YELLOW, 30, 700, 100);
-        this.moon = new Planet(Color.WHITE, Color.LIGHT_GRAY, Color.GRAY, 20, 100, 100);
+        this.sun = new Planet(Color.YELLOW, Color.YELLOW, 30, 800, 100);
+        this.moon = new Planet(Color.WHITE, Color.LIGHT_GRAY, Color.GRAY, 20, 800, 100);
         this.stars = new ArrayList<>();
         this.clouds = new ArrayList<>();
         this.sprites = new ArrayList<>();
@@ -96,9 +100,18 @@ public class TownBackground implements Sprite {
      */
     @Override
     public void timePassed() {
-        if (this.numOfFrame > 300) {
+
+        if (isDay) {
+            this.sun.setCenterX(this.sun.getCenterX() - 2);
+        } else  {
+            this.moon.setCenterX(this.moon.getCenterX() - 2);
+        }
+
+        if (this.numOfFrame > 415) {
             this.isDay = !this.isDay;
             this.numOfFrame = 0;
+            this.sun.setCenterX(830);
+            this.moon.setCenterX(830);
         }
 
         this.numOfFrame++;

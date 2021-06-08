@@ -1,7 +1,6 @@
 package game.levels;
 
-import game.levels.Background.DirectHitBackground;
-import game.levels.Background.scenery.TownBackground;
+import game.levels.Background.TownBackground;
 import geometry.sprite.enviroment.Paddle;
 
 public class Level3 extends DefaultLevel{
@@ -18,7 +17,7 @@ public class Level3 extends DefaultLevel{
      */
     @Override
     public void initializeBalls() {
-        super.addBalls(2);
+        super.addBalls(20);
     }
 
     /**

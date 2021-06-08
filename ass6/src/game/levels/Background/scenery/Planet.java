@@ -81,4 +81,18 @@ public class Planet implements Sprite {
     public void addToGame(GameLevel g) {
         g.addSprite(this);
     }
+
+    /**
+     * @param centerX the new value of x
+     */
+    public void setCenterX(int centerX) {
+        this.centerX = centerX;
+    }
+
+    /**
+     * @return the value of x.
+     */
+    public int getCenterX() {
+        return centerX;
+    }
 }

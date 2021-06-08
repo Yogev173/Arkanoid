@@ -53,7 +53,7 @@ public class Ball implements Sprite, HitNotifier {
         this.gameEnvironment = gameEnvironment;
 
         this.velocity = velocityBySize(radios);
-        this.color = Color.WHITE;
+        this.color = Color.ORANGE;
         this.hitListeners = new ArrayList<HitListener>();
     }
 
