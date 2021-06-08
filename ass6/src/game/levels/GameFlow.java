@@ -12,7 +12,17 @@ import game.score.ScoreTrackingListener;
 
 import java.util.List;
 
+/**
+ * @author yogev abarbanel
+ * Id: 326116910
+ * Run the Game.
+ */
 public class GameFlow {
+
+    /**
+     * run the level that it get.
+     * @param levels the Level to run.
+     */
     public void runLevels(List<LevelInformation> levels) {
         ScoreTrackingListener scoreTrackingListener = new ScoreTrackingListener(new Counter(0));
         GUI gui = new GUI("Game", GameLevel.WIDTH, GameLevel.HEIGHT);
@@ -29,6 +39,7 @@ public class GameFlow {
             }
         }
 
+        //end screen
         DrawSurface d = gui.getDrawSurface();
         int score = scoreTrackingListener.getCounter().getValue();
         KeyboardSensor ks = gui.getKeyboardSensor();

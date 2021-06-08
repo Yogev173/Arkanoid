@@ -3,6 +3,11 @@ package game.animation;
 import biuoop.DrawSurface;
 import biuoop.KeyboardSensor;
 
+/**
+ * @author yogev abarbanel
+ * Id: 326116910
+ * key press object for animation.
+ */
 public class KeyPressStoppableAnimation implements Animation {
 
     private boolean isAlreadyPressed;
@@ -11,6 +16,12 @@ public class KeyPressStoppableAnimation implements Animation {
     private String key;
     private Animation animation;
 
+    /**
+     * Constructor.
+     * @param sensor the Keyboard Sensor
+     * @param key the key for stop the animation
+     * @param animation the animation to stop
+     */
     public KeyPressStoppableAnimation(KeyboardSensor sensor, String key, Animation animation) {
         this.keyboardSensor = sensor;
         this.key = key;

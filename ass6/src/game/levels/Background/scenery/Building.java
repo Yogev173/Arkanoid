@@ -3,11 +3,15 @@ package game.levels.Background.scenery;
 import biuoop.DrawSurface;
 import game.levels.GameLevel;
 import geometry.shape.Point;
-import geometry.sprite.Ball;
 import sprite.Sprite;
 
 import java.awt.Color;
 
+/**
+ * @author yogev abarbanel
+ * Id: 326116910
+ * Building Sprite.
+ */
 public class Building implements Sprite {
 
     public static final int WIDTH = 60;
@@ -17,6 +21,12 @@ public class Building implements Sprite {
     private Color color1;
     private Color color2;
 
+    /**
+     * Constructor.
+     * @param start the start Point of the Building.
+     * @param color1 the Color of the Building.
+     * @param color2 the Color of the Walls.
+     */
     public Building(Point start, Color color1, Color color2) {
         this.start = start;
         this.color1 = color1;

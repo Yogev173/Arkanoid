@@ -17,7 +17,7 @@ public class Level2 extends DefaultLevel{
      */
     @Override
     public void initializeBalls() {
-        super.addBalls(1);
+        super.addBalls(15);
     }
 
     /**

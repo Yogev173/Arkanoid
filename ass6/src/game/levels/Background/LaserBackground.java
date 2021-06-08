@@ -13,6 +13,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * @author yogev abarbanel
+ * Id: 326116910
+ * Laser Background for Level.
+ */
 public class LaserBackground implements Sprite {
     public static final int LASERS_DIFFERENCE = 100;
     public static final int NUM_OF_LASERS = 5;
@@ -21,6 +26,9 @@ public class LaserBackground implements Sprite {
     private int numOfFrame;
     private List<Sprite> sprites;
 
+    /**
+     * Constructor.
+     */
     public LaserBackground() {
         this.numOfFrame = 0;
         this.sprites = new ArrayList<>();

@@ -3,6 +3,11 @@ package game.levels;
 import game.levels.Background.TownBackground;
 import geometry.sprite.enviroment.Paddle;
 
+/**
+ * @author yogev abarbanel
+ * Id: 326116910
+ * Level 3.
+ */
 public class Level3 extends DefaultLevel{
 
     /**

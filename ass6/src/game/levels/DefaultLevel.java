@@ -5,18 +5,16 @@ import geometry.shape.Point;
 import geometry.shape.Rectangle;
 import geometry.sprite.Ball;
 import geometry.sprite.enviroment.Block;
-import geometry.sprite.enviroment.Paddle;
 import sprite.Sprite;
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 /**
  * @author yogev abarbanel
  * Id: 326116910
- * building de.
+ * default Level.
  */
 public abstract class DefaultLevel implements LevelInformation, Level{
 
@@ -35,6 +33,12 @@ public abstract class DefaultLevel implements LevelInformation, Level{
     protected int paddleWidth;
 
 
+    /**
+     * Constructor.
+     * @param levelName the name of the level.
+     * @param paddleSpeed the speed of the paddle.
+     * @param paddleWidth the width of the paddle.
+     */
     public DefaultLevel (String levelName, int paddleSpeed, int paddleWidth) {
         this.levelName = levelName;
         this.paddleWidth = paddleWidth;
@@ -45,6 +49,9 @@ public abstract class DefaultLevel implements LevelInformation, Level{
         this.initializeLevel();
     }
 
+    /**
+     * initialize the Level.
+     */
     private void initializeLevel() {
         this.initializeBalls();
         this.initializeBlocks();

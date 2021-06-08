@@ -1,11 +1,5 @@
 package game.levels;
 
-import geometry.characteristics.Velocity;
-import geometry.sprite.enviroment.Block;
-import sprite.Sprite;
-
-import java.util.List;
-
 /**
  * @author yogev abarbanel
  * Id: 326116910

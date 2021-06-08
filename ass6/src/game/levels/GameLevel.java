@@ -72,6 +72,9 @@ public class GameLevel implements Animation {
     /**
      * Constructor.
      * @param levelInformation information about the level.
+     * @param animationRunner the animator runner
+     * @param gui the gui of the game
+     * @param scoreTrackingListener the score listener
      */
     public GameLevel(LevelInformation levelInformation, AnimationRunner animationRunner, GUI gui
             , ScoreTrackingListener scoreTrackingListener) {

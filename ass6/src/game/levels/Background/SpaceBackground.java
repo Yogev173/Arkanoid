@@ -12,6 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * @author yogev abarbanel
+ * Id: 326116910
+ * Space Background for Level.
+ */
 public class SpaceBackground implements Sprite {
 
     private List<Sprite> sprites;

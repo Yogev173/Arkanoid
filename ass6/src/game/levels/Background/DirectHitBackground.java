@@ -5,8 +5,13 @@ import game.levels.GameLevel;
 import geometry.sprite.enviroment.Block;
 import sprite.Sprite;
 
-import java.awt.*;
+import java.awt.Color;
 
+/**
+ * @author yogev abarbanel
+ * Id: 326116910
+ * Direct Hit Background for Level.
+ */
 public class DirectHitBackground implements Sprite {
 
     /**

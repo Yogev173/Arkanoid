@@ -5,7 +5,7 @@ import biuoop.DrawSurface;
 /**
  * @author yogev abarbanel
  * Id: 326116910
- * Pause Screen Animation object.
+ * Win Screen Animation object.
  */
 public class WinningScreen implements Animation{
 

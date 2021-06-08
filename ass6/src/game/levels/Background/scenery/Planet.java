@@ -4,8 +4,13 @@ import biuoop.DrawSurface;
 import game.levels.GameLevel;
 import sprite.Sprite;
 
-import java.awt.*;
+import java.awt.Color;
 
+/**
+ * @author yogev abarbanel
+ * Id: 326116910
+ * Planet Sprite.
+ */
 public class Planet implements Sprite {
 
     private Color planetColor;

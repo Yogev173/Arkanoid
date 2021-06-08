@@ -4,10 +4,19 @@ import biuoop.DrawSurface;
 import game.score.ScoreIndicator;
 import sprite.Sprite;
 
+/**
+ * @author yogev abarbanel
+ * Id: 326116910
+ * Sprite of Level name.
+ */
 public class LevelName implements Sprite {
 
     private String levelName;
 
+    /**
+     * Constructor.
+     * @param levelName the name of the level.
+     */
     public LevelName(String levelName) {
         this.levelName = levelName;
     }

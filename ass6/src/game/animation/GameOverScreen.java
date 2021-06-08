@@ -5,7 +5,7 @@ import biuoop.DrawSurface;
 /**
  * @author yogev abarbanel
  * Id: 326116910
- * Pause Screen Animation object.
+ * Game Over Screen Animation object.
  */
 public class GameOverScreen implements Animation{
 

@@ -1,9 +1,13 @@
 package game.levels;
 
-import game.levels.Background.DirectHitBackground;
 import game.levels.Background.SpaceBackground;
 import geometry.sprite.enviroment.Paddle;
 
+/**
+ * @author yogev abarbanel
+ * Id: 326116910
+ * Level 4.
+ */
 public class Level4 extends DefaultLevel{
     /**
      * constructor.
@@ -17,7 +21,7 @@ public class Level4 extends DefaultLevel{
      */
     @Override
     public void initializeBalls() {
-        super.addBalls(40);
+        super.addBalls(30);
     }
 
     /**

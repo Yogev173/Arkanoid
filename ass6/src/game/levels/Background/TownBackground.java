@@ -15,6 +15,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * @author yogev abarbanel
+ * Id: 326116910
+ * Town Background for Level.
+ */
 public class TownBackground implements Sprite {
     private boolean isDay;
     private int numOfFrame;
@@ -24,6 +29,9 @@ public class TownBackground implements Sprite {
     private List<Sprite> clouds;
     private List<Sprite> sprites;
 
+    /**
+     * Constructor.
+     */
     public TownBackground() {
         this.isDay = true;
         this.numOfFrame = 0;

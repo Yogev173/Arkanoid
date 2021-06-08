@@ -5,12 +5,21 @@ import game.levels.GameLevel;
 import geometry.shape.Point;
 import sprite.Sprite;
 
-import java.awt.*;
+import java.awt.Color;
 
+/**
+ * @author yogev abarbanel
+ * Id: 326116910
+ * Cloud Sprite.
+ */
 public class Cloud implements Sprite {
 
     private Point point;
 
+    /**
+     * Constructor.
+     * @param point the start Point of the Cloude
+     */
     public Cloud(Point point) {
         this.point = point;
     }
