@@ -1,6 +1,7 @@
 package game.levels;
 
 import game.levels.Background.DirectHitBackground;
+import game.levels.Background.SpaceBackground;
 import geometry.shape.Point;
 import geometry.shape.Rectangle;
 import geometry.sprite.enviroment.Block;
@@ -23,7 +24,7 @@ public class Level2 extends DefaultLevel{
      */
     @Override
     public void initializeBalls() {
-        super.addBalls(30);
+        super.addBalls(15);
     }
 
     /**
@@ -41,6 +42,6 @@ public class Level2 extends DefaultLevel{
      */
     @Override
     public void initializeBackground() {
-        this.background =  new DirectHitBackground();
+        this.background =  new SpaceBackground();
     }
 }

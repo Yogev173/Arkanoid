@@ -9,7 +9,7 @@ public class Level4 extends DefaultLevel{
      * constructor.
      */
     public Level4() {
-        super("Final Four", DefaultLevel.PADDLE_SPEED, Paddle.PADDLE_DEFAULT_WIDTH);
+        super("Final Four", DefaultLevel.PADDLE_SPEED, 5 * Paddle.PADDLE_DEFAULT_WIDTH);
     }
 
     /**
@@ -17,7 +17,7 @@ public class Level4 extends DefaultLevel{
      */
     @Override
     public void initializeBalls() {
-        super.addBalls(3);
+        super.addBalls(20);
     }
 
     /**

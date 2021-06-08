@@ -1,5 +1,8 @@
+import biuoop.DrawSurface;
+import biuoop.GUI;
 import game.animation.AnimationRunner;
 import game.levels.*;
+import game.levels.Background.SpaceBackground;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,5 +40,9 @@ public class Ass6Game {
 
         GameFlow gameFlow = new GameFlow();
         gameFlow.runLevels(levels);
+//        GUI gui = new GUI("", 800, 600);
+//        DrawSurface d = gui.getDrawSurface();
+//        (new SpaceBackground()).drawOn(d);
+//        gui.show(d);
     }
 }
