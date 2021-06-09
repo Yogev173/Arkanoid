@@ -2,6 +2,7 @@ package game.levels.Background.scenery;
 
 import biuoop.DrawSurface;
 import game.levels.GameLevel;
+import geometry.shape.Point;
 import sprite.Sprite;
 
 import java.awt.Color;
@@ -28,6 +29,15 @@ public class PointScenery implements Sprite {
         this.centerX = centerX;
         this.centerY = centerY;
         this.color = color;
+    }
+
+    /**
+     * Constructor.
+     * @param point the point.
+     * @param color the color of the point.
+     */
+    public PointScenery(Point point, Color color) {
+        this((int) point.getX(), (int) point.getY(), color);
     }
 
     /**

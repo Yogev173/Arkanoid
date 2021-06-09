@@ -14,7 +14,7 @@ public class Level3 extends DefaultLevel {
      * constructor.
      */
     public Level3() {
-        super("Green 3", DefaultLevel.PADDLE_SPEED, Paddle.PADDLE_DEFAULT_WIDTH);
+        super("Town", DefaultLevel.PADDLE_SPEED, Paddle.PADDLE_DEFAULT_WIDTH);
     }
 
     /**

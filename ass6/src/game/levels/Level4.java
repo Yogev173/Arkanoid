@@ -13,7 +13,7 @@ public class Level4 extends DefaultLevel {
      * constructor.
      */
     public Level4() {
-        super("Final Four", DefaultLevel.PADDLE_SPEED, Paddle.PADDLE_DEFAULT_WIDTH);
+        super("Space", DefaultLevel.PADDLE_SPEED, Paddle.PADDLE_DEFAULT_WIDTH);
     }
 
     /**

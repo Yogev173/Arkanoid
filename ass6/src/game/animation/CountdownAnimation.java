@@ -49,19 +49,17 @@ public class CountdownAnimation implements Animation {
     @Override
     public void doOneFrame(DrawSurface d) {
         this.gameScreen.drawAllOn(d);
-        d.setColor(Color.BLACK);
-
         if (this.numOfFrame > framePerNumber) {
             this.currentNumber--;
             this.numOfFrame = 0;
         }
 
         if (this.currentNumber > 0) {
-            d.setColor(Color.orange);
+            d.setColor(Color.YELLOW);
             d.drawText(X_COORDINATE, Y_COORDINATE, Integer.toString(this.currentNumber), 40);
 
         } else if (this.currentNumber == 0) {
-            d.setColor(Color.orange);
+            d.setColor(Color.YELLOW);
             d.drawText(X_COORDINATE, Y_COORDINATE, "GO!!", 40);
         } else { // counting dune
             this.stop = true;

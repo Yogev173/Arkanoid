@@ -3,6 +3,7 @@ package game.levels.Background;
 import biuoop.DrawSurface;
 import game.levels.Background.scenery.Building;
 import game.levels.Background.scenery.Cloud;
+import game.levels.Background.scenery.FireWorks;
 import game.levels.GameLevel;
 import geometry.shape.Line;
 import geometry.shape.Point;
@@ -21,10 +22,12 @@ import java.util.Random;
 public class LaserBackground implements Sprite {
     public static final int LASERS_DIFFERENCE = 100;
     public static final int NUM_OF_LASERS = 5;
+
     private int[] indexes;
     private List<Line> lasers;
     private int numOfFrame;
     private List<Sprite> sprites;
+    private List<Sprite> fireWorks;
 
     /**
      * Constructor.
@@ -34,6 +37,7 @@ public class LaserBackground implements Sprite {
         this.sprites = new ArrayList<>();
         this.indexes = new int[NUM_OF_LASERS];
         this.lasers = new ArrayList<>();
+        this.fireWorks = new ArrayList<>();
 
         this.sprites.add(new Building(new Point(370, 300), Color.WHITE, Color.BLACK));
         this.sprites.add(new Cloud(new Point(650, 350)));
@@ -43,6 +47,11 @@ public class LaserBackground implements Sprite {
         this.sprites.add(new Cloud(new Point(660, 65)));
         this.sprites.add(new Cloud(new Point(200, 30)));
         this.sprites.add(new Cloud(new Point(250, 50)));
+
+        this.fireWorks.add(new FireWorks(new Point(300, 400), Color.YELLOW));
+        this.fireWorks.add(new FireWorks(new Point(100, 300), Color.MAGENTA));
+        this.fireWorks.add(new FireWorks(new Point(600, 100), Color.RED));
+        this.fireWorks.add(new FireWorks(new Point(500, 500), Color.GREEN));
 
         int startX = GameLevel.WIDTH - GameLevel.BORDER_VERTICAL_BLOCK_WIDTH;
         int difference = 1 + (startX - GameLevel.BORDER_VERTICAL_BLOCK_WIDTH) / LASERS_DIFFERENCE;
@@ -83,6 +92,10 @@ public class LaserBackground implements Sprite {
             sprite.drawOn(d);
         }
 
+        for (Sprite sprite : this.fireWorks) {
+            sprite.drawOn(d);
+        }
+
         for (int i = 0; i < this.indexes.length; i++) {
             this.lasers.get(this.indexes[i]).drawLine(d);
         }
@@ -98,6 +111,11 @@ public class LaserBackground implements Sprite {
             for (int i = 0; i < this.indexes.length; i++) {
                 this.indexes[i] = (this.indexes[i] + 1) % LASERS_DIFFERENCE;
             }
+
+            for (Sprite sprite : this.fireWorks) {
+                sprite.timePassed();
+            }
+
             this.numOfFrame = 0;
         }
 
