@@ -60,7 +60,7 @@ public class TownBackground implements Sprite {
 
         int startX = GameLevel.BORDER_VERTICAL_BLOCK_WIDTH;
         int startY = 500;
-        for (int i =0; i < 13; i++) {
+        for (int i = 0; i < 13; i++) {
             if (i % 2 == 0) {
                 startY -= 50;
             } else {

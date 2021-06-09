@@ -5,12 +5,15 @@ import geometry.shape.Point;
 import geometry.shape.Rectangle;
 import geometry.sprite.enviroment.Block;
 import geometry.sprite.enviroment.Paddle;
-import sprite.Sprite;
 
 import java.awt.Color;
-import java.util.List;
 
-public class Level1 extends DefaultLevel{
+/**
+ * @author yogev abarbanel
+ * Id: 326116910
+ * Level 1.
+ */
+public class Level1 extends DefaultLevel {
 
     /**
      * constructor.
@@ -20,32 +23,31 @@ public class Level1 extends DefaultLevel{
     }
 
     /**
-     * @return list of Velocity for the Balls.
+     * initialize the Balls.
      */
     @Override
     public void initializeBalls() {
         super.addBalls(1);
     }
 
+
     /**
-     * The Blocks that make up this level, each block contains its size, color and location.
-     *
-     * @return a list of Blocks.
+     * initialize the Blocks.
      */
     @Override
     public void initializeBlocks() {
-        int X = GameLevel.WIDTH / 2;
-        int Y = GameLevel.HEIGHT / 4;
+        int x = GameLevel.WIDTH / 2;
+        int y = GameLevel.HEIGHT / 4;
         int h = Block.DEFAULT_HEIGHT;
-        this.blocks.add(new Block(new Rectangle(new Point(X - h / 2 , Y), h, h)
+        this.blocks().add(new Block(new Rectangle(new Point(x - h / 2 , y), h, h)
                 , Color.RED));
     }
 
     /**
-     * @return a sprite with the background of the level
+     * initialize the Background.
      */
     @Override
     public void initializeBackground() {
-        this.background =  new DirectHitBackground();
+        this.setBackground(new DirectHitBackground());
     }
 }

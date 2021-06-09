@@ -6,19 +6,19 @@ package game.levels;
  * level that can be build.
  */
 public interface Level {
+
     /**
-     * @return list of Velocity for the Balls.
+     * initialize the Balls.
      */
     void initializeBalls();
 
     /**
-     * The Blocks that make up this level, each block contains its size, color and location.
-     * @return a list of Blocks.
+     * initialize the Blocks.
      */
     void initializeBlocks();
 
     /**
-     * @return a sprite with the background of the level
+     * initialize the Background.
      */
     void initializeBackground();
 }

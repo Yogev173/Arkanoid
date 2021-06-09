@@ -88,10 +88,10 @@ public class Planet implements Sprite {
     }
 
     /**
-     * @param centerX the new value of x
+     * @param newCenterX the new value of x
      */
-    public void setCenterX(int centerX) {
-        this.centerX = centerX;
+    public void setCenterX(int newCenterX) {
+        this.centerX = newCenterX;
     }
 
     /**

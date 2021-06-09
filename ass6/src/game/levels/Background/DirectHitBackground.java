@@ -27,12 +27,12 @@ public class DirectHitBackground implements Sprite {
         int middleY = GameLevel.HEIGHT / 4 + Block.DEFAULT_HEIGHT / 2;
         int h = Block.DEFAULT_HEIGHT;
         d.setColor(Color.YELLOW);
-        d.drawCircle(middleX, middleY,80);
-        d.drawCircle(middleX, middleY,60);
-        d.drawCircle(middleX, middleY,40);
+        d.drawCircle(middleX, middleY, 80);
+        d.drawCircle(middleX, middleY, 60);
+        d.drawCircle(middleX, middleY, 40);
 
         d.drawLine(middleX + h + 5, middleY, middleX + h + 85, middleY);
-        d.drawLine(middleX - h - 5, middleY, middleX - h -85, middleY);
+        d.drawLine(middleX - h - 5, middleY, middleX - h - 85, middleY);
         d.drawLine(middleX, middleY + h + 5, middleX, middleY + h + 85);
         d.drawLine(middleX, middleY - h - 5, middleX, middleY - h - 85);
     }

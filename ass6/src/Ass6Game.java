@@ -23,13 +23,17 @@ public class Ass6Game {
     public static void main(String[] args) {
         List<LevelInformation> levels = new ArrayList<>();
         LevelInformation[] basicLevel = {new Level1(), new Level2(), new Level3(), new Level4()};
+
+        //check the input
         for (String string : args) {
+            // check if the args is a int from 1 to 4
             try {
-                if (1 <= Integer.parseInt(string) && Integer.parseInt(string) <= 4) {
+                int levelNumber = Integer.parseInt(string);
+                if (1 <= levelNumber && levelNumber <= 4) {
                     levels.add(basicLevel[Integer.parseInt(string) - 1]);
                 }
             } catch (Exception e) {
-
+                continue;
             }
         }
 

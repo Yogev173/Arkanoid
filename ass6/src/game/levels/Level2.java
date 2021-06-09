@@ -2,18 +2,22 @@ package game.levels;
 
 import game.levels.Background.LaserBackground;
 
-
-public class Level2 extends DefaultLevel{
+/**
+ * @author yogev abarbanel
+ * Id: 326116910
+ * Level 2.
+ */
+public class Level2 extends DefaultLevel {
 
     /**
-     * constructor.
+     * Constructor.
      */
     public Level2() {
         super("Wide Easy", DefaultLevel.PADDLE_SPEED, 500);
     }
 
     /**
-     * @return list of Velocity for the Balls.
+     * initialize the Balls.
      */
     @Override
     public void initializeBalls() {
@@ -21,9 +25,7 @@ public class Level2 extends DefaultLevel{
     }
 
     /**
-     * The Blocks that make up this level, each block contains its size, color and location.
-     *
-     * @return a list of Blocks.
+     * initialize the Blocks.
      */
     @Override
     public void initializeBlocks() {
@@ -31,10 +33,10 @@ public class Level2 extends DefaultLevel{
     }
 
     /**
-     * @return a sprite with the background of the level
+     * initialize the Background.
      */
     @Override
     public void initializeBackground() {
-        this.background =  new LaserBackground();
+        this.setBackground(new LaserBackground());
     }
 }

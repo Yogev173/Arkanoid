@@ -7,7 +7,7 @@ import biuoop.DrawSurface;
  * Id: 326116910
  * Game Over Screen Animation object.
  */
-public class GameOverScreen implements Animation{
+public class GameOverScreen implements Animation {
 
     private int score;
 

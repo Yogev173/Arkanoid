@@ -8,7 +8,7 @@ import geometry.sprite.enviroment.Paddle;
  * Id: 326116910
  * Level 4.
  */
-public class Level4 extends DefaultLevel{
+public class Level4 extends DefaultLevel {
     /**
      * constructor.
      */
@@ -17,7 +17,7 @@ public class Level4 extends DefaultLevel{
     }
 
     /**
-     * @return list of Velocity for the Balls.
+     * initialize the Balls.
      */
     @Override
     public void initializeBalls() {
@@ -25,9 +25,7 @@ public class Level4 extends DefaultLevel{
     }
 
     /**
-     * The Blocks that make up this level, each block contains its size, color and location.
-     *
-     * @return a list of Blocks.
+     * initialize the Blocks.
      */
     @Override
     public void initializeBlocks() {
@@ -35,10 +33,10 @@ public class Level4 extends DefaultLevel{
     }
 
     /**
-     * @return a sprite with the background of the level
+     * initialize the Background.
      */
     @Override
     public void initializeBackground() {
-        this.background =  new SpaceBackground();
+        this.setBackground(new SpaceBackground());
     }
 }

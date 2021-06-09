@@ -22,6 +22,7 @@ public class PointScenery implements Sprite {
      * Constructor.
      * @param centerX x coordinate
      * @param centerY y coordinate
+     * @param color the color of the point.
      */
     public PointScenery(int centerX, int centerY, Color color) {
         this.centerX = centerX;

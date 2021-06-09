@@ -34,7 +34,7 @@ public class GameFlow {
 
             level.initialize();
             win = level.run();
-            if (win == false) {
+            if (!win) {
                 break;
             }
         }

@@ -7,7 +7,7 @@ import geometry.sprite.Ball;
 import geometry.sprite.enviroment.Block;
 import sprite.Sprite;
 
-import java.awt.*;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +16,7 @@ import java.util.List;
  * Id: 326116910
  * default Level.
  */
-public abstract class DefaultLevel implements LevelInformation, Level{
+public abstract class DefaultLevel implements LevelInformation, Level {
 
     public static final int MAX_BLOCKS_IN_ROW = (GameLevel.WIDTH - 2 * GameLevel.BORDER_VERTICAL_BLOCK_WIDTH)
             / Block.DEFAULT_WIDTH;
@@ -24,14 +24,13 @@ public abstract class DefaultLevel implements LevelInformation, Level{
     public static final int PADDLE_SPEED = 5;
 
     //information
-    protected List<Velocity> ballVelocities;
-    protected Sprite background;
-    protected List<Block> blocks;
+    private List<Velocity> ballVelocities;
+    private Sprite background;
+    private List<Block> blocks;
 
-    protected String levelName;
-    protected int paddleSpeed;
-    protected int paddleWidth;
-
+    private String levelName;
+    private int paddleSpeed;
+    private int paddleWidth;
 
     /**
      * Constructor.
@@ -39,7 +38,7 @@ public abstract class DefaultLevel implements LevelInformation, Level{
      * @param paddleSpeed the speed of the paddle.
      * @param paddleWidth the width of the paddle.
      */
-    public DefaultLevel (String levelName, int paddleSpeed, int paddleWidth) {
+    public DefaultLevel(String levelName, int paddleSpeed, int paddleWidth) {
         this.levelName = levelName;
         this.paddleWidth = paddleWidth;
         this.paddleSpeed = paddleSpeed;
@@ -61,6 +60,7 @@ public abstract class DefaultLevel implements LevelInformation, Level{
     /**
      * initializeBall.
      * initialize one Ball.
+     * @param numOfBalls num of ball to add.
      */
     protected void addBalls(int numOfBalls) {
         double speed = GameLevel.BALL_DEFAULT_SPEED;
@@ -189,5 +189,13 @@ public abstract class DefaultLevel implements LevelInformation, Level{
     @Override
     public int numberOfBlocksToRemove() {
         return this.blocks.size();
+    }
+
+    /**
+     * set background.
+     * @param newBackground the new Background
+     */
+    public void setBackground(Sprite newBackground) {
+        this.background = newBackground;
     }
 }

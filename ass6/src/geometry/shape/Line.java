@@ -21,6 +21,7 @@ public class Line {
      * Constructor.
      * @param start start point of the line.
      * @param end end point of the line.
+     * @param color the color of the line.
      */
     public Line(Point start, Point end, Color color) {
         this.start = start;

@@ -8,7 +8,11 @@ import collision.GameEnvironment;
 import collision.remove.BallRemover;
 import collision.remove.BlockRemover;
 import collision.remove.Counter;
-import game.animation.*;
+import game.animation.Animation;
+import game.animation.AnimationRunner;
+import game.animation.KeyPressStoppableAnimation;
+import game.animation.PauseScreen;
+import game.animation.CountdownAnimation;
 import game.score.ScoreIndicator;
 import game.score.ScoreTrackingListener;
 import geometry.characteristics.Velocity;
@@ -199,6 +203,9 @@ public class GameLevel implements Animation {
                 , BORDER_HORIZONTAL_BLOCK_WIDTH, BORDER_HORIZONTAL_BLOCK_HEIGHT), BORDER_COLOR)).addToGame(this);
     }
 
+    /**
+     * initialize the Blocks.
+     */
     private void initializeBlocks() {
         for (Block block : this.levelInformation.blocks()) {
             block.addToGame(this);
@@ -211,6 +218,7 @@ public class GameLevel implements Animation {
     /**
      * run.
      * Run the game -- start the animation loop.
+     * @return if the player win the level.
      */
     public boolean run() {
         // countdown before turn starts.

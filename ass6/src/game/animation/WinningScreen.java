@@ -7,7 +7,7 @@ import biuoop.DrawSurface;
  * Id: 326116910
  * Win Screen Animation object.
  */
-public class WinningScreen implements Animation{
+public class WinningScreen implements Animation {
 
     private int score;
 
