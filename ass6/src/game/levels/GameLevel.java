@@ -45,7 +45,7 @@ public class GameLevel implements Animation {
     public static final int PADDLE_START_Y = HEIGHT - Paddle.PADDLE_DEFAULT_HEIGHT;
 
     //Ball
-    public static final int BALL_RADIOS = 4;
+    public static final int BALL_RADIOS = 5;
     public static final double BALL_DEFAULT_SPEED = 4.0;
 
     //score
