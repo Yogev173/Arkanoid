@@ -1,5 +1,14 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 
+/**
+ * @author yogev abarbanel
+ * Id: 326116910
+ * Hypernym Object.
+ */
 public class Hypernym implements Comparable{
 
     public static final int MIN_SIZE = 3;
@@ -12,14 +21,24 @@ public class Hypernym implements Comparable{
     }
 
     public String getName() {
-        return name;
+        return this.name;
+    }
+
+    public int getOccurs() {
+        int counter = 0;
+        for (Hyponym hyponym : this.hyponyms.values()) {
+            counter += hyponym.getOccur();
+        }
+
+        return counter;
     }
 
     public void addHyponym(String name) {
-        if (this.hyponyms.containsKey(name)) {
-            this.hyponyms.get(name).addOccur();
+        String nameUpperCase = name.toUpperCase();
+        if (this.hyponyms.containsKey(nameUpperCase)) {
+            this.hyponyms.get(nameUpperCase).addOccur();
         } else {
-            this.hyponyms.put(name, new Hyponym(name));
+            this.hyponyms.put(nameUpperCase, new Hyponym(name));
         }
     }
 
@@ -41,6 +60,6 @@ public class Hypernym implements Comparable{
 
     @Override
     public int compareTo(Object o) {
-        return this.name.toLowerCase().compareTo(((Hypernym) o).getName().toLowerCase());
+        return this.name.toUpperCase().compareTo(((Hypernym) o).getName().toUpperCase());
     }
 }

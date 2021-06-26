@@ -1,3 +1,8 @@
+/**
+ * @author yogev abarbanel
+ * Id: 326116910
+ * Hyponym Object.
+ */
 public class Hyponym implements Comparable{
 
     private String name;
