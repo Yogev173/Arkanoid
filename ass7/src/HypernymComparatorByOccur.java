@@ -7,7 +7,14 @@ import java.util.Comparator;
  */
 public class HypernymComparatorByOccur implements Comparator {
 
-
+    /**
+     * compare between tow Hypernym by occur.
+     * @param hypernym1 the first hypernym.
+     * @param hypernym2 the second hypernym.
+     * @return the value 0 if the Hypernyms equals; a value less than 0 if the first Hypernym is
+     * less than the second Hypernyms; and a value greater than 0 if the first Hypernym is lexicographically
+     * greater than the second Hypernyms.
+     */
     public int compare(Object hypernym1, Object hypernym2) {
         if (hypernym1 instanceof Hypernym && hypernym2 instanceof Hypernym) {
             Hypernym h1 = (Hypernym) hypernym1;
