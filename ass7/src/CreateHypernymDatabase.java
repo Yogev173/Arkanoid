@@ -26,7 +26,7 @@ public class CreateHypernymDatabase {
     public static final Pattern[] PATTERNS = {Pattern.compile("" + NP_STRING + "( ,)? such as " + NP_STRING + ""
             + "( ?, " + NP_STRING + ")*( ?,? (and|or) " + NP_STRING + ")?")
 
-            , Pattern.compile("(such|Such) " + NP_STRING + " as " + NP_STRING + "( ?, " + NP_STRING + ")"
+            , Pattern.compile("such " + NP_STRING + " as " + NP_STRING + "( ?, " + NP_STRING + ")"
             + "*( ?,? (and|or) " + NP_STRING + ")?")
 
             , Pattern.compile("" + NP_STRING + "( ,)? including " + NP_STRING + "( ?, " + NP_STRING + ")"
