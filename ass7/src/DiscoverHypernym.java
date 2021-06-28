@@ -19,7 +19,7 @@ import java.util.regex.Pattern;
  */
 public class DiscoverHypernym {
 
-    private final Pattern NP_PATTERN = CreateHypernymDatabase.NP_PATTERN;
+    private static final Pattern NP_PATTERN = CreateHypernymDatabase.NP_PATTERN;
     private static final Pattern[] PATTERNS = CreateHypernymDatabase.PATTERNS;
     private static final Pattern WHICH_IS_PATTERN = CreateHypernymDatabase.WHICH_IS_PATTERN;
 
@@ -47,7 +47,7 @@ public class DiscoverHypernym {
 
     /**
      * Constructor.
-     * @param lemma
+     * @param lemma the lemma to find it Hypernyms.
      */
     public DiscoverHypernym(String lemma) {
         this.manager = new HypernymManager();
@@ -191,7 +191,7 @@ public class DiscoverHypernym {
 
             String string = "";
             for (String name : names) {
-                string += this.hypernyms.get(name).toString() +"\n";
+                string += this.hypernyms.get(name).toString() + "\n";
             }
 
             return string;

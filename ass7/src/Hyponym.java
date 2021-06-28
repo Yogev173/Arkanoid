@@ -3,7 +3,7 @@
  * Id: 326116910
  * Hyponym Object.
  */
-public class Hyponym implements Comparable{
+public class Hyponym implements Comparable {
 
     private String name;
     private int occur;
@@ -34,10 +34,10 @@ public class Hyponym implements Comparable{
     }
 
     /**
-     * @param occur set the occur.
+     * @param newOccur new value of occur.
      */
-    private void setOccur(int occur) {
-        this.occur = occur;
+    private void setOccur(int newOccur) {
+        this.occur = newOccur;
     }
 
     /**
@@ -52,7 +52,7 @@ public class Hyponym implements Comparable{
      */
     @Override
     public String toString() {
-        return this.name + " (" +Integer.toString(this.occur) + ")";
+        return this.name + " (" + Integer.toString(this.occur) + ")";
     }
 
     /**

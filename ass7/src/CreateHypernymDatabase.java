@@ -23,20 +23,20 @@ public class CreateHypernymDatabase {
 
     private static final String NP_STRING = "<np>[^>]+<\\/np>";
     public static final Pattern NP_PATTERN = Pattern.compile(NP_STRING);
-    public static final Pattern[] PATTERNS = {Pattern.compile("" + NP_STRING + ",? such as " + NP_STRING + ""
-             + "( ?, " + NP_STRING + ")*( ?,? (and|or) " + NP_STRING + ")?")
+    public static final Pattern[] PATTERNS = {Pattern.compile("" + NP_STRING + "( ,)? such as " + NP_STRING + ""
+            + "( ?, " + NP_STRING + ")*( ?,? (and|or) " + NP_STRING + ")?")
 
             , Pattern.compile("(such|Such) " + NP_STRING + " as " + NP_STRING + "( ?, " + NP_STRING + ")"
             + "*( ?,? (and|or) " + NP_STRING + ")?")
 
-            , Pattern.compile("" + NP_STRING + ",? including " + NP_STRING + "( ?, " + NP_STRING + ")"
+            , Pattern.compile("" + NP_STRING + "( ,)? including " + NP_STRING + "( ?, " + NP_STRING + ")"
             + "*( ?,? (and|or) " + NP_STRING + ")?")
 
-            , Pattern.compile("" + NP_STRING + ",? especially " + NP_STRING + "( ?, " + NP_STRING + ")"
-             + "*( ?,? (and|or) " + NP_STRING + ")?")};
+            , Pattern.compile("" + NP_STRING + "( ,)? especially " + NP_STRING + "( ?, " + NP_STRING + ")"
+            + "*( ?,? (and|or) " + NP_STRING + ")?")};
 
-    public static final Pattern WHICH_IS_PATTERN = Pattern.compile("" + NP_STRING + ",? which is"
-         + "( (an example|a kind|a class) of)? " + NP_STRING + "");
+    public static final Pattern WHICH_IS_PATTERN = Pattern.compile("" + NP_STRING + "( ,)? which is"
+            + "( (an example|a kind|a class) of)? " + NP_STRING + "");
 
     private HypernymManager manager;
 
@@ -51,12 +51,12 @@ public class CreateHypernymDatabase {
         String  pathToOutputFile = args[1];
         File[] files = (new File(pathToCorpusDirectory)).listFiles();
 
-        CreateHypernymDatabase DataBase = new CreateHypernymDatabase();
+        CreateHypernymDatabase dataBase = new CreateHypernymDatabase();
         for (File file : files) {
-            DataBase.scanFile(file);
+            dataBase.scanFile(file);
         }
 
-        DataBase.saveData(pathToOutputFile);
+        dataBase.saveData(pathToOutputFile);
     }
 
     /**
@@ -158,7 +158,7 @@ public class CreateHypernymDatabase {
     /**
      * store the information that yet been written to a file.
      */
-    private class HypernymManager {
+    private final class HypernymManager {
 
         private Map<String, Hypernym> hypernyms;
 
@@ -196,7 +196,7 @@ public class CreateHypernymDatabase {
 
             String string = "";
             for (String name : names) {
-                string += this.hypernyms.get(name).toString() +"\n";
+                string += this.hypernyms.get(name).toString() + "\n";
             }
 
             return string;

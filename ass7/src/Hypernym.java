@@ -9,7 +9,7 @@ import java.util.HashMap;
  * Id: 326116910
  * Hypernym Object.
  */
-public class Hypernym implements Comparable{
+public class Hypernym implements Comparable {
 
     public static final int MIN_SIZE = 3;
     private String name;
@@ -44,14 +44,14 @@ public class Hypernym implements Comparable{
     }
 
     /**
-     * @param name the name of the Hyponym to add.
+     * @param hyponymName the name of the Hyponym to add.
      */
-    public void addHyponym(String name) {
-        String nameUpperCase = name.toUpperCase();
+    public void addHyponym(String hyponymName) {
+        String nameUpperCase = hyponymName.toUpperCase();
         if (this.hyponyms.containsKey(nameUpperCase)) {
             this.hyponyms.get(nameUpperCase).addOccur();
         } else {
-            this.hyponyms.put(nameUpperCase, new Hyponym(name));
+            this.hyponyms.put(nameUpperCase, new Hyponym(hyponymName));
         }
     }
 
