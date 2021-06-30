@@ -49,14 +49,18 @@ public class CreateHypernymDatabase {
     public static void main(String[] args) {
         String pathToCorpusDirectory = args[0];
         String  pathToOutputFile = args[1];
-        File[] files = (new File(pathToCorpusDirectory)).listFiles();
+        try {
+            File[] files = (new File(pathToCorpusDirectory)).listFiles();
 
-        CreateHypernymDatabase dataBase = new CreateHypernymDatabase();
-        for (File file : files) {
-            dataBase.scanFile(file);
+            CreateHypernymDatabase dataBase = new CreateHypernymDatabase();
+            for (File file : files) {
+                dataBase.scanFile(file);
+            }
+
+            dataBase.saveData(pathToOutputFile);
+        } catch (NullPointerException e) {
+            System.out.println("Path to data didn't found.");
         }
-
-        dataBase.saveData(pathToOutputFile);
     }
 
     /**

@@ -35,14 +35,19 @@ public class DiscoverHypernym {
     public static void main(String[] args) {
         String pathToCorpusDirectory = args[0];
         String  lemma = args[1];
-        File[] files = (new File(pathToCorpusDirectory)).listFiles();
 
-        DiscoverHypernym discoverHypernym = new DiscoverHypernym(lemma);
-        for (File file : files) {
-            discoverHypernym.scanFile(file);
+        try {
+            File[] files = (new File(pathToCorpusDirectory)).listFiles();
+
+            DiscoverHypernym discoverHypernym = new DiscoverHypernym(lemma);
+            for (File file : files) {
+                discoverHypernym.scanFile(file);
+            }
+
+            discoverHypernym.printHypernyms();
+        } catch (NullPointerException e) {
+            System.out.println("Path to data didn't found.");
         }
-
-        discoverHypernym.printHypernyms();
     }
 
     /**
@@ -204,15 +209,8 @@ public class DiscoverHypernym {
             List<Hypernym> hypernymsList = new ArrayList<>(this.hypernyms.values());
             Collections.sort(hypernymsList, new HypernymComparatorByOccur());
 
-            boolean isFirst = true;
             for (Hypernym hyp : hypernymsList) {
-                if (!isFirst) {
-                    System.out.println("\n" + hyp.getName() + ": (" + hyp.getOccurs() + ")");
-
-                } else {
-                    isFirst = false;
-                    System.out.println(hyp.toString());
-                }
+                System.out.println(hyp.getName() + ": (" + hyp.getOccurs() + ")");
             }
         }
     }

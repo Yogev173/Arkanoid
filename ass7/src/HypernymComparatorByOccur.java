@@ -21,9 +21,9 @@ public class HypernymComparatorByOccur implements Comparator {
             Hypernym h2 = (Hypernym) hypernym2;
 
             if (h1.getOccurs() < h2.getOccurs()) {
-                return -1;
-            } else if (h1.getOccurs() > h2.getOccurs()) {
                 return 1;
+            } else if (h1.getOccurs() > h2.getOccurs()) {
+                return -1;
             } else {
                 return 0;
             }
