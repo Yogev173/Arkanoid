@@ -1,6 +1,12 @@
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * @author yogev abarbanel
+ * Id: 326116910
+ * Collection of object type Collidebale the Ball can collision with.
+ */
 public class GameEnvironment {
 
     private List<Collidable> collidableList;
@@ -34,17 +40,17 @@ public class GameEnvironment {
     }
 
     /**
-     * addMultipalCollidable.
-     * @param collidableList List of Collidable Object to add.
+     * addMultipleCollidable.
+     * @param newCollidableList List of Collidable Object to add.
      */
-    public void addMultipalCollidable(List<Collidable> collidableList) {
-        for (Collidable collidable : collidableList) {
+    public void addMultipleCollidable(List<Collidable> newCollidableList) {
+        for (Collidable collidable : newCollidableList) {
             this.addCollidable(collidable);
         }
     }
 
     /**
-     * getClosestCollision
+     * getClosestCollision.
      * @param trajectory the route of the ball, without any obstacle.
      * @return If this object will not collide with any of the collidables in this collection, return null.
      *         Else, return the information about the closest collision that is going to occur.
@@ -62,8 +68,8 @@ public class GameEnvironment {
             newCollisionPoint = trajectory.closestIntersectionToStartOfLine(c.getCollisionRectangle());
             if (newCollisionPoint == null) {
                 continue;
-            } else if (closetCollisionPoint == null || trajectory.start().distance(closetCollisionPoint) >
-                    trajectory.start().distance(newCollisionPoint)) {
+            } else if (closetCollisionPoint == null || trajectory.start().distance(closetCollisionPoint)
+                    > trajectory.start().distance(newCollisionPoint)) {
                 collisionInfo.setCollisionPoint(newCollisionPoint);
                 collisionInfo.setCollisionObject(c);
                 closetCollisionPoint = newCollisionPoint;
@@ -88,9 +94,9 @@ public class GameEnvironment {
 
     /**
      * setCollidableList.
-     * @param collidableList the collidable list.
+     * @param newCollidableList the collidable list.
      */
-    public void setCollidableList(List<Collidable> collidableList) {
-        this.collidableList = collidableList;
+    public void setCollidableList(List<Collidable> newCollidableList) {
+        this.collidableList = newCollidableList;
     }
 }

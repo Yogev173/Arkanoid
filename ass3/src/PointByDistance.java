@@ -27,7 +27,6 @@ public class PointByDistance implements Comparator {
      */
     @Override
     public int compare(Object point1 , Object point2) {
-        if (point1 instanceof Point && point2 instanceof Point) {
             if (((Point) point1).distance(relationPoint) < ((Point) point2).distance(relationPoint)) {
                 return -1;
             } else if (((Point) point1).distance(relationPoint) > ((Point) point2).distance(relationPoint)) {
@@ -35,8 +34,5 @@ public class PointByDistance implements Comparator {
             } else {
                 return 0;
             }
-        } else {
-            return -2;
-        }
     }
 }

@@ -1,9 +1,15 @@
 import biuoop.DrawSurface;
 
+
+/**
+ * @author yogev abarbanel
+ * Id: 326116910
+ * Sprite.
+ */
 public interface Sprite {
 
     /**
-     * drawOn
+     * drawOn.
      * @param d the DrawSurface to draw on.
      */
     void drawOn(DrawSurface d);

@@ -1,14 +1,17 @@
 import biuoop.DrawSurface;
 import java.awt.Color;
 
+/**
+ * @author yogev abarbanel
+ * Id: 326116910
+ * one Block.
+ */
 public class Block implements Collidable, Sprite {
 
-    public static final int DEFAULT_WIDTH = 80;
-    public static final int DEFAULT_HEIGHT = 25;
+    public static final int DEFAULT_WIDTH = 60;
+    public static final int DEFAULT_HEIGHT = 20;
 
     private Rectangle rectangle;
-    private boolean isFrameBlock;
-    private boolean isBeenCollided = false;
     private Color color;
 
     /**
@@ -16,28 +19,17 @@ public class Block implements Collidable, Sprite {
      * @param rectangle the Block (shape)
      */
     public Block(Rectangle rectangle) {
-        this(rectangle, false);
-    }
-
-    /**
-     * Constructor.
-     * @param rectangle the Block (shape)
-     * @param isFrameBlock if this Block is a frame Block
-     */
-    public Block(Rectangle rectangle, boolean isFrameBlock) {
-        this(rectangle, isFrameBlock, isFrameBlock ? Color.BLACK : Ball.randomColor());
+        this(rectangle, Ball.randomColor());
     }
 
 
     /**
      * Constructor.
      * @param rectangle the Block (shape)
-     * @param isFrameBlock if this Block is a frame Block
      * @param color the color of the Block
      */
-    public Block(Rectangle rectangle, boolean isFrameBlock, Color color) {
+    public Block(Rectangle rectangle, Color color) {
         this.rectangle = rectangle;
-        this.isFrameBlock = isFrameBlock;
         this.color = color;
     }
 
@@ -89,7 +81,6 @@ public class Block implements Collidable, Sprite {
     private Velocity collidedUpperSide(Point collisionPoint, Velocity currentVelocity) {
         if (rectangle.getUpperSide().isInLine(collisionPoint)) {
             currentVelocity.setDy(-currentVelocity.getDy());
-            this.isBeenCollided = true;
         }
 
         return currentVelocity;
@@ -105,7 +96,6 @@ public class Block implements Collidable, Sprite {
     private Velocity collidedLowerSide(Point collisionPoint, Velocity currentVelocity) {
         if (rectangle.getLowerSide().isInLine(collisionPoint)) {
             currentVelocity.setDy(-currentVelocity.getDy());
-            this.isBeenCollided = true;
         }
 
         return currentVelocity;
@@ -121,7 +111,6 @@ public class Block implements Collidable, Sprite {
     private Velocity collidedLeftSide(Point collisionPoint, Velocity currentVelocity) {
         if (rectangle.getLeftSide().isInLine(collisionPoint)) {
             currentVelocity.setDx(-currentVelocity.getDx());
-            this.isBeenCollided = true;
         }
 
         return currentVelocity;
@@ -137,7 +126,6 @@ public class Block implements Collidable, Sprite {
     private Velocity collidedRightSide(Point collisionPoint, Velocity currentVelocity) {
         if (rectangle.getRightSide().isInLine(collisionPoint)) {
             currentVelocity.setDx(-currentVelocity.getDx());
-            this.isBeenCollided = true;
         }
 
         return currentVelocity;
