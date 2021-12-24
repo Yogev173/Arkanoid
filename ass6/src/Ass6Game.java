@@ -24,7 +24,7 @@ public class Ass6Game {
         List<LevelInformation> levels = new ArrayList<>();
         LevelInformation[] basicLevel = {new Level1(), new Level2(), new Level3(), new Level4()};
 
-        //check the input
+        //check the input from the user
         for (String string : args) {
             // check if the args is a int from 1 to 4
             try {
